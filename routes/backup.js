@@ -7,7 +7,7 @@ var Category= require('../models/category');
 
 var checkLogin = require('../middleware/checkLogin.middleware')
 
-//post add to cart
+//post add 
 
 router.post('/add/:slug',checkLogin,function(req,res){
     var topping = req.body.topping    
