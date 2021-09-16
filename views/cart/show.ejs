@@ -1,0 +1,102 @@
+<%- include ('../layouts/header') -%>
+<body>
+    <% if (typeof cart !== "undefined") { %>
+    <div class="wrapper">
+        <table class="table">
+            <thead class="table-color">
+                <tr>
+                    <th scope="col" class="col-th"></th>
+                    <th scope="col" class="col-th">Tên sản phẩm</th>
+                    <th scope="col" class="col-th">Số lượng</th>
+                    <th scope="col" class="col-th">Đơn giá</th>
+                    <th scope="col" class="col-th">Thành tiền</th>
+                    <th scope="col" class="col-th"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% var total =0 %>
+                <% cart.forEach(function(product){ %>
+                    <% var sub1 = 0 %>
+                    <tr class="tr-item">
+                        <th scope="row" class="rowth">
+                            <img src="..<%=product.image%>" class="img-th"></a>
+                        </th>
+                        <td class="row1 row11">
+                            <div class="flex-cart">
+                                <div class="title-cart"><%=product.title%></div>
+                                <div class="topping-cart">
+                                    <% if (product.topping.length != 0){ %>
+                                        <% product.topping.forEach(function(tp){ %>
+                                            <%= tp.title %>
+                                            <% sub1=sub1 + tp.price %>
+                                       <% }) %>
+                                    <% }  %>
+                                                               
+                                </div>
+
+                                <% var sub = product.quantity* (sub1+product.price) %>
+                                <%  total = total + sub %>
+                                <div class="topping-cart">
+                                    <% if (product.ice == 0) { %>
+                                        Đá chung
+                                    <% } else { %>
+                                        Đá riêng
+                                    <% } %>     
+                                    <%= product.size %>                            
+                                </div>
+                            </div>
+                            </td>
+                        <td class="row1">
+                            <div class="buttons_added btn-add">
+                                <a class="minus is-form" href="/cart/update/<%= product.idCart%>?action=remove"> - </a>
+                                <input aria-label="quantity" class="input-qty" max="20" min="1" name="" type="number"
+                                    value= <%= product.quantity %> >
+                                    <a class="plus is-form" href="/cart/update/<%= product.idCart%>?action=add"> + </a>
+                            </div>
+                        </td>
+                        <td class="row1 amount"><%= sub1+product.price %></td>
+                        <td class="row1 total"><%= sub %>đ</td>
+                        <td class="row1">
+                            <a class="btn-close btn-xoa confirmDeletion" href="/cart/update/<%= product.idCart%>?action=clear" aria-label="Close"></a>
+                        </td>
+                    </tr>                
+                <% }) %>
+                
+                
+            </tbody>
+
+        </table>
+    </div>
+    <div class="flex-total">
+        <div>
+            
+            <a href="/product"><button type="button" class="btn btn-secondary btn-cont">
+                Tiếp tục mua hàng
+            </button></a>
+            
+        </div>
+    <div class="wrapper1">
+        <div class="total-frame">
+            <h5> Giỏ hàng</h5>
+            <div class="span-total"></div>
+            <div class="total">
+                <div class="text-total">TỔNG TIỀN: </div>
+                <div class="text-total"><%=total %> </div>
+            </div>
+            <button type="button" class="btn btn-secondary btn-total">
+                ĐẶT HÀNG
+            </button>
+        </div>
+    </div>
+        
+    </div>
+    <% } else { %>
+        <h3 class="text-center mt-4">Your cart is empty</h3>
+    <% } %>
+
+
+
+    <script src="/js/main.js"></script>
+</body>
+
+<%- include ('../layouts/footer') -%>

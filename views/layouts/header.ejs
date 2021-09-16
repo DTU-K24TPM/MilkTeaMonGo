@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trà sữa Bông</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<header>
+    <div class="container">
+              <div class="row">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light nav1">
+                      <div class="collapse navbar-collapse navnav" id="Mainnav">
+                         <% if (user != "") { %>
+                            <ul class="profile-menu-user">
+                                <li class="profile-menu-list" data-trigger="dropdown">
+                                    <button class="btn-hello">Chào <%= user.fullname %> </button>
+                                </li>
+                                <ul class="profile-submenu submenu">
+                                    <li><a class="#">Hồ sơ của tôi</a></li>
+                                    <li><a href="/cart/cartView" class="#">Đơn hàng</a></li>
+                                    <li><a href="/auth/logout">Đăng xuất</a></li>
+                                </ul>
+                            </ul>
+                         <% } else { %>
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link " href="/auth/register">Đăng ký</a>
+                                </li>
+                                <div class="nav-cach"></div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/auth/login">Đăng nhập</a>
+                                </li>
+                            </ul>
+                            
+                         <% } %>                      
+                      </div>
+                  </nav>
+              </div>
+              <div class="row">
+                  <div class="col">
+  
+                      <div class="menu-div" id="menu">
+                          <ul class="menu-ul">
+                              <li>
+                                  <a href="/"><img class="img-logo" src="../../img/logo.png" /></a>
+                              </li>
+                              <li class="li1"><a class="menu-a" href="/">TRANG CHỦ</a></li>
+                              <li><a class="menu-a" href="/product">MENU</a></li>
+                              <li>
+                                  <a class="menu-a" href="/cart">GIỎ HÀNG 
+                                      <% if (user!= "") { %>
+                                            (<%= user.cart.length %>)
+                                      <% }   %> 
+                                  </a>
+                                </li>
+                              <li>
+                                  <form class="search-form" action="/search" method="GET">
+                                      <input name="product" class="form-control me-2 input-search" type="text"
+                                          placeholder="Tìm kiếm" aria-label="Search">
+                                      <button class="btn btn-outline-success btn-search" type="submit">Tìm kiếm</button>
+                                  </form>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  </header>

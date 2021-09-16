@@ -1,0 +1,26 @@
+<%- include ('./layouts/header') %>
+<body>
+    <div class="wrapper">
+        <div class="body-slide">
+            <div class="dropdown">
+                <button class="nut_dropdown"><img class="img-drop" src="../img/drop.png" />DANH MỤC SẢN PHẨM</button>
+                <div class="noidung_dropdown">
+                    
+                    <% categories.forEach(function(cat){ %>
+                        <a href="/product/category/<%=cat.slug %>"><%= cat.title %></a>
+                    <% }); %>
+                </div>
+            </div>
+            <div class="w3-content w3-section slide-show">
+                <a href="/product/"><img class="mySlides" src="img/cf-1.jpeg"></a>
+                <a href="/product/{{this.Id}}"><img class="mySlides" src="img/cf-2.jpeg"></a>
+                <a href="/product/{{this.Id}}"><img class="mySlides" src="img/cf-3.jpeg"></a>
+                <a href="/product/{{this.Id}}"><img class="mySlides" src="img/cf-4.jpeg"></a>
+                <a href="/product/{{this.Id}}"><img class="mySlides" src="img/cf-5.jpeg"></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/index.js"></script>
+<%- include ('./layouts/footer') %>

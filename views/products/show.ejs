@@ -1,0 +1,42 @@
+<%- include ('../layouts/header') -%>
+<br />
+<br />
+<div class="wrapper">
+
+        <div class="container">
+            <div class="row">
+                <div class="menu-title">
+                    <h2>MENU</h2>
+                    <div class="span-line"></div>
+                </div>
+            </div>
+            <div class="row" style="justify-content: center;">
+                <div class="col-xl-12 col-lg-12 col-md-10 col-sm-10 ">
+                    <ul class="list-menu-ul">
+                        <li class="li-center"><a href="/product" class="list-menu-a">ALL</a></li>
+                        <% categories.forEach(function(cat){ %>
+                            <li class="li-center"><a href="/product/category/<%= cat.slug%>" class="list-menu-a"><%= cat.title %></a></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+            
+            <div class="list-item">
+                <% products.forEach(function(product){ %>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <a href="/product/<%= product.slug %>"><img src="../../img/product_imgs/<%=product._id %>/<%= product.image %>" class="img-item">
+                            <h5><%= product.title %> </h5>
+                            <h6><%= parseFloat(product.price) %>đ</h6>
+                        </a>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+
+ 
+</div>
+<%- include ('../layouts/footer') -%>
