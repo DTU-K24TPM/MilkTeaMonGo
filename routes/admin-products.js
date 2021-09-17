@@ -146,7 +146,7 @@ router.post('/edit-product/:id',function(req,res){
                         console.log(err);
                     if (imageFile != ""){
                         if (pimage != "" && pimage != imageFile){
-                            fs.remove('public/img/product_imgs/'+id + '/'+ pimage,function(err){
+                            fs.remove('public/img/product_imgs/'+id +'/'+ pimage,function(err){
                                 if (err) console.log(err);
 
                             });
@@ -170,7 +170,7 @@ router.post('/edit-product/:id',function(req,res){
 
 router.get('/delete-product/:id',function(req,res){
     var id =req.params.id;
-    var path = 'public/img/products_imgs/'+ id;
+    var path = 'public/img/product_imgs/'+ id;
     fs.remove(path,function(err){
         if (err) console.log(err);
         else {
