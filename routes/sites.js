@@ -4,13 +4,17 @@ var router = express.Router();
 var Product= require('../models/product');
 var Category= require('../models/category');
 
+
+
 router.get('/',function(req,res){
-    Category.find({slug: {'$ne':'topping'}},function(err,cats){
+Product.find({$and:[{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,p){
+    Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
         res.render('index',{
-            categories: cats 
-        });
+            categories: cats, 
+            products: p
+            });
+        })
     })
-    
 })
 
 router.get('/search',function(req,res){

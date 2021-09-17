@@ -70,6 +70,7 @@ router.post('/add/:slug',checkLogin,function(req,res){
             var idCart=req.session.cart.length;
             req.session.cart.push({
                 title: title,
+                slug:p.slug,
                 topping: newTp,
                 ice: ice,
                 size: size,
@@ -95,6 +96,7 @@ router.post('/add/:slug',checkLogin,function(req,res){
             if (newItem) {
                 req.session.cart.push({
                     title: title,
+                    slug:p.slug,
                     topping: newTp,
                     ice: ice,
                     size: size,
