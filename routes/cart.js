@@ -86,7 +86,7 @@ router.post('/add/:slug',checkLogin,function(req,res){
             for (var i=0;i<cart.length;i++){
                 if (idCart== cart[i].idCart) idCart++;
                 if (cart[i].title==title && (equalTopping(cart[i].topping,newTp)==true) && cart[i].size==size && cart[i].ice==ice) {
-                    cart[i].quantity++;
+                    cart[i].quantity-=(-quantity);
                     newItem=false;
                     break;
                 }
