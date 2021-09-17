@@ -4,6 +4,8 @@ var router = express.Router();
 var Product= require('../models/product');
 var Category= require('../models/category');
 
+
+
 router.get('/',function(req,res){
     Category.find({slug: {'$ne':'topping'}},function(err,cats){        
         Product.aggregate([{ $match: { $and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}}]}}
@@ -14,7 +16,6 @@ router.get('/',function(req,res){
             });
         })
     })
-    
 })
 
 router.get('/search',function(req,res){

@@ -12,11 +12,9 @@
                 </div>
             </div>
             <div class="w3-content w3-section slide-show">
-                <% products.forEach(function(product){ %>
-                    <a href="/product/<%= product.slug %>">
-                        <img class="mySlides" src="../../img/product_imgs/<%=product._id %>/<%= product.image %>">
-                    </a>
-                <% }); %>                
+               <% products.forEach(function(product){ %>
+                <a href="/product/<%= product.slug %>"><img class="mySlides" src="img/product_imgs/<%=product._id%>/<%=product.image%>"></a>
+              <% }); %>  
             </div>
         </div>
     </div>

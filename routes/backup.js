@@ -17,6 +17,7 @@ router.post('/add/:slug',checkLogin,function(req,res){
     var size = req.body.size
     var slug = req.params.slug;
     var title= "";
+
     if (req.session.user){
         User.findOne({email: req.session.user},function(err,us){
             if (err) return console.log(err);
