@@ -7,8 +7,8 @@ var Category= require('../models/category');
 
 
 router.get('/',function(req,res){
-    Category.find({slug: {'$ne':'topping'}},function(err,cats){        
-        Product.aggregate([{ $match: { $and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}}]}}
+    Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){        
+        Product.aggregate([{ $match: { $and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}},{category: {'$ne':'ăn-vặt'}}]}}
         ,{ $sample: { size: 7 } }],function(err,products){            
             res.render('index',{
                 products: products,
@@ -20,8 +20,8 @@ router.get('/',function(req,res){
 
 router.get('/search',function(req,res){
     var p= req.query.product;
-    Category.find({slug : {'$ne': 'topping'}},function(err,cats){
-        Product.find({category: {'$ne':'topping'}},function(err,products){
+    Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
+        Product.find({$and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}}]},function(err,products){
             var newProducts = products.filter(function(result){
                 return result.title.toLowerCase().indexOf(p.toLowerCase()) !== -1;
             })
