@@ -53,6 +53,12 @@ router.post('/add/:slug',checkLogin,function(req,res){
     var ice = req.body.ice  
     var productId = req.body.productId  
     var size = req.body.size
+    var newSz={};
+
+    Product.findOne({title: size},function(err,sz){
+        if (err) return console.log(err);
+        newSz = sz;
+    })
     var slug = req.params.slug;
     var title= "";
         User.findOne({email: req.session.user},function(err,us){
@@ -73,7 +79,7 @@ router.post('/add/:slug',checkLogin,function(req,res){
                 slug:p.slug,
                 topping: newTp,
                 ice: ice,
-                size: size,
+                size: newSz,
                 quantity: quantity,
                 price: p.price,
                 image: '/img/product_imgs/'+p._id + '/'+p.image,
@@ -99,7 +105,7 @@ router.post('/add/:slug',checkLogin,function(req,res){
                     slug:p.slug,
                     topping: newTp,
                     ice: ice,
-                    size: size,
+                    size: newSz,
                     quantity: quantity,
                     price: p.price,
                     image: '/img/product_imgs/'+p._id + '/'+p.image,
