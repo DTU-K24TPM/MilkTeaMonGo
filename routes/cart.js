@@ -8,7 +8,7 @@ var Category= require('../models/category');
 var checkLogin = require('../middleware/checkLogin.middleware')
 
 
-//function equal array
+//function equal array Topping
 function equalTopping(a,b){
     if (a.length == b.length && b.length ==0) return true;
     if (a.length != b.length) return false;
@@ -92,7 +92,7 @@ router.post('/add/:slug',checkLogin,function(req,res){
             var newItem= true;
             for (var i=0;i<cart.length;i++){
                 if (idCart== cart[i].idCart) idCart++;
-                if (cart[i].title==title && (equalTopping(cart[i].topping,newTp)==true) && cart[i].size==size && cart[i].ice==ice) {
+                if (cart[i].title==title && (equalTopping(cart[i].topping,newTp)==true) && cart[i].size.slug==newSz.slug && cart[i].ice==ice) {
                     cart[i].quantity-=(-quantity);
                     newItem=false;
                     break;
