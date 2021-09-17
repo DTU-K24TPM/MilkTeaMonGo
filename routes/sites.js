@@ -7,11 +7,12 @@ var Category= require('../models/category');
 
 
 router.get('/',function(req,res){
-Product.find({$and:[{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,p){
-    Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
-        res.render('index',{
-            categories: cats, 
-            products: p
+    Category.find({slug: {'$ne':'topping'}},function(err,cats){        
+        Product.aggregate([{ $match: { $and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}}]}}
+        ,{ $sample: { size: 7 } }],function(err,products){            
+            res.render('index',{
+                products: products,
+                categories: cats 
             });
         })
     })
