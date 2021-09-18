@@ -1358,3 +1358,7 @@ body {
     color: indianred;
     text-align: end;
   }
+
+.not-found{
+  padding: 165px;
+}

@@ -39,7 +39,7 @@ router.get('/add-product',function(req,res){
 
 //post add page
 router.post('/add-product',function(req , res){
-    var imageFile = typeof req.files.image !== "undefined"? req.files.image.name:""; 
+    var imageFile =(req.files != null)? req.files.image.name:""; 
     var title=req.body.title;
     var slug = title.replace(/\s+/g,'-').toLowerCase();
     var price=req.body.price;
@@ -106,7 +106,7 @@ router.get('/edit-product/:id',function(req,res){
                     id: p._id,
                     title: p.title,
                     categories: cat,
-                    price: parseFloat(p.price).toFixed(2),
+                    price: p.price,
                     category: p.category.replace(/\s+/g,'-').toLowerCase(),
                     image:p.image
                 });
@@ -119,7 +119,7 @@ router.get('/edit-product/:id',function(req,res){
 
 //post edit page
 router.post('/edit-product/:id',function(req,res){
-    var imageFile = typeof req.files.image !== "undefined"? req.files.image.name:""; 
+    var imageFile =  (req.files != null)? req.files.image.name:""; 
     var title=req.body.title;
     var slug = title.replace(/\s+/g,'-').toLowerCase();
     var price=req.body.price;
@@ -136,7 +136,7 @@ router.post('/edit-product/:id',function(req,res){
                 if (err) console.log(err);
                 p.title= title;
                 p.slug = slug;
-                p.price=parseFloat(price).toFixed(2);
+                p.price=price;
                 p.category = category;
                 if (imageFile != ""){
                     p.image= imageFile;
