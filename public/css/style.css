@@ -949,7 +949,7 @@ body {
       height: 300px;
   }
   .cls-change-info{
-    padding-left: 200px;
+    padding-left: 100px;
   }
   .wrap-img{
     margin-left: 60px;
@@ -1361,4 +1361,12 @@ body {
 
 .not-found{
   padding: 165px;
+}
+.profile-form{
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-width: 780px;
 }

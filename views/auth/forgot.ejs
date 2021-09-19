@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quên mật khẩu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="body-login">
+        <div class="logo-login">
+            <a href="/"><img src="../img/logo.png"></a>
+        </div>
+
+        <form class="form-login" id="form-1" method="POST" action="/auth/forgot">
+            <div class="login-frame">
+                <%if (mes !=""){ %>
+                <div class="alert alert-danger"><%=mes%></div>
+                <% } %>
+                <div class="form-group">
+                <input name="email" id="email" class="form-control input-login" type="text" placeholder="Email"
+                    aria-label="default input example" <% if (value != "") { %> value="<%=value%>" <% }  %>>
+                    <span class="span-error" id="emaillogin_error"></span>
+                </div>
+                
+                <button type="submit"  onclick="return validate();" id="btn" class="btn btn-secondary btn-login">
+                    GỬI
+                </button>
+        </form>
+        <div class="link-login">
+            <a href="/auth/login">Đăng nhập</a>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script src="../js/validate.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        errorSelect: '.span-error',
+        rules: [
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email')            
+        ]
+    });
+
+</script>

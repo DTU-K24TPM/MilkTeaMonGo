@@ -40,6 +40,7 @@ function Validator(options){
                 isFormValid = false;
             }
             });
+            if(isFormValid) formElement.submit()
         }
 
         options.rules.forEach(function(rule){
