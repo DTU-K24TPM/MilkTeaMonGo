@@ -121,7 +121,7 @@ Validator.isConfirm = function(selector, getConfirm, message){
     return {
        selector: selector,
        test: function(value){
-           return value == getConfirm() ? undefined :'Vui lòng nhập đúng mật khẩu';
+           return value == getConfirm() ? undefined :'Mật khẩu không trùng khớp';
        }
    };
 }

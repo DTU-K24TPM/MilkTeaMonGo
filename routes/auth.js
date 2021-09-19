@@ -1,6 +1,8 @@
 var express = require('express')
 var router = express.Router();
 
+var fs = require('fs-extra');
+
 var User= require('../models/user');
 
 var nodemailer = require('nodemailer')
@@ -51,6 +53,9 @@ router.post('/register',function(req,res){
             });
             user.save(function(err){
                 if (err) return console.log(err);
+                fs.mkdir('public/img/users/'+ user.email, function(err){
+                    if (err) return console.log(err);
+                });
                 res.render('auth/register',{
                     mes:'Đăng ký thành công'
                 })
@@ -58,6 +63,7 @@ router.post('/register',function(req,res){
            
         }
     })
+
 
 })
 

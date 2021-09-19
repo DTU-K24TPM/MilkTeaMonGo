@@ -43,9 +43,9 @@
                         </div>
                         <div class="col-6 change-avatar">
                            <% if (typeof us.photo =="undefined"){ %>
-                                <img src="img/noimage.jpg" class="profile-avatar">
+                                <img src="/img/noimage.jpg" class="profile-avatar">
                            <% } else { %>
-                                <img src="img/users/<%=us.photo %>" class="profile-avatar">
+                                <img src="/img/users/<%= us.email%>/<%=us.photo %>" class="profile-avatar">
                             <%} %>
                             <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm hình ảnh của bạn</i></label>
                         </div>
