@@ -17,16 +17,19 @@
             <a href="/"><img src="../img/logo.png"></a>
         </div>
 
-        <form class="form-login" method="POST" action="/auth/login">
+        <form class="form-login" id="form-1" method="POST" action="/auth/login">
             <div class="login-frame">
                 <%if (mes !=""){ %>
                 <div class="alert alert-danger"><%=mes%></div>
                 <% } %>
-                <input name="email" id="emaillogin" class="form-control input-login" type="text" placeholder="Email"
+                <div class="form-group">
+                <input name="email" id="email" class="form-control input-login" type="text" placeholder="Email"
                     aria-label="default input example" <% if (value != "") { %> value="<%=value%>" <% }  %>>
                     <span class="span-error" id="emaillogin_error"></span>
+                </div>
+
                 <div class="col-sm-10">
-                    <input name="password" id="passlogin" type="password" class="form-control input-login"
+                    <input name="password" id="pass" type="password" class="form-control input-login"
                         placeholder="Mật khẩu" id="inputPassword">
                          <span class="span-error" id="passlogin_error"></span>
                 </div>
@@ -42,4 +45,16 @@
     </div>
 </body>
 <script src="../js/jquery-3.6.0.min.js"></script>
-<script src="../js/validatelogin.js"></script>
+<script src="../js/validate.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        errorSelect: '.span-error',
+        rules: [
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email'),
+            Validator.isRequired('#pass')
+        ]
+    });
+
+</script>

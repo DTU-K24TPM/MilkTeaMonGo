@@ -1,109 +1,241 @@
-function showError(key, mess){
-    document.getElementById(key + '_error').innerHTML = mess;
+
+function Validator(options){
+
+    var selectorRules = {};
+
+    function validate(inputElement, rule){
+        var errorElement = inputElement.parentElement.querySelector(options.errorSelect);
+        var errorMess;
+
+        var rules = selectorRules[rule.selector];
+
+        for(var i = 0; i < rules.length; ++i){
+            errorMess = rules[i](inputElement.value);
+            if(errorMess) break;
+        }
+
+        if(errorMess){
+            errorElement.innerText = errorMess;
+            inputElement.parentElement.classList.add('invalid');
+        }else{
+            errorElement.innerText = '';
+            inputElement.parentElement.classList.remove('invalid');
+        }
+
+        return !errorMess;
+    }
+
+    var formElement = document.querySelector(options.form);
+
+    if(formElement){
+        formElement.onsubmit = function(e){
+            e.preventDefault();
+
+            var isFormValid = true;
+
+            options.rules.forEach(function(rule){
+            var inputElement = formElement.querySelector(rule.selector);
+            var isValid  = validate(inputElement, rule);
+            if(!isValid){
+                isFormValid = false;
+            }
+            });
+        }
+
+        options.rules.forEach(function(rule){
+
+            if(Array.isArray(selectorRules[rule.selector])){
+                selectorRules[rule.selector].push(rule.test);
+            }else {
+                selectorRules[rule.selector] = [rule.test];
+            }
+
+            var inputElement = formElement.querySelector(rule.selector);
+           
+            if(inputElement){
+                inputElement.onblur = function(){
+                   validate(inputElement, rule);
+                }
+
+                inputElement.oninput = function(){
+                    var errorElement = inputElement.parentElement.querySelector(options.errorSelect);
+                    errorElement.innerText = '';
+                    inputElement.parentElement.classList.remove('invalid');
+                }
+            }
+        });
+    }
 }
 
-function validate()
-{
-    var flag = true;
+Validator.isRequired = function(selector, message){
+    return {
+        selector: selector,
+        test: function(value){
+            return value.trim() ? undefined : message || 'Vui lòng nhập trường này';
+        }
+    };
+}
 
-    var username = document.getElementById('name').value;
-    if (username == ''){
-        showError('name', 'Vui lòng không để trống họ tên');
-        flag = false;
-    }
-    else if (username.length < 5 ){
-        showError('name', 'Độ dài phải lớn hơn 5 ký tự');
-        flag = false;
-    }
-    else if ( !/^[a-zA-Z0-9]+$/.test(username)) {
-        showError('name', 'Họ tên không chứa các ký tự đặc biệt');
-        flag = false;
-    }
-    else{
-        showError('name','');
-        flag = true;
-    }
+Validator.isName = function(selector, message){
+    return {
+        selector: selector,
+        test: function(value){
+            return value.length >=5 ? undefined : message || 'Họ tên phải có độ dài hơn 5 ký tự';
+        }
+    };
+}
 
 
-    var password = document.getElementById('pass').value;
+Validator.isEmail = function(selector, message){
+     return {
+        selector: selector,
+        test: function(value){
+            var regax = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            return regax.test(value) ? undefined : message || 'Vui lòng nhập đúng định dạng email';
+        }
+    };
+}
 
-    if (password == '' ){
-        showError('pass', 'Vui lòng không để trống mật khẩu');
-        flag = false;
-
-    }
-    else if (password.length < 8){
-        showError('pass', 'Độ dài phải lớn hơn 8 ký tự');
-        flag = false;
-
-    }
-    else{
-        showError('pass','');
-        flag = true;
-    }
-
-
-    var repassword = document.getElementById('repass').value;
-    if (repassword == '' ){
-        showError('repass', 'Vui lòng không để trống mật khẩu');
-        flag = false;
-
-    }
-    else if (password != repassword){
-        showError('repass', 'Mật khẩu không trùng khớp');
-        flag = false;
-    }
-    else{
-        showError('repass','');
-        flag = true;
-    }
+Validator.isPhone = function(selector, message){
+    return {
+       selector: selector,
+       test: function(value){
+           var regax = /^(84|0[3|5|7|8|9])+[0-9]{8}$/;
+           return regax.test(value) ? undefined : 'Vui lòng nhập đúng số điện thoại';
+       }
+   };
+}
 
 
-    var phone = document.getElementById('phone').value;
-    var phoneformat = /^(84|0[3|5|7|8|9])+[0-9]{8}$/;
-    if (phone == ''){
-        showError('phone', 'Vui lòng không để trống số điện thoại');
-        flag = false;
-    }
-    else if ( !phoneformat.test(phone)){
-        showError('phone', 'Vui lòng nhập đúng số điện thoại');
-        flag = false;
-    }
-    else{
-        showError('phone','');
-        flag = true;
-    }
+Validator.minLength = function(selector, message){
+    return {
+       selector: selector,
+       test: function(value){
+           return value.length >=8 ? undefined : 'Vui lòng nhập tối thiểu 8 ký tự';
+       }
+   };
+}
+
+Validator.isConfirm = function(selector, getConfirm, message){
+    return {
+       selector: selector,
+       test: function(value){
+           return value == getConfirm() ? undefined :'Vui lòng nhập đúng mật khẩu';
+       }
+   };
+}
 
 
-    var email = document.getElementById('email').value;
-    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (email == ''){
-
-        showError('email', 'Vui lòng không để trống email');
-        flag = false;
-
-    }
-    else if (!mailformat.test(email)){
-
-        showError('email', 'Sai định dạng email');
-        flag = false;
-
-    }
-    else{
-        showError('email', '');
-        flag = true;
-    }
 
 
-    var birth = document.getElementById('birth').value;
-    if(birth == ''){
-        showError('birth','Vui lòng chọn ngày sinh');
-        flag = false;
-    }
-    else{
-        showError('birth','');
-        flag = true;
-    }
 
-    return flag;
-} 
+// function showError(key, mess){
+//     document.getElementById(key + '_error').innerHTML = mess;
+// }
+
+// function validate()
+// {
+//     var flag = true;
+
+//     var username = document.getElementById('name').value;
+//     if (username == ''){
+//         showError('name', 'Vui lòng không để trống họ tên');
+//         flag = false;
+//     }
+//     else if (username.length < 5 ){
+//         showError('name', 'Độ dài phải lớn hơn 5 ký tự');
+//         flag = false;
+//     }
+//     else if ( !/^[a-zA-Z0-9]+$/.test(username)) {
+//         showError('name', 'Họ tên không chứa các ký tự đặc biệt');
+//         flag = false;
+//     }
+//     else{
+//         showError('name','');
+//         flag = true;
+//     }
+
+
+
+//     var password = document.getElementById('pass').value;
+
+//     if (password == '' ){
+//         showError('pass', 'Vui lòng không để trống mật khẩu');
+//         flag = false;
+
+//     }
+//     else if (password.length < 8){
+//         showError('pass', 'Độ dài phải lớn hơn 8 ký tự');
+//         flag = false;
+
+//     }
+//     else{
+//         showError('pass','');
+//         flag = true;
+//     }
+
+
+//     var repassword = document.getElementById('repass').value;
+//     if (repassword == '' ){
+//         showError('repass', 'Vui lòng không để trống mật khẩu');
+//         flag = false;
+
+//     }
+//     else if (password != repassword){
+//         showError('repass', 'Mật khẩu không trùng khớp');
+//         flag = false;
+//     }
+//     else{
+//         showError('repass','');
+//         flag = true;
+//     }
+
+
+//     var phone = document.getElementById('phone').value;
+//     var phoneformat = /^(84|0[3|5|7|8|9])+[0-9]{8}$/;
+//     if (phone == ''){
+//         showError('phone', 'Vui lòng không để trống số điện thoại');
+//         flag = false;
+//     }
+//     else if ( !phoneformat.test(phone)){
+//         showError('phone', 'Vui lòng nhập đúng số điện thoại');
+//         flag = false;
+//     }
+//     else{
+//         showError('phone','');
+//         flag = true;
+//     }
+
+
+//     var email = document.getElementById('email').value;
+//     var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+//     if (email == ''){
+
+//         showError('email', 'Vui lòng không để trống email');
+//         flag = false;
+
+//     }
+//     else if (!mailformat.test(email)){
+
+//         showError('email', 'Sai định dạng email');
+//         flag = false;
+
+//     }
+//     else{
+//         showError('email', '');
+//         flag = true;
+//     }
+
+
+//     var birth = document.getElementById('birth').value;
+//     if(birth == ''){
+//         showError('birth','Vui lòng chọn ngày sinh');
+//         flag = false;
+//     }
+//     else{
+//         showError('birth','');
+//         flag = true;
+//     }
+
+//     return flag;
+// } 
