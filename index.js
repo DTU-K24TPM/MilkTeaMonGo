@@ -81,6 +81,7 @@ var adminProducts = require('./routes/admin-products')
 var product = require('./routes/product')
 var cart = require('./routes/cart')
 var auth = require('./routes/auth')
+var user = require('./routes/user')
 var checkLogin = require('./middleware/checkLogin.middleware')
 var checkUser = require('./middleware/checkUser.middleware')
 
@@ -91,6 +92,7 @@ app.use('/',checkUser,sites);
 app.use('/product',checkUser,product);
 app.use('/cart',checkUser,cart);
 app.use('/auth',auth);
+app.use('/user',checkUser,user);
 
 
 
