@@ -1,0 +1,114 @@
+<%- include ('../layouts/header') -%>
+        <%- include ('../layouts/profile') -%>
+
+        <div class="col-9 wrap-profile">
+            <div class="profile-frame">
+                <div class="head-profile-frame">
+                    <div class="head1" style="font-weight: 500; font-size: 17px;">Thay đổi thông tin
+                        cá nhân</div>
+                    <div class="sub">Quản lý thông tin hồ sơ để bảo mật và dễ dàng đặt hàng</div>
+                </div>
+                <div class="body-profile-frame-change">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs menu-status ">
+                            <li class="stt-list nav-item">
+                                <a class="nav-link link1 active" href="#change1"
+                                    data-bs-toggle="tab" data-bs-target="#change1" role="tab"
+                                    aria-controls="status" aria-selected="true">Thay đổi thông
+                                    tin</a>
+                            </li>
+                            <li class="stt-list nav-item">
+                                <a class="nav-link link1" href="#change2" data-bs-toggle="tab"
+                                    data-bs-target="#change2" role="tab" aria-controls="status"
+                                    aria-selected="true">Thay đổi mật khẩu</a>
+
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="change1" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <form class="profile-form" action="/user/change-info" method="POST">
+                                            <div class="profile-input">
+                                                <label>Họ và tên</label>
+                                                <input class="cls-input" type="text" value=<%=us.fullname%>>
+
+                                            </div>
+                                            <div class="profile-input">
+                                                <label>Email</label>
+                                                <div class="email-input">
+                                                    <input class="cls-input" type="text"
+                                                        value="<%=us.email%>">
+
+                                                </div>
+                                            </div>
+                                            <div class="profile-input">
+                                                <label>Giới Tính</label>
+                                                <select class="select-gender cls-input">
+                                                    <option value="0" <% if (us.gender==0){ %> selected="selected"<%} %>>Nam</option>
+                                                    <option value="1" <% if (us.gender==1) { %> selected="selected"<%} %>>Nữ</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="profile-input">
+                                                <label>Ngày Sinh</label>
+                                                <input class="cls-input" type="date"
+                                                    id="birthdaytime" name="birthdaytime">
+                                            </div>
+                                            <div class="profile-input cls-change-info">
+                                                <button id="change-info">Lưu Thay Đổi</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="col-6 change-avatar">
+                                        <div class="wrap-img">
+                                            <img src="img/anh7.jpg" class="profile-avatar">
+                                            <button id="change-avt">Chọn ảnh</button>
+                                            <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
+                                                    hình
+                                                    ảnh của
+                                                    bạn</i></label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="change2" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form class="profile-form" method="POST" action="/user/change-pass">
+                                            <div class="profile-input-pass">
+                                                <label>Mật khẩu hiện tại</label>
+                                                <input class="cls-input" type="password">
+                                                <a href="#" id="fogot-pass"> Quên mật khẩu?</a>
+                                            </div>
+                                            <div class="profile-input-pass">
+                                                <label>Mật khẩu mới</label>
+                                                <input class="cls-input" type="password">
+                                            </div>
+                                            <div class="profile-input-pass">
+                                                <label>Xác nhận mật khẩu</label>
+                                                <input class="cls-input" type="password">
+                                            </div>
+
+                                            <div class="profile-input-pass cls-change-info">
+                                                <button id="change-info">Lưu Thay Đổi</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<%- include ('../layouts/footer') -%>

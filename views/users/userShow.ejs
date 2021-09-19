@@ -1,0 +1,59 @@
+<%- include ('../layouts/header') -%>
+        <%- include ('../layouts/profile') -%>
+            <div class="col-9 wrap-profile">
+                <div class="profile-frame">
+                    <div class="head-profile-frame">
+                        <div class="head1" style="font-weight: 500; font-size: 17px;">Hồ Sơ Cá Nhân</div>
+                        <div class="sub">Thông tin cá nhân hiện tại của bạn</div>
+                    </div>
+                    <div class="body-profile-frame">
+                        <div class="col-6">
+
+
+                            <form class="profile-form">
+                                <div class="profile-input">
+                                    <label>Họ và tên</label>
+                                    <div class="name-input"><%= us.fullname %></div>
+                                    
+                                </div>
+                                <div class="profile-input">
+                                    <label>Email</label>
+                                    <div class="email-input">
+                                        <%=us.email %>
+                                        
+                                    </div>
+                                </div>
+                                <div class="profile-input">
+                                    <label>Giới Tính</label>
+                                    <div class="gender-input">
+                                        <% if (us.gender==0){ %>
+                                            Nam
+                                        <%} else { %>
+                                            Nữ
+                                        <%} %>
+                                    </div>
+                                
+                                </div>
+                                <div class="profile-input">
+                                    <label>Ngày Sinh</label>
+                                    <div class="bith-input"><%= us.birthday%></div>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-6 change-avatar">
+                           <% if (typeof us.photo =="undefined"){ %>
+                                <img src="img/noimage.jpg" class="profile-avatar">
+                           <% } else { %>
+                                <img src="img/users/<%=us.photo %>" class="profile-avatar">
+                            <%} %>
+                            <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm hình ảnh của bạn</i></label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+<%- include ('../layouts/footer') -%>

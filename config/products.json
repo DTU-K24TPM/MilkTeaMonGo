@@ -1,0 +1,251 @@
+[{
+  "_id": {
+    "$oid": "613f7026c6760a3cad79edac"
+  },
+  "title": "Trà sữa đặc biệt",
+  "slug": "trà-sữa-đặc-biệt",
+  "category": "trà-sữa",
+  "price": 23000,
+  "image": "MT-3.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7033c6760a3cad79edb3"
+  },
+  "title": "Thái xanh đặc biệt",
+  "slug": "thái-xanh-đặc-biệt",
+  "category": "trà-sữa",
+  "price": 23000,
+  "image": "MT-2.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f704dc6760a3cad79edba"
+  },
+  "title": "Trà sữa rainbow",
+  "slug": "trà-sữa-rainbow",
+  "category": "trà-sữa",
+  "price": 29000,
+  "image": "anh1.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7066c6760a3cad79edc1"
+  },
+  "title": "Socola đá xay",
+  "slug": "socola-đá-xay",
+  "category": "đá-xay",
+  "price": 30000,
+  "image": "DX-1.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7076c6760a3cad79edc8"
+  },
+  "title": "Matcha đá xay",
+  "slug": "matcha-đá-xay",
+  "category": "đá-xay",
+  "price": 29000,
+  "image": "DX-2.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7090c6760a3cad79edcf"
+  },
+  "title": "Oreo đá xay",
+  "slug": "oreo-đá-xay",
+  "category": "đá-xay",
+  "price": 29000,
+  "image": "DX-3.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f70d9c6760a3cad79edd6"
+  },
+  "title": "Sữa tươi trân châu đường đen",
+  "slug": "sữa-tươi-trân-châu-đường-đen",
+  "category": "sữa-tươi",
+  "price": 32000,
+  "image": "M-5.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f70f7c6760a3cad79eddd"
+  },
+  "title": "Sữa tươi trân châu đường đen oreo",
+  "slug": "sữa-tươi-trân-châu-đường-đen-oreo",
+  "category": "sữa-tươi",
+  "price": 36000,
+  "image": "M-2.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7118c6760a3cad79ede4"
+  },
+  "title": "Sữa tươi trân châu đường đen brulee",
+  "slug": "sữa-tươi-trân-châu-đường-đen-brulee",
+  "category": "sữa-tươi",
+  "price": 38000,
+  "image": "M-3.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7139c6760a3cad79edeb"
+  },
+  "title": "Bánh sữa tươi",
+  "slug": "bánh-sữa-tươi",
+  "category": "ăn-vặt",
+  "price": 10000,
+  "image": "sn-1.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7146c6760a3cad79edf2"
+  },
+  "title": "Khoai tây lắc phomai",
+  "slug": "khoai-tây-lắc-phomai",
+  "category": "ăn-vặt",
+  "price": 10000,
+  "image": "sn-4.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7151c6760a3cad79edf9"
+  },
+  "title": "Bò viên",
+  "slug": "bò-viên",
+  "category": "ăn-vặt",
+  "price": 12000,
+  "image": "sn-5.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7163c6760a3cad79ee00"
+  },
+  "title": "Trà kiwi nha đam",
+  "slug": "trà-kiwi-nha-đam",
+  "category": "trà-trái-cây",
+  "price": 21000,
+  "image": "img8.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7170c6760a3cad79ee07"
+  },
+  "title": "Trà đào",
+  "slug": "trà-đào",
+  "category": "trà-trái-cây",
+  "price": 18000,
+  "image": "FT-1.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f717dc6760a3cad79ee0e"
+  },
+  "title": "Trà trái vải",
+  "slug": "trà-trái-vải",
+  "category": "trà-trái-cây",
+  "price": 18000,
+  "image": "FT-5.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f71b0c6760a3cad79ee15"
+  },
+  "title": "Bánh flan",
+  "slug": "bánh-flan",
+  "category": "topping",
+  "price": 5000,
+  "image": "noimage.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f71d5c6760a3cad79ee1c"
+  },
+  "title": "Sương sáo",
+  "slug": "sương-sáo",
+  "category": "topping",
+  "price": 10000,
+  "image": "noimage.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f7217c6760a3cad79ee23"
+  },
+  "title": "Cà phê đen",
+  "slug": "cà-phê-đen",
+  "category": "cà-phê",
+  "price": 15000,
+  "image": "cf-5.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f722cc6760a3cad79ee2a"
+  },
+  "title": "Cà phê cốt dừa",
+  "slug": "cà-phê-cốt-dừa",
+  "category": "cà-phê",
+  "price": 30000,
+  "image": "cf-3.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61402a29e21b596165b5a979"
+  },
+  "title": "Size M",
+  "slug": "size-m",
+  "category": "size",
+  "price": 0,
+  "image": "noimage.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61402a3ee21b596165b5a980"
+  },
+  "title": "Size L",
+  "slug": "size-l",
+  "category": "size",
+  "price": 10000,
+  "image": "noimage.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61456c31261e967f39772c34"
+  },
+  "title": "Cà phê sữa sài gòn",
+  "slug": "cà-phê-sữa-sài-gòn",
+  "category": "cà-phê",
+  "price": 17000,
+  "image": "cf-2.jpeg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61456c68261e967f39772c40"
+  },
+  "title": "Trà sữa khoai môn",
+  "slug": "trà-sữa-khoai-môn",
+  "category": "trà-sữa",
+  "price": 18000,
+  "image": "anh6.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61456c84261e967f39772c4b"
+  },
+  "title": "Thái xanh không thạch",
+  "slug": "thái-xanh-không-thạch",
+  "category": "trà-sữa",
+  "price": 15000,
+  "image": "anh7.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61456ca7261e967f39772c56"
+  },
+  "title": "Truyền thống không thạch",
+  "slug": "truyền-thống-không-thạch",
+  "category": "trà-sữa",
+  "price": 15000,
+  "image": "MT-5.jpeg",
+  "__v": 0
+}]
