@@ -3,7 +3,20 @@ var router = express.Router();
 
 var User= require('../models/user');
 
-
+var nodemailer = require('nodemailer')
+//server gmail
+var transporter =  nodemailer.createTransport({ // config mail server
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'testdoan124@gmail.com', //Tài khoản gmail
+        pass: 'anhlavip1' //Mật khẩu tài khoản gmail
+    },
+    tls: {        
+        rejectUnauthorized: false
+    }
+});
 //get register
 router.get('/register',function(req,res){
     res.render('auth/register',{
@@ -76,6 +89,51 @@ router.post('/login',function(req,res){
         }
         else {
             res.render('auth/login',{
+                value:email,
+                mes: 'Tài khoản không tôn tại'
+            })
+        }
+    })
+   
+})
+
+//get forgot
+router.get('/forgot',function(req,res){
+    res.render('auth/forgot',{
+        value: "",
+        mes : ""
+    });
+})
+
+//post forgot
+router.post('/forgot',function(req,res){
+    var email= req.body.email;    
+    User.findOne({email: email},function(err,user){
+        if (err) return console.log(err);
+        if (user){
+            var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
+                from: 'testdoan124@gmail.com',
+                to: email,
+                subject: 'Quên mật khẩu',
+                text: `Mật khẩu của bạn là: ${user.password}`
+            }
+            transporter.sendMail(mainOptions, function(err, info){
+                if (err) {
+                    console.log(err);   
+                    res.render('auth/forgot',{
+                        value:email,
+                        mes: 'Gửi thất bại'
+                    });                 
+                } else {
+                    console.log('Message sent: ' +  info.response);
+                    res.render('auth/forgot',{
+                        value:email,
+                        mes: 'Gửi thành công'
+                    });
+                }
+            });
+        }else {
+            res.render('auth/forgot',{
                 value:email,
                 mes: 'Tài khoản không tôn tại'
             })
