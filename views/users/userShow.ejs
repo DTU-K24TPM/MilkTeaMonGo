@@ -7,7 +7,8 @@
                         <div class="sub">Thông tin cá nhân hiện tại của bạn</div>
                     </div>
                     <div class="body-profile-frame">
-                        <div class="col-6">
+                        <div class="col-6" style="display: flex;
+                        align-items: center;">
 
 
                             <form class="profile-form">
@@ -20,6 +21,13 @@
                                     <label>Email</label>
                                     <div class="email-input">
                                         <%=us.email %>
+                                        
+                                    </div>
+                                </div>
+                                <div class="profile-input">
+                                    <label>Số điện thoại</label>
+                                    <div class="phone-input">
+                                        <%=us.phone %>
                                         
                                     </div>
                                 </div>

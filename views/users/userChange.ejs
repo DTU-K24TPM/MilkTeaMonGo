@@ -44,6 +44,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="profile-input">
+                                                    <label>Số điện thoại</label>
+                                                    <div class="phone-input">
+                                                        <input class="cls-input" type="tel" value="<%=us.phone%>">
+                                                    </div>
+                                                </div>
+                                                <div class="profile-input">
                                                     <label>Giới Tính</label>
                                                     <select name="gender" class="select-gender cls-input">
                                                         <option value="0" <% if (us.gender==0){ %> selected="selected"
@@ -62,26 +68,28 @@
                                                     <button id="change-info">Lưu Thay Đổi</button>
                                                 </div>
                                             </div>
-                                            <div class="profile-right">
-                                                <div class="col-6 change-avatar">
-                                                    <div class="wrap-img">
-                                                        <% if (typeof us.photo =="undefined"){ %>
-                                                            <img src="/img/noimage.jpg" id="imgPreview" class="profile-avatar">
-                                                       <% } else { %>
-                                                        <img src="/img/users/<%=us.email%>/<%=us.photo%>" id="imgPreview" class="profile-avatar">
-                                                        <%} %>
-                                                        
-                                                        <input type="file" class="form-control" name="image" id="img" accept="image/png, image/jpeg, image/jpg">
-                                                        <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
-                                                                hình
-                                                                ảnh của
-                                                                bạn</i></label>
-                                                    </div>
-                                                </div>
-                                                <input type="hidden" name="pimage" value="<%=us.photo%>">
-                                              
-                                            </div>
+                                            
                                         </form>
+                                    </div>
+                                    <div class="col-6 change-avatar">
+                                    <div class="profile-right">
+                                        
+                                            <div class="wrap-img">
+                                                <% if (typeof us.photo =="undefined"){ %>
+                                                    <img src="/img/noimage.jpg" id="imgPreview" class="profile-avatar">
+                                               <% } else { %>
+                                                <img src="/img/users/<%=us.email%>/<%=us.photo%>" id="imgPreview" class="profile-avatar">
+                                                <%} %>
+                                                
+                                                <input type="file" class="form-control" name="image" id="img" accept="image/png, image/jpeg, image/jpg">
+                                                <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
+                                                        hình
+                                                        ảnh của
+                                                        bạn</i></label>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="pimage" value="<%=us.photo%>">
+                                      
                                     </div>
 
 
@@ -107,6 +115,7 @@
                                             </div>
 
                                             <div class="profile-input-pass cls-change-info">
+                                                <label></label>
                                                 <button id="change-info">Lưu Thay Đổi</button>
                                             </div>
 

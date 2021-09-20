@@ -860,8 +860,7 @@ body {
   .profile-user{
     margin-top: 50px;
     background-color: #fdf4f4;
-    /* min-height: 500px; */
-    height: 400px;
+    min-height: 460px;
   }
   .wrap-profile{
     padding: 20px;
@@ -873,6 +872,7 @@ body {
   }
   .profile-input{
     display: flex;
+    justify-content: center;
     padding-top: 20px;
     flex-wrap: wrap;
   }
@@ -947,21 +947,18 @@ body {
     background: white;
       display: flex;
       padding-left: 30px;
-      height: 300px;
+      min-height: 350px;
   }
-  .cls-change-info{
-    padding-left: 100px;
-  }
-  .wrap-img{
-    margin-left: 60px;
-  }
+
   .cls-input{
     width: 300px;
+    min-width: auto;
   }
   #change-info{
     color: indianred;
     border: 1px solid indianred;
     padding: 5px;
+    border-radius: 3px;
   }
   #change-info:hover{
     background: indianred;
@@ -1366,10 +1363,9 @@ body {
 .profile-form{
   display: flex;
   align-content: center;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  min-width: 780px;
 }
 .text-sp{
   width: 200px;
