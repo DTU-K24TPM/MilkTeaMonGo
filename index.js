@@ -16,7 +16,8 @@ db.once('open',function(){
 });
 
 var app = express();
-
+var server = require('http').Server(app)
+var io = require('socket.io')(server)
 //view engine setup
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
@@ -96,9 +97,7 @@ app.use('/auth',auth);
 app.use('/user',checkUser,user);
 app.use('/order',order);
 
+app.set('socketio',io)
 
+server.listen(3000)
 
-var port=3000;
-app.listen(port,function(){
-    console.log('server started on port '+ port);
-})
