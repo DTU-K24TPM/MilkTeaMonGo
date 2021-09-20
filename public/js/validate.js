@@ -126,6 +126,24 @@ Validator.isConfirm = function(selector, getConfirm, message){
    };
 }
 
+Validator.isAddress = function(selector, message){
+    return {
+        selector: selector,
+        test: function(value){
+            return value.length >=5 ? undefined : message || 'Mời bạn nhập địa chỉ thực tế';
+        }
+    };
+}
+
+Validator.isWard = function(selector, message){
+    return {
+        selector: selector,
+        test: function(value){
+            return value.trim() ? undefined : message || 'Vui lòng nhập trường này';
+        }
+    };
+}
+
 
 
 
