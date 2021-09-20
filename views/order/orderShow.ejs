@@ -42,11 +42,8 @@
             <h6>Phường/Xã</h6>
         </div>
         <div class="col">
-            <select class="form-select commune" aria-label="Default select example">
-                <option value="0">---</option>
-                <% commune.forEach(function(c){ %>
-                    <option value=<%=c.slug%>><%=c.name%></option>
-                <% })  %>
+            <select class="form-select commune" id="commune" aria-label="Default select example">
+                <option value="0">---</option>                
               </select>
         </div>
         <div class="dh-h6">
@@ -105,7 +102,7 @@
     </div>
 </div>
 </body>
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded',function(){
         var wardForm = document.forms['form-ward'];
         var selectAction = document.getElementById('ward');
@@ -116,6 +113,31 @@
         }
 
 
+    })
+</script> -->
+<script src="socket.io/socket.io.js"></script>
+<script>
+    var socket = io()
+    var ward = document.querySelector('#ward')
+    ward.addEventListener('change',() => {
+        var value = ward.value
+        console.log(value)
+        socket.emit('getcommunes', {
+            message: value
+        })
+        socket.on('communes',(message) => {    
+            var communes =message.message
+            console.log(communes)
+            var commune=document.querySelector('#commune')    
+            var length = commune.options.length
+            for(i=length-1;i>=0;i--) commune.options[i]=null
+            for(let i=0;i<communes.length;i++){
+                var op = document.createElement('option')
+                op.value=communes[i].slug
+                op.textContent=communes[i].name
+                commune.appendChild(op)
+            } 
+        })
     })
 </script>
 <%- include ('../layouts/footer') -%>
