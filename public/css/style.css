@@ -965,17 +965,25 @@ body {
     color: white;
   }
   
-  #change-avt{
+  #btn-change-avt{
     margin-top: 5px;
     display: block;
     padding: 5px;
-    margin-left: 36px;
     border: 1px solid rgb(164, 158, 158);
     background: rgb(255, 251, 251);
+    cursor: pointer;
+    border-radius: 3px;
+    width: fit-content;
   }
   
-  #change-avt:hover{
+  #btn-change-avt:hover{
     background: #f5efef;
+  }
+  .wrap-img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .profile-input-pass{
     display: flex;

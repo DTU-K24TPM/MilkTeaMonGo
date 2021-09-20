@@ -28,11 +28,13 @@
                             <div class="tab-pane active" id="change1" role="tabpanel">
                                 <div class="row">
                                     <div class="col-6">
-                                        <form class="profile-form" action="/user/change-info" method="POST" enctype="multipart/form-data">
+                                        <form class="profile-form" action="/user/change-info" method="POST"
+                                            enctype="multipart/form-data">
                                             <div class="profile-left">
                                                 <div class="profile-input">
                                                     <label>Họ và tên</label>
-                                                    <input class="cls-input" name="fullname" type="text" value="<%=us.fullname%>">
+                                                    <input class="cls-input" name="fullname" type="text"
+                                                        value="<%=us.fullname%>">
 
                                                 </div>
                                                 <div class="profile-input">
@@ -53,43 +55,47 @@
                                                     <label>Giới Tính</label>
                                                     <select name="gender" class="select-gender cls-input">
                                                         <option value="0" <% if (us.gender==0){ %> selected="selected"
-                                                            <%} %>>Nam</option>
+                                                            <%} %>>Nam
+                                                        </option>
                                                         <option value="1" <% if (us.gender==1) { %> selected="selected"
-                                                            <%} %>>Nữ</option>
+                                                            <%} %>>Nữ
+                                                        </option>
                                                     </select>
 
                                                 </div>
                                                 <div class="profile-input">
                                                     <label>Ngày Sinh</label>
-                                                    <input class="cls-input" name="birthday" type="date" id="birthdaytime"
-                                                        name="birthdaytime" value="<%= us.birthday%>">
+                                                    <input class="cls-input" name="birthday" type="date"
+                                                        id="birthdaytime" name="birthdaytime" value="<%= us.birthday%>">
                                                 </div>
                                                 <div class="profile-input cls-change-info">
                                                     <button id="change-info">Lưu Thay Đổi</button>
                                                 </div>
                                             </div>
-                                            
+
                                         </form>
                                     </div>
                                     <div class="col-6 change-avatar">
-                                    <div class="profile-right">
-                                        
+                                        <div class="profile-right">
+
                                             <div class="wrap-img">
-                                                <% if (typeof us.photo =="undefined"){ %>
+                                                <% if (typeof us.photo=="undefined" ){ %>
                                                     <img src="/img/noimage.jpg" id="imgPreview" class="profile-avatar">
-                                               <% } else { %>
-                                                <img src="/img/users/<%=us.email%>/<%=us.photo%>" id="imgPreview" class="profile-avatar">
-                                                <%} %>
-                                                
-                                                <input type="file" class="form-control" name="image" id="img" accept="image/png, image/jpeg, image/jpg">
-                                                <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
-                                                        hình
-                                                        ảnh của
-                                                        bạn</i></label>
+                                                    <% } else { %>
+                                                        <img src="/img/users/<%=us.email%>/<%=us.photo%>"
+                                                            id="imgPreview" class="profile-avatar">
+                                                        <%} %>
+                                                            <label id="btn-change-avt" for="img">Chọn ảnh</label>
+                                                            <input type="file" class="form-control" name="image"
+                                                                id="img" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+                                                            <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
+                                                                    hình
+                                                                    ảnh của
+                                                                    bạn</i></label>
                                             </div>
                                         </div>
                                         <input type="hidden" name="pimage" value="<%=us.photo%>">
-                                      
+
                                     </div>
 
 
@@ -131,23 +137,22 @@
             </div>
         </div>
         <script>
-            function readURL(input){
-                if (input.files && input.files[0]){
+            function readURL(input) {
+                if (input.files && input.files[0]) {
                     var reader = new FileReader();
-        
-                    reader.onload = function(e){
-                        $("#imgPreview").attr('src',e.target.result).width(100).height(100);
+
+                    reader.onload = function (e) {
+                        $("#imgPreview").attr('src', e.target.result).width(100).height(100);
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-        
-            $("#img").change(function(){
+
+            $("#img").change(function () {
                 readURL(this);
             })
         </script>
         </div>
-    </div>
-</div>
-<%- include ('../layouts/footer') -%>
-
+        </div>
+        </div>
+        <%- include ('../layouts/footer') -%>
