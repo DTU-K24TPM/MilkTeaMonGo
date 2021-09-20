@@ -5,10 +5,10 @@ var BillSchema = mongoose.Schema({
         type: String,
         require:true
     },
-    address:{
+    note:{
         type:String
     },
-    note:{
+    address:{
         type:String
     },
     createAt: { type: Date, default: Date.now},
