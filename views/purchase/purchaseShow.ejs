@@ -58,9 +58,8 @@
                             <div class="tab-pane active" id="all" role="tabpanel">
                                 <% bills.forEach(function(bill){ %>
                                     <div class="each-order">
-                                        <% var sub=0 %>
                                         <% bill.cart.forEach(function(c){ %>
-                                            <% sub = sub + c.price %>
+                                            <% sub1 = 0 %>
                                             <div class="1dh">
                                                 <a href="#" class="row detail-order-list">
                                                     <div class="col-1">
@@ -70,12 +69,30 @@
                                                         <div class="name-order-list"><%=c.title%>
                                                         </div>
                                                         <div class="total-order-list">x<%= c.quantity%></div>
-                                                        <div class="top-total">Đá riêng, size M</div>
-                                                        <div class="top-total">Nha đam, plan</div>
+                                                        <div class="top-total">
+                                                            <% if (c.ice == 0) { %>
+                                                                Đá chung
+                                                            <% } else { %>
+                                                                Đá riêng
+                                                            <% } %>, <%= c.size.title %>
+                                                        </div>
+                                                        <div class="top-total">
+                                                            <% if (c.topping.length != 0){ %>
+                                                                <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                    <% if (i != c.topping.length-1 ){ %>
+                                                                        <%= c.topping[i].title + ", "%>
+                                                                    <% } else { %>
+                                                                        <%= c.topping[i].title %>
+                                                                    <% } %>
+                                                                    <% sub1=sub1 + c.topping[i].price %>
+                                                                <% } %>
+                                                                    
+                                                                <% }  %>
+                                                        </div>
                                                     </div>
         
                                                     <div class="col-2">
-                                                        <div class="price-order-list"><%= c.price %>đ</div>
+                                                        <div class="price-order-list"><%= c.quantity* (sub1+c.price+c.size.price) %>đ</div>
                                                     </div>
                                                 </a>
                                                 <div class="border-order"></div>
