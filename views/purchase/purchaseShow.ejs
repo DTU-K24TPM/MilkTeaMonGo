@@ -1,116 +1,66 @@
 <%- include ('../layouts/header') -%>
 
 <body>
-        <%- include ('../layouts/profile') -%>
-            <div class="col-9 dh">
-                <div class="status-bar">
-                    <div class="container-dh">
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class="nav nav-tabs menu-status ">
-                                    <li class="stt-list nav-item">
-                                        <a class="nav-link link1 active" href="#all" data-bs-toggle="tab"
-                                            data-bs-target="#all" role="tab" aria-controls="status"
-                                            aria-selected="true">Tất
-                                            cả</a>
-                                    </li>
-                                    <li class="stt-list nav-item">
-                                        <a class="nav-link link1" href="#wait-confirm" data-bs-toggle="tab"
-                                            data-bs-target="#wait-confirm" role="tab" aria-controls="status"
-                                            aria-selected="true">Chờ
-                                            xác nhận</a>
+    <%- include ('../layouts/profile') -%>
+    <div class="col-9 dh">
+        <div class="status-bar">
+            <div class="container-dh">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs menu-status ">
+                            <li class="stt-list nav-item">
+                                <a class="nav-link link1 active" href="#all"
+                                    data-bs-toggle="tab" data-bs-target="#all" role="tab"
+                                    aria-controls="status" aria-selected="true">Tất
+                                    cả</a>
+                            </li>
+                            <li class="stt-list nav-item">
+                                <a class="nav-link link1" href="#wait-confirm"
+                                    data-bs-toggle="tab" data-bs-target="#wait-confirm"
+                                    role="tab" aria-controls="status" aria-selected="true">Chờ
+                                    xác nhận</a>
 
-                                    </li>
-                                    <li class="stt-list nav-item">
-                                        <a class="nav-link link1" href="#waiter-rev" data-bs-toggle="tab"
-                                            data-bs-target="#waiter-rev" role="tab" aria-controls="status"
-                                            aria-selected="true">Chờ lấy hàng</a>
+                            </li>
+                            <li class="stt-list nav-item">
+                                <a class="nav-link link1" href="#waiter-rev"
+                                    data-bs-toggle="tab" data-bs-target="#waiter-rev" role="tab"
+                                    aria-controls="status" aria-selected="true">Chờ lấy hàng</a>
 
-                                    </li>
-                                    <li class="stt-list nav-item">
-                                        <a class="stt-list nav-link link1" href="#delivering" data-bs-toggle="tab"
-                                            data-bs-target="#delivering" role="tab" aria-controls="status"
-                                            aria-selected="true">Đang giao</a>
+                            </li>
+                            <li class="stt-list nav-item">
+                                <a class="stt-list nav-link link1" href="#delivering"
+                                    data-bs-toggle="tab" data-bs-target="#delivering" role="tab"
+                                    aria-controls="status" aria-selected="true">Đang giao</a>
 
-                                    </li>
-                                    <li class="stt-list nav-item">
-                                        <a class="stt-list nav-link link1" href="#delivered" data-bs-toggle="tab"
-                                            data-bs-target="#delivered" role="tab" aria-controls="status"
-                                            aria-selected="true">Đã giao</a>
+                            </li>
+                            <li class="stt-list nav-item">
+                                <a class="stt-list nav-link link1" href="#delivered"
+                                    data-bs-toggle="tab" data-bs-target="#delivered" role="tab"
+                                    aria-controls="status" aria-selected="true">Đã giao</a>
 
-                                    </li>
-                                    <li class="stt-list nav-item">
-                                        <a class="stt-list nav-link link1" href="#cancelled" data-bs-toggle="tab"
-                                            data-bs-target="#cancelled" role="tab" aria-controls="status"
-                                            aria-selected="true">Đã hủy</a>
+                            </li>
+                            <li class="stt-list nav-item">
+                                <a class="stt-list nav-link link1" href="#cancelled"
+                                    data-bs-toggle="tab" data-bs-target="#cancelled" role="tab"
+                                    aria-controls="status" aria-selected="true">Đã hủy</a>
 
-                                    </li>
+                            </li>
 
-                                </ul>
+                        </ul>
 
-                                <form class="search-dh">
-                                    <input type="text" placeholder="Tìm kiếm theo tên sản phẩm, đơn hàng,..."
-                                        name="search">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
-                                </form>
+                        <form class="search-dh" >
+                            <input type="text" placeholder="Tìm kiếm theo tên sản phẩm, đơn hàng,..." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                          </form>
+                        
 
 
-
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="all" role="tabpanel">
-                                        <% bills.forEach(function(bill){ %>
-                                            <div class="each-order">
-                                                <% var sub=0 %>
-                                                    <% bill.cart.forEach(function(c){ %>
-                                                        <% sub=sub + c.price %>
-                                                            <div class="1dh">
-                                                                <a href="#" class="row detail-order-list">
-                                                                    <div class="col-1">
-                                                                        <img class="img-order-list" src="<%=c.image%>">
-                                                                    </div>
-                                                                    <div class="col-9">
-                                                                        <div class="name-order-list">
-                                                                            <%=c.title%>
-                                                                        </div>
-                                                                        <div class="total-order-list">x<%= c.quantity%>
-                                                                        </div>
-                                                                        <div class="top-total">Đá riêng, size M</div>
-                                                                        <div class="top-total">Nha đam, plan</div>
-                                                                    </div>
-
-                                                                    <div class="col-2">
-                                                                        <div class="price-order-list">
-                                                                            <%= c.price %>đ
-                                                                        </div>
-                                                                    </div>
-                                                                </a>
-                                                                <div class="border-order"></div>
-                                                            </div>
-                                                            <% }) %>
-
-                                                                <div class="total-order">
-                                                                    <div class="price-order">Tổng số tiền: <%=
-                                                                            bill.totalPrice %> VNĐ</div>
-                                                                    <div class="footer-order">
-                                                                        <div class="time-order">
-                                                                            <span>Đơn hàng được đặt vào lúc <%=
-                                                                                    bill.createAt %></span>
-                                                                        </div>
-                                                                        <div class="btn-each-order">
-                                                                            <button class="contact-order">Liên
-                                                                                hệ</button>
-                                                                            <button class="cancel-order">Hủy đơn
-                                                                                hàng</button>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                            </div>
-                                            <% }) %>
-
-                                    </div>
-                                    <div class="tab-pane" id="wait-confirm" role="tabpanel">
-                                        <div class="each-order">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="all" role="tabpanel">
+                                <% bills.forEach(function(bill){ %>
+                                    <div class="each-order">
+                                        <% bill.cart.forEach(function(c){ %>
+                                            <% sub1 = 0 %>
                                             <div class="1dh">
                                                 <a href="#" class="row detail-order-list">
                                                     <div class="col-1">
@@ -119,11 +69,31 @@
                                                     <div class="col-9">
                                                         <div class="name-order-list">Trà sữa Rainbow
                                                         </div>
-                                                        <div class="total-order-list">x 4</div>
+                                                        <div class="total-order-list">x<%= c.quantity%></div>
+                                                        <div class="top-total">
+                                                            <% if (c.ice == 0) { %>
+                                                                Đá chung
+                                                            <% } else { %>
+                                                                Đá riêng
+                                                            <% } %>, <%= c.size.title %>
+                                                        </div>
+                                                        <div class="top-total">
+                                                            <% if (c.topping.length != 0){ %>
+                                                                <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                    <% if (i != c.topping.length-1 ){ %>
+                                                                        <%= c.topping[i].title + ", "%>
+                                                                    <% } else { %>
+                                                                        <%= c.topping[i].title %>
+                                                                    <% } %>
+                                                                    <% sub1=sub1 + c.topping[i].price %>
+                                                                <% } %>
+                                                                    
+                                                                <% }  %>
+                                                        </div>
                                                     </div>
 
                                                     <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
+                                                        <div class="price-order-list"><%= c.quantity* (sub1+c.price+c.size.price) %>đ</div>
                                                     </div>
                                                 </a>
                                                 <div class="border-order"></div>
@@ -328,6 +298,12 @@
 
 
 
+
+        </div>
+    </div>
+    </div>
+</div>
+</div>
 </body>
 
 <%- include ('../layouts/footer') -%>

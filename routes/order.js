@@ -92,7 +92,7 @@ router.post('/complete',function(req,res){
             email:email,
             note: note,
             address: address_detail + ', ' + newCm +', ' +newDt+', '+ 'thành phố ' + city ,
-            type: 0,
+            type: "wait-confirm",
             cart: us.cart,
             totalPrice: totalPrice
         })
