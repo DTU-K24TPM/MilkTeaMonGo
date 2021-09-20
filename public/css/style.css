@@ -1394,3 +1394,14 @@ body {
   color: rgb(224, 101, 101);
   font-size: 13px;
 }
+.dh-empty{
+  max-width: 1150px;
+  text-align: center;
+}
+.btn-empty{
+  margin-top: 50px;
+  margin-right: 50px;
+}
+.img-empty{
+  width: 25%;
+}
