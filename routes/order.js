@@ -4,6 +4,7 @@ var router = express.Router();
 var User = require('../models/user');
 var Commune= require('../models/commune');
 var Ward= require('../models/ward');
+var Bill = require('../models/bill');
 
 router.get('/',function(req,res){
     User.findOne({email: req.session.user},function(err,us){
@@ -43,4 +44,54 @@ router.post('/ward/:code',function(req,res){
         })
     })
 })
+
+router.post('/complete',function(req,res){
+    var email= req.body.email;
+    var city = req.body.city;
+    var district = req.body.district;
+    var commune = req.body.commune;
+    var address_detail = req.body.address_detail;
+    var note = req.body.note;
+    var newDt="" ;
+    var newCm="";
+
+    Commune.findOne({type:"commune"},function(err,cm){
+        if (err) return console.log(err);
+        for (var i=0;i<cm.communes.length;i++){
+            if (cm.communes[i].slug==commune) {
+                newCm = cm.communes[i].name;
+            }
+        }
+    })
+    Ward.findOne({type:"ward"},function(err,wd){
+        if (err) return console.log(err);
+        for (var i=0;i<wd.wards.length;i++){
+            if (wd.wards[i].code==district) {
+                newDt = wd.wards[i].name;
+            }
+        }
+    })
+
+    User.findOne({email: email},function(err,us){
+        if (err) return console.log(err);
+        var bill = new Bill({
+            email:email,
+            note: note,
+            address: address_detail + ', ' + newCm +', ' +newDt+', '+ 'thành phố ' + city ,
+            type: 0,
+            cart: us.cart,
+        })
+        bill.save(function(err){
+            if (err) return console.log(err);
+        })
+        us.cart = [];
+        us.save(function(err){
+            if (err) return console.log(err);
+            res.redirect('/purchase');
+        })
+    })
+   
+})
+
+
 module.exports = router;

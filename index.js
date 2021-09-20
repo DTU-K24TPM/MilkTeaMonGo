@@ -84,17 +84,19 @@ var auth = require('./routes/auth')
 var user = require('./routes/user')
 var order = require('./routes/order')
 var checkLogin = require('./middleware/checkLogin.middleware')
-var checkUser = require('./middleware/checkUser.middleware')
+var checkUser = require('./middleware/checkUser.middleware');
+var purchase = require('./routes/purchase');
 
 app.use('/admin/pages',checkUser,adminPages);
 app.use('/admin/categories',checkUser,adminCategories);
 app.use('/admin/products',checkUser,adminProducts);
 app.use('/',checkUser,sites);
 app.use('/product',checkUser,product);
-app.use('/cart',checkUser,cart);
+app.use('/cart',checkLogin,checkUser,cart);
 app.use('/auth',auth);
-app.use('/user',checkUser,user);
-app.use('/order',order);
+app.use('/user',checkLogin,checkUser,user);
+app.use('/order',checkLogin,order);
+app.use('/purchase',checkLogin,purchase);
 
 
 

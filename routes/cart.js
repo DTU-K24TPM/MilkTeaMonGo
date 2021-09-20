@@ -5,8 +5,6 @@ var User= require('../models/user');
 var Product= require('../models/product');
 var Category= require('../models/category');
 
-var checkLogin = require('../middleware/checkLogin.middleware')
-
 
 //function equal array Topping
 function equalTopping(a,b){
@@ -19,7 +17,7 @@ function equalTopping(a,b){
 }
 
 //post add to cart
-router.post('/add/:slug',checkLogin,function(req,res){
+router.post('/add/:slug',function(req,res){
     var topping = req.body.topping;
     var newTp=[];
     if (topping) {
@@ -154,7 +152,7 @@ router.get('/update/:idcart',function(req,res){
 })
 
 //get cart
-router.get('/',checkLogin,function(req,res){
+router.get('/',function(req,res){
     User.findOne({email: req.session.user},function(err,us){
         req.session.cart= us.cart;
         if (req.session.cart.length==0) delete req.session.cart;

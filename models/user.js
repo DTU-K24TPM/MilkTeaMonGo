@@ -25,6 +25,9 @@ var UserSchema = mongoose.Schema({
     cart:{
         type: Array
     },
+    phone:{
+        type:String
+    },
     photo:{
         type:String
     }
