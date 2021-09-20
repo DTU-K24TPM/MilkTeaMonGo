@@ -53,15 +53,21 @@
             <h6>Địa chỉ</h6>
         </div>
         <div class="col">
-            <input type="text" class="form-control" aria-label="numerphone">
+            <input type="text" class="form-control" aria-label="address">
         </div>
         <div class="dh-h6">
             <h6>Ghi chú</h6>
         </div>
         <div class="col">
-            <input type="text" class="form-control" aria-label="numerphone">
+            <input type="text" class="form-control" aria-label="note">
         </div>
+        <div >
+
+            <a href="index.html"><button type="button" class="btn btn-secondary btn-cont btn-continue">
+                    Tiếp tục mua hàng
+                </button></a>
     
+        </div>
     </div>
 
 
@@ -69,21 +75,26 @@
         <div class="total-frame total1">
             <h5> Hóa đơn</h5>
             <div class="span-total"></div>
-            <div class="total">
-                <div class="text-total">Sản phẩm </div>
-                <div class="text-total">Số lượng </div>
-                <div class="text-total">Giá </div>
-            </div>
+            <table class="table-total">
+            <tr class="total">
+                <th class="text-total text-sp">Sản phẩm </div>
+                <th class="text-total text-sl">Số lượng </div>
+                <th class="text-total text-gia">Giá </div>
+            </tr>
             <% var sub =0 %>
             <% us.cart.forEach(function(c){ %>
-                <div class="total">
-                    <div class="text-total text-total1"><%=c.title%> </div>
-                    <div class="text-total text-total1"><%= c.quantity%> </div>
-                    <div class="text-total text-total1"><%= c.price %> </div>
+                <tr class="total">
+                    <td class="text-total text-total1 text-sp"><%=c.title%> 
+                        <div class="top-total">Đá riêng, size M</div>
+                        <div class="top-total">Nha đam, plan</div>
+                    </div>
+                       
+                    <td class="text-total text-total1 text-sl"><%= c.quantity%> </div>
+                    <td class="text-total text-total1 text-gia"><%= c.price %> </div>
                     <% sub = sub + (c.price*c.quantity) %>
-                </div>
+                </tr>
             <% }) %>
-            
+        </table>
             <div class="span-total"></div>
             <div class="total">
                 <div class="text-total">TỔNG TIỀN: </div>
@@ -96,13 +107,7 @@
     </div>
 </form>
 <form name="form-ward" method="POST" > </form>
-    <div>
-
-        <a href="index.html"><button type="button" class="btn btn-secondary btn-cont">
-                Tiếp tục mua hàng
-            </button></a>
-
-    </div>
+  
 </div>
 </body>
 <script>
