@@ -83,17 +83,26 @@
                 <div class="text-total">TỔNG TIỀN: </div>
                 <div class="text-total"><%=total %>đ </div>
             </div>
-            <a href="/order">
-            <button type="button" class="btn btn-secondary btn-total">
+            <a href="/order"> <button type="button" class="btn btn-secondary btn-total">
                ĐẶT HÀNG
-            </button>
-            </a> 
+               </button></a>
         </div>
     </div>
         
     </div>
     <% } else { %>
-        <h3 class="text-center mt-4">Your cart is empty</h3>
+        <div class="dh-frame dh-empty">
+            <img class="img-empty" src="/img/buy1.gif">
+            <h4 class="empty-cart">Giỏ hàng của bạn đang trống, hãy lựa chọn sản phẩm nhé</h4>
+            <div class="btn-empty">
+            
+                <a href="/product"><button type="button" class="btn btn-secondary btn-cont">
+                    Tiếp tục mua hàng
+                </button></a>
+                
+            </div>
+        </div>
+        
     <% } %>
 
 

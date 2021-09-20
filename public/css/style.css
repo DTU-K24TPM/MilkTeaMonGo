@@ -411,12 +411,12 @@ body {
   
   .btn-total {
     margin-top: 30px;
-    margin-left: -17px;
      min-width: 423px;
     background: indianred;
     font-weight: 500;
     border: none;
-    border-radius: none; }
+    border-radius: none; 
+  }
   
   .btn-total:hover {
     background: indianred; }
@@ -550,7 +550,7 @@ body {
   }
   .dh-frame{
     max-width: 700px;
-      margin-left: 80px;
+      margin-left: 140px;
       padding: 10px;
       margin-top: 70px;
   }
@@ -559,6 +559,7 @@ body {
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-start;
+      margin-left: 60px;
   }
   .dh-h6{
     margin-top: 10px;
@@ -1369,4 +1370,38 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   min-width: 780px;
+}
+.text-sp{
+  width: 200px;
+}
+.text-sl{
+  width: 120px;
+  text-align: center;
+}
+.text-gia{
+  width: 100px;
+  text-align: end;
+}
+.top-total{
+  font-size: 13px;
+  font-style: italic;
+}
+.btn-continue{
+  margin-top: 40px;
+  margin-left: 0px !important;
+}
+.sao{
+  color: rgb(224, 101, 101);
+  font-size: 13px;
+}
+.dh-empty{
+  max-width: 1150px;
+  text-align: center;
+}
+.btn-empty{
+  margin-top: 50px;
+  margin-right: 50px;
+}
+.img-empty{
+  width: 25%;
 }

@@ -1,112 +1,138 @@
 <%- include ('../layouts/header') -%>
 
-<body>
-<div class="dh-frame">
-    <h4>Thông tin đặt hàng</h4>
-    <div class="div-total"></div>
-</div>
-<form action="/order/complete" method="POST">
-<div class="wrapper-dh">
-    <div class="form-dh">
-        <input type="hidden" name="email" value="<%=us.email%>">
-        <div>
-            <h6>Tên người nhận hàng</h6>
+    <body>
+        <div class="dh-frame">
+            <h4>Thông tin đặt hàng</h4>
+            <div class="div-total"></div>
         </div>
-        <div class="col">
-            <input type="text" class="form-control" aria-label="First name" value="<%= us.fullname %>" disabled>
-        </div>
-        <div class="dh-h6">
-            <h6>Số điện thoại</h6>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" aria-label="numerphone" value="<%= us.phone %>" disabled>
-        </div>
-        <div class="dh-h6">
-            <h6>Thành phố</h6>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" name="city" aria-label="numerphone" value="Đà Nẵng" readonly>
-        </div>
-        <div class="dh-h6">
-            <h6>Quận/Huyện</h6>
-        </div>
-        <div class="col">
-            <select name="district" class="form-select" id="ward" aria-label="Default select example">
-                <option value="0">---</option>
-                <% ward.forEach(function(w){ %>
-                    <option value=<%=w.code%> <%if (w.code==code){ %> selected="selected" <% } %>><%=w.name%></option>
-                <% }) %>
-              </select>
-        </div>
-        <div class="dh-h6">
-            <h6>Phường/Xã</h6>
-        </div>
-        <div class="col">
-            <select name="commune" class="form-select commune" aria-label="Default select example">
-                <option value="0">---</option>
-                <% commune.forEach(function(c){ %>
-                    <option value=<%=c.slug%>><%=c.name%></option>
-                <% })  %>
-              </select>
-        </div>
-        <div class="dh-h6">
-            <h6>Địa chỉ</h6>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" name="address_detail" aria-label="numerphone">
-        </div>
-        <div class="dh-h6">
-            <h6>Ghi chú</h6>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" name="note" aria-label="numerphone">
-        </div>
-        
-    </div>
+        <form action="" id="form-1">
+            <div class="wrapper-dh">
+                <div class="form-dh">
 
+                    <div>
+                        <label><h6>Tên người nhận hàng</h6></label>
+                        <label class="sao">(*)</label>
+                    </div>
+                    <div class="col">
+                        <input name="fullname" id="name" class="form-control" type="text"
+                        aria-label="default input example" >
+                        <span class="span-error" id="name_error"></span>
+                    </div>
+                    <div class="dh-h6">
+                        <label><h6>Số điện thoại</h6></label>
+                        <label class="sao">(*)</label>
+                    </div>
+                    <div class="col">
+                        <input name="phone" id="phone" class="form-control" type="tel"
+                         aria-label="default input example">
+                        <span class="span-error" id="phone_error"></span>
+                    </div>
+                    <div class="dh-h6">
+                        <label><h6>Thành phố</h6></label>
+                        <label class="sao">(*)</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" aria-label="numerphone" value="Đà nẵng" disabled>
+                    </div>
+                    <div class="dh-h6">
+                        <label><h6>Quận/Huyện</h6></label>
+                        <label class="sao">(*)</label>
+                    </div>
+                    <div class="col">
+                        <select id="ward" name="ward" class="form-select" aria-label="Default select example">
+                            <option value="">--Chọn Quận/Huyện--</option>
+                            <% ward.forEach(function(w){ %>
+                                <option value=<%=w.code%>
+                                    <%if (w.code==code){ %> selected="selected" <% } %>><%=w.name%>
+                                </option>
+                                <% }) %>
+                        </select>
+                        <span class="span-error" id="wards_error"></span>
+                    </div>
+                    <div class="dh-h6">
+                        <label><h6>Phường/Xã</h6></label>
+                        <label class="sao">(*)</label>
+                    </div>
+                    <div class="col">
+                        <select id="commune" name="commune" class="form-select commune" aria-label="Default select example">
+                            <option value="">--Chọn Phường/xã--</option>
+                        </select>
+                        <span class="span-error" id="com_error"></span>
+                    </div>
+                    <div class="dh-h6">
+                        <label><h6>Địa chỉ</h6></label>
+                        <label class="sao">(*)</label>
+                    </div>
+                    <div class="col">
+                        <input name="address" id="address" class="form-control" type="address" aria-label="default input example">
+                        <span class="span-error" id="note_error"></span>
+                    </div>
+                    <div class="dh-h6">
+                        <h6>Ghi chú</h6>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" aria-label="note">
+                    </div>
+                    <div>
 
-    <div class="wrapper2">
-        <div class="total-frame total1">
-            <h5> Hóa đơn</h5>
-            <div class="span-total"></div>
-            <div class="total">
-                <div class="text-total">Sản phẩm </div>
-                <div class="text-total">Số lượng </div>
-                <div class="text-total">Giá </div>
-            </div>
-            <% var sub =0 %>
-            <% us.cart.forEach(function(c){ %>
-                <div class="total">
-                    <div class="text-total text-total1"><%= c.title%> </div>
-                    <div class="text-total text-total1"><%= c.quantity%> </div>
-                    <div class="text-total text-total1"><%= c.price %> </div>
-                    <% sub = sub + (c.price*c.quantity) %>
+                        <a href="index.html"><button type="button" class="btn btn-secondary btn-cont btn-continue">
+                                Tiếp tục mua hàng
+                            </button></a>
+
+                    </div>
                 </div>
-            <% }) %>
-            
-            <div class="span-total"></div>
-            <div class="total">
-                <div class="text-total">TỔNG TIỀN: </div>
-                <div class="text-total"><%=sub%>đ </div>
+
+
+                <div class="wrapper2">
+                    <div class="total-frame total1">
+                        <h5> Hóa đơn</h5>
+                        <div class="span-total"></div>
+                        <table class="table-total">
+                            <tr class="total">
+                                <th class="text-total text-sp">Sản phẩm
+                    </div>
+                    <th class="text-total text-sl">Số lượng
+                </div>
+                <th class="text-total text-gia">Giá
             </div>
-            <button class="btn btn-secondary btn-total">
-                ĐẶT HÀNG
-            </button>
+            </tr>
+            <% var sub=0 %>
+                <% us.cart.forEach(function(c){ %>
+                    <tr class="total">
+                        <td class="text-total text-total1 text-sp">
+                            <%=c.title%>
+                                <div class="top-total">Đá riêng, size M</div>
+                                <div class="top-total">Nha đam, plan</div>
+                                </div>
+
+                        <td class="text-total text-total1 text-sl">
+                            <%= c.quantity%>
+                                </div>
+                        <td class="text-total text-total1 text-gia">
+                            <%= c.price %>
+                                </div>
+                                <% sub=sub + (c.price*c.quantity) %>
+                    </tr>
+                    <% }) %>
+                        </table>
+                        <div class="span-total"></div>
+                        <div class="total">
+                            <div class="text-total">TỔNG TIỀN: </div>
+                            <div class="text-total">
+                                <%=sub%>đ
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-total">
+                            ĐẶT HÀNG
+                        </button>
+                        </div>
+                        </div>
+        </form>
+        <form name="form-ward" method="POST"> </form>
+
         </div>
-    </div>
-    
-</div>
-</form>
-<form name="form-ward" method="POST" > </form>
-    <div>
-
-        <a href="index.html"><button type="button" class="btn btn-secondary btn-cont">
-                Tiếp tục mua hàng
-            </button></a>
-
-    </div>
-</body>
-<script>
+    </body>
+    <!-- <script>
     document.addEventListener('DOMContentLoaded',function(){
         var wardForm = document.forms['form-ward'];
         var selectAction = document.getElementById('ward');
@@ -118,5 +144,51 @@
 
 
     })
+</script> -->
+<script src="../js/validate.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        errorSelect: '.span-error',
+        rules: [
+            Validator.isRequired('#name'),
+            Validator.isName('#name'),
+            Validator.isRequired('#phone'),
+            Validator.isPhone('#phone'),
+            Validator.isRequired('#address'),
+            Validator.isAddress('#address'),
+            Validator.isRequired('#ward'),
+            Validator.isRequired('#commune')
+           
+        ]
+    });
+
 </script>
-<%- include ('../layouts/footer') -%>
+
+
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        var socket = io()
+        var ward = document.querySelector('#ward')
+        ward.addEventListener('change', () => {
+            var value = ward.value
+            console.log(value)
+            socket.emit('getcommunes', {
+                message: value
+            })
+            socket.on('communes', (message) => {
+                var communes = message.message
+                console.log(communes)
+                var commune = document.querySelector('#commune')
+                var length = commune.options.length
+                for (i = length - 1; i > 0; i--) commune.options[i] = null
+                for (let i = 0; i < communes.length; i++) {
+                    var op = document.createElement('option')
+                    op.value = communes[i].slug
+                    op.textContent = communes[i].name
+                    commune.appendChild(op)
+                }
+            })
+        })
+    </script>
+    <%- include ('../layouts/footer') -%>
