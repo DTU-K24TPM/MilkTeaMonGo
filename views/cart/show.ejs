@@ -26,12 +26,18 @@
                                 <div class="title-cart"><%=product.title%></div>
                                 <div class="topping-cart">
                                     <% if (product.topping.length != 0){ %>
-                                        <% product.topping.forEach(function(tp){ %>
-                                            <%= tp.title %>
-                                            <% sub1=sub1 + tp.price %>
-                                       <% }) %>
-                                    <% }  %>
-                                                               
+                                        <% for (var i=0;i<product.topping.length;i++) { %>
+                                            <% if (i != product.topping.length-1 ){ %>
+                                                <%= product.topping[i].title + ", "%>
+                                            <% } else { %>
+                                                <%= product.topping[i].title %>
+                                            <% } %>
+                                            <% sub1=sub1 + product.topping[i].price %>
+                                        <% } %>
+                                            
+                                        <% }  %>   
+                                     
+                                                            
                                 </div>
 
                                 <% var sub = product.quantity* (sub1+product.price+product.size.price) %>
@@ -42,7 +48,7 @@
                                     <% } else { %>
                                         Đá riêng
                                     <% } %>     
-                                    <%= product.size.title %>                            
+                                    <%= product.size.title %>                           
                                 </div>
                             </div>
                             </td>

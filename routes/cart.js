@@ -26,7 +26,7 @@ router.post('/add/:slug',function(req,res){
                 if (err) return console.log(err);
                 if(tp){
                 newTp.push({
-                    title:tp.slug,
+                    title:tp.title,
                     price:tp.price
                 })
             }
@@ -38,7 +38,7 @@ router.post('/add/:slug',function(req,res){
                     if (err) return console.log(err);
                     if (tp){
                     newTp.push({
-                        title:tp.slug,
+                        title:tp.title,
                         price:tp.price
                     })
                 }

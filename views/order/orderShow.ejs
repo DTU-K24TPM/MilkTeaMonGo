@@ -33,7 +33,7 @@
                         <label class="sao">(*)</label>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" aria-label="numerphone" value="Đà nẵng" readonly>
+                        <input type="text" class="form-control" aria-label="numerphone" name="city" value="Đà nẵng" readonly>
                     </div>
                     <div class="dh-h6">
                         <label><h6>Quận/Huyện</h6></label>
@@ -65,7 +65,7 @@
                         <label class="sao">(*)</label>
                     </div>
                     <div class="col">
-                        <input name="address" id="address" class="form-control" type="address" aria-label="default input example">
+                        <input name="address_detail" id="address" class="form-control" type="address" aria-label="default input example">
                         <span class="span-error" id="note_error"></span>
                     </div>
                     <div class="dh-h6">
@@ -97,22 +97,45 @@
                 <th class="text-total text-gia">Giá
             </div>
             </tr>
-            <% var sub=0 %>
+            <% var total=0 %>
                 <% us.cart.forEach(function(c){ %>
+                    <% var sub1 = 0 %>
                     <tr class="total">
                         <td class="text-total text-total1 text-sp">
                             <%=c.title%>
-                                <div class="top-total">Đá riêng, size M</div>
-                                <div class="top-total">Nha đam, plan</div>
+                            
+                              
+                                <div class="top-total">
+                                    <% if (c.ice == 0) { %>
+                                        Đá chung
+                                    <% } else { %>
+                                        Đá riêng
+                                    <% } %>, <%= c.size.title %>  
+                                </div>
+                                <div class="top-total">
+                                    <% if (c.topping.length != 0){ %>
+                                        <% for (var i=0;i<c.topping.length;i++) { %>
+                                            <% if (i != c.topping.length-1 ){ %>
+                                                <%= c.topping[i].title + ", "%>
+                                            <% } else { %>
+                                                <%= c.topping[i].title %>
+                                            <% } %>
+                                            <% sub1=sub1 + c.topping[i].price %>
+                                        <% } %>
+                                            
+                                        <% }  %>
+
+                                <% var sub = c.quantity* (sub1+c.price+c.size.price) %>
+                                <%  total = total + sub %>
+                                </div>
                                 </div>
 
                         <td class="text-total text-total1 text-sl">
                             <%= c.quantity%>
                                 </div>
                         <td class="text-total text-total1 text-gia">
-                            <%= c.price %>
+                            <%= c.quantity* (sub1+c.price+c.size.price) %>
                                 </div>
-                                <% sub=sub + (c.price*c.quantity) %>
                     </tr>
                     <% }) %>
                         </table>
@@ -120,16 +143,17 @@
                         <div class="total">
                             <div class="text-total">TỔNG TIỀN: </div>
                             <div class="text-total">
-                                <%=sub%>đ
+                                <%=total%>đ
                             </div>
                         </div>
+                        <input name="totalPrice" value=<%=total%> type="hidden">
                         <button type="submit" class="btn btn-secondary btn-total">
                             ĐẶT HÀNG
                         </button>
                         </div>
                         </div>
         </form>
-        <form name="form-ward" method="POST"> </form>
+        <!-- <form name="form-ward" method="POST"> </form> -->
 
         </div>
     </body>

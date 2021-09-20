@@ -31,43 +31,43 @@ router.get('/',function(req,res){
             res.render('order/orderShow',{
                 us:us,
                 ward: ward.wards,                    
-                code: ""
             });            
         })
     })
 })
 
-router.post('/ward/:code',function(req,res){
-    var code=req.params.code;
-    var newCm = [];
-    User.findOne({email: req.session.user},function(err,us){
-        Ward.findOne({type:"ward"},function(err,ward){
-            Commune.findOne({type:"commune"},function(err,commune){
+// router.post('/ward/:code',function(req,res){
+//     var code=req.params.code;
+//     var newCm = [];
+//     User.findOne({email: req.session.user},function(err,us){
+//         Ward.findOne({type:"ward"},function(err,ward){
+//             Commune.findOne({type:"commune"},function(err,commune){
 
-                for(var i=0;i<commune.communes.length;i++){
-                    if (commune.communes[i].parent_code == code) newCm.push(commune.communes[i]);
-                }
-                if (err) return console.log(err);
-                res.render('order/orderShow',{
-                    us:us,
-                    ward: ward.wards,
-                    commune: newCm,
-                    code : code
-                        });
-            })
-        })
-    })
-})
+//                 for(var i=0;i<commune.communes.length;i++){
+//                     if (commune.communes[i].parent_code == code) newCm.push(commune.communes[i]);
+//                 }
+//                 if (err) return console.log(err);
+//                 res.render('order/orderShow',{
+//                     us:us,
+//                     ward: ward.wards,
+//                     commune: newCm,
+//                     code : code
+//                         });
+//             })
+//         })
+//     })
+// })
 
 router.post('/complete',function(req,res){
     var email= req.body.email;
     var city = req.body.city;
-    var district = req.body.district;
+    var ward = req.body.ward;
     var commune = req.body.commune;
     var address_detail = req.body.address_detail;
     var note = req.body.note;
     var newDt="" ;
     var newCm="";
+    var totalPrice = req.body.totalPrice;
 
     Commune.findOne({type:"commune"},function(err,cm){
         if (err) return console.log(err);
@@ -80,7 +80,7 @@ router.post('/complete',function(req,res){
     Ward.findOne({type:"ward"},function(err,wd){
         if (err) return console.log(err);
         for (var i=0;i<wd.wards.length;i++){
-            if (wd.wards[i].code==district) {
+            if (wd.wards[i].code==ward) {
                 newDt = wd.wards[i].name;
             }
         }
@@ -94,6 +94,7 @@ router.post('/complete',function(req,res){
             address: address_detail + ', ' + newCm +', ' +newDt+', '+ 'thành phố ' + city ,
             type: 0,
             cart: us.cart,
+            totalPrice: totalPrice
         })
         bill.save(function(err){
             if (err) return console.log(err);

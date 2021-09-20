@@ -14,6 +14,7 @@ var BillSchema = mongoose.Schema({
     createAt: { type: Date, default: Date.now},
     type: {type: Number},
     cart: {type: Array},
+    totalPrice: {type: Number},
 })
 
 var Bill = module.exports = mongoose.model('bills',BillSchema);

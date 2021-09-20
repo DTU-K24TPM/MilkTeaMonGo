@@ -73,7 +73,7 @@
                                                     </div>
         
                                                     <div class="col-2">
-                                                        <div class="price-order-list"><% c.price %></div>
+                                                        <div class="price-order-list"><%= c.price %></div>
                                                     </div>
                                                 </a>
                                                 <div class="border-order"></div>
@@ -81,7 +81,7 @@
                                         <% }) %>
 
                                         <div class="total-order">
-                                            <div class="price-order">Tổng số tiền: <%= sub %> VNĐ</div>
+                                            <div class="price-order">Tổng số tiền: <%= bill.totalPrice %> VNĐ</div>
                                             <div class="footer-order">
                                                 <div class="time-order">
                                                     <span>Đơn hàng được đặt vào lúc <%= bill.createAt %></span>
