@@ -108,7 +108,7 @@
                                     <div class="col-12">
                                         <form id="changepass" class="profile-form" method="POST"
                                             action="/user/change-pass">
-                                            <div class="alert alert-danger tb-change" id="alert"></div>
+                                            <div class="alert alert-danger tb-change" id="alert" style="display:none"></div>
                                             <table class="table table-borderless table-change">
 
                                                     <tr>
@@ -176,28 +176,7 @@
         </div>
         </div>
         </div>
-        <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-        <script>
-            var socket = io()
-            var form = document.querySelector('#changepass')
-            var oldp = document.querySelector('#oldpass')
-            var newp = document.querySelector('#newpass')
-            form.addEventListener('submit', (e) => {
-                e.preventDefault()
-                var oldpass = oldp.value
-                var newpass = newp.value
-                socket.emit('change-pass', {
-                    oldpass: oldpass,
-                    newpass: newpass
-                })
-                socket.on('message', (message) => {
-                    var alert = document.querySelector('#alert')
-                    alert.textContent = null
-                    alert.textContent = message.message
-                })
-            })
-        </script>
-
+        <script src="http://localhost:3000/socket.io/socket.io.js"></script>      
         <script src="../js/validate.js"></script>
         <script>
             Validator({
@@ -215,7 +194,20 @@
                 return document.querySelector('#changepass #oldpass').value;
             })
                     
-                ]
+                ],
+                onSubmit: function(data){
+                    var socket = io()
+                    socket.emit('change-pass', {
+                        oldpass: data.oldpass,
+                        newpass: data.newpass         
+                    })
+                    socket.on('message', (message) => {
+                        var alert = document.querySelector('#alert')
+                        alert.textContent = null
+                        alert.style.display="block"
+                        alert.textContent = message.message
+                    })
+                }
             });
 
         </script>

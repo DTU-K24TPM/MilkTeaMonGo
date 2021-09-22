@@ -39,8 +39,16 @@ function Validator(options){
             if(!isValid){
                 isFormValid = false;
             }
-            });
-            if(isFormValid) formElement.submit()
+            });            
+            if(isFormValid){
+                if(typeof options.onSubmit === 'function'){
+                    var enableInputs = formElement.querySelectorAll('[name]')
+                    var formValues = Array.from(enableInputs).reduce(function(values,input){
+                        return (values[input.name]=input.value) && values
+                    },{})
+                    options.onSubmit(formValues)
+                }else formElement.submit()
+            } 
         }
 
         options.rules.forEach(function(rule){
