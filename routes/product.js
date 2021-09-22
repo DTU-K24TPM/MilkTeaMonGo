@@ -31,21 +31,24 @@ router.get('/:slug',function(req,res){
     Product.findOne({slug: slug},function(err,product){
         Product.find({category: 'topping'},function(err,toppings){
             Product.find({category: 'size'},function(err,sizes){
-                if (product.category =='ăn-vặt')
-                {
-                res.render('products/detail',{
-                    product: product,
-                    toppings: 0,
-                    sizes: sizes
-                })
-            }
-            else {
-                res.render('products/detail',{
-                    product: product,
-                    toppings: toppings,
-                    sizes: sizes
-                })
-                }
+                Product.aggregate([{ $match: { $and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}},
+                {category: {'$ne':'ăn-vặt'}}]}},{ $sample: { size: 6 } }],function(err,slides){
+                    if (product.category =='ăn-vặt'){
+                        res.render('products/detail',{
+                            product: product,
+                            toppings: 0,
+                            sizes: sizes,
+                            slides: slides
+                        })
+                    }else {
+                        res.render('products/detail',{
+                            product: product,
+                            toppings: toppings,
+                            sizes: sizes,
+                            slides: slides
+                        })
+                    }
+                })                
             })
         })
     })

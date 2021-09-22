@@ -5,16 +5,13 @@
             <div class="item">
                 <div class="slide-change">
                     <img class="img-item1" src="../img/product_imgs/<%= product._id %>/<%= product.image %>">
+
                     <div id="owl-demo" class="owl-carousel owl-theme">
-
-                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
-                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
-                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
-                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
-                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
-                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
-
+                        <% slides.forEach(function(product){ %>
+                            <a class="item-slide" href="/product/<%= product.slug %>"><img src="../img/product_imgs/<%=product._id%>/<%=product.image%>" alt="Owl Image"></a>                            
+                        <% }); %>                       
                     </div>
+
                 </div>
                 <div class="item-title">
                     <h3 class="title-h3">
