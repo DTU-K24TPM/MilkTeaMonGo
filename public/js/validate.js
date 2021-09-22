@@ -126,6 +126,15 @@ Validator.isConfirm = function(selector, getConfirm, message){
    };
 }
 
+Validator.isNotConfirm = function(selector, getConfirm, message){
+    return {
+       selector: selector,
+       test: function(value){
+           return value != getConfirm() ? undefined :'Mật khẩu mới không được trùng với mật khẩu cũ';
+       }
+   };
+}
+
 Validator.isAddress = function(selector, message){
     return {
         selector: selector,

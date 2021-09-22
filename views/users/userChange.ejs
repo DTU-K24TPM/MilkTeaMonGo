@@ -87,7 +87,8 @@
                                                         <%} %>
                                                             <label id="btn-change-avt" for="img">Chọn ảnh</label>
                                                             <input type="file" class="form-control" name="image"
-                                                                id="img" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+                                                                id="img" accept="image/png, image/jpeg, image/jpg"
+                                                                style="display: none;">
                                                             <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
                                                                     hình
                                                                     ảnh của
@@ -105,26 +106,45 @@
                             <div class="tab-pane" id="change2" role="tabpanel">
                                 <div class="row">
                                     <div class="col-12">
-                                        <form id="changepass" class="profile-form" method="POST" action="/user/change-pass">
-                                            <div class="profile-input-pass">
-                                                <label>Mật khẩu hiện tại</label>
-                                                <input class="cls-input" id="oldpass" name="oldpass" type="password">
-                                                <a href="#" id="fogot-pass"> Quên mật khẩu?</a>
-                                            </div>
-                                            <div class="profile-input-pass">
-                                                <label>Mật khẩu mới</label>
-                                                <input class="cls-input" id="newpass" name="newpass" type="password">
-                                            </div>
-                                            <div class="profile-input-pass">
-                                                <label>Xác nhận mật khẩu</label>
-                                                <input class="cls-input" type="password">
-                                            </div>
+                                        <form id="changepass" class="profile-form" method="POST"
+                                            action="/user/change-pass">
+                                            <div class="alert alert-danger tb-change" id="alert"></div>
+                                            <table class="table table-borderless table-change">
 
+                                                    <tr>
+                                                        <td><label>Mật khẩu hiện tại</label></td>
+                                                        <td class="td-change">
+                                                            <input class="cls-input" id="oldpass" name="oldpass"
+                                                                type="password">
+                                                            <span class="span-error" id="passlogin_error"></span>
+                                                        </td>
+                                                        <td><a href="#" id="fogot-pass"> Quên mật khẩu?</a></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><label>Mật khẩu mới</label></td>
+                                                        <td class="td-change">
+                                                            <input class="cls-input" id="newpass" name="newpass"
+                                                                type="password">
+                                                            <span class="span-error" id="passlogin_error"></span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><label>Xác nhận mật khẩu</label></td>
+                                                        <td class="td-change">
+                                                            <input class="cls-input" id="repass" name="repass"
+                                                            type="password">
+                                                            <span class="span-error" id="passlogin_error"></span>
+                                                        </td>
+                                                    </tr>
+
+                                            </table>
                                             <div class="profile-input-pass cls-change-info">
                                                 <label></label>
-                                                <button id="change-info">Lưu Thay Đổi</button>
+                                                <button type="submit" id="change-info">Lưu Thay Đổi</button>
                                             </div>
-                                            <div id="alert" class="alert alert-danger"></div>                                            
+
 
                                         </form>
                                     </div>
@@ -162,7 +182,7 @@
             var form = document.querySelector('#changepass')
             var oldp = document.querySelector('#oldpass')
             var newp = document.querySelector('#newpass')
-            form.addEventListener('submit',(e) => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault()
                 var oldpass = oldp.value
                 var newpass = newp.value
@@ -172,9 +192,31 @@
                 })
                 socket.on('message', (message) => {
                     var alert = document.querySelector('#alert')
-                    alert.textContent=null
-                    alert.textContent=message.message
+                    alert.textContent = null
+                    alert.textContent = message.message
                 })
             })
         </script>
-<%- include ('../layouts/footer') -%>
+
+        <script src="../js/validate.js"></script>
+        <script>
+            Validator({
+                form: '#changepass',
+                errorSelect: '.span-error',
+                rules: [
+                    Validator.isRequired('#oldpass'),
+                    Validator.isRequired('#newpass'),
+                    Validator.minLength('#newpass'),
+                    Validator.isRequired('#repass'),
+                    Validator.isConfirm('#repass', function(){
+                return document.querySelector('#changepass #newpass').value;
+            }),
+                Validator.isNotConfirm('#newpass', function(){
+                return document.querySelector('#changepass #oldpass').value;
+            })
+                    
+                ]
+            });
+
+        </script>
+        <%- include ('../layouts/footer') -%>

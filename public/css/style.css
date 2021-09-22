@@ -860,7 +860,7 @@ body {
   .profile-user{
     margin-top: 50px;
     background-color: #fdf4f4;
-    min-height: 460px;
+    min-height: 500px;
   }
   .wrap-profile{
     padding: 20px;
@@ -947,18 +947,21 @@ body {
     background: white;
       display: flex;
       padding-left: 30px;
-      min-height: 350px;
+      min-height: 380px;
   }
 
   .cls-input{
     width: 300px;
     min-width: auto;
+    padding: 0px 5px;
   }
   #change-info{
     color: indianred;
-    border: 1px solid indianred;
-    padding: 5px;
+    border: rgba(205, 92, 92, 0.062);
+    padding: 5px 10px;
     border-radius: 3px;
+    background: rgba(205, 92, 92, 0.062);
+
   }
   #change-info:hover{
     background: indianred;
@@ -1408,4 +1411,17 @@ body {
 }
 .img-empty{
   width: 25%;
+}
+.tb-change{
+    padding: .5rem 2rem !important;
+    min-width: 900px !important;
+    text-align: center !important;
+}
+.td-change{
+  display: flex;
+  flex-direction: column;
+}
+.table-change{
+  margin: 0px !important;
+  width: 70%;
 }
