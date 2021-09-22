@@ -32,7 +32,7 @@ router.get('/:slug',function(req,res){
         Product.find({category: 'topping'},function(err,toppings){
             Product.find({category: 'size'},function(err,sizes){
                 Product.aggregate([{ $match: { $and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}},
-                {category: {'$ne':'ăn-vặt'}}]}},{ $sample: { size: 6 } }],function(err,slides){
+                {category: {'$ne':'ăn-vặt'}}]}},{ $sample: { size: 8 } }],function(err,slides){
                     if (product.category =='ăn-vặt'){
                         res.render('products/detail',{
                             product: product,
