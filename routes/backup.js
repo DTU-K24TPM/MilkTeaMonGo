@@ -1,134 +1,122 @@
-var express = require('express')
-var router = express.Router();
+// <%- include ('../layouts/header') -%>
+// <body>
+//     <% if (typeof cart != "undefined") { %>
+//     <div class="wrapper">
+//         <table class="table">
+//             <thead class="table-color">
+//                 <tr>
+//                     <th scope="col" class="col-th"></th>
+//                     <th scope="col" class="col-th">Tên sản phẩm</th>
+//                     <th scope="col" class="col-th">Số lượng</th>
+//                     <th scope="col" class="col-th">Đơn giá</th>
+//                     <th scope="col" class="col-th">Thành tiền</th>
+//                     <th scope="col" class="col-th"></th>
+//                 </tr>
+//             </thead>
+//             <tbody>
+//                 <% var total =0 %>
+//                 <% cart.forEach(function(product){ %>
+//                     <% var sub1 = 0 %>
+//                     <tr class="tr-item">
+//                         <th scope="row" class="rowth">
+//                            <a href="/product/<%= product.slug%>"><img src="..<%=product.image%>" class="img-th"></a>
+//                         </th>
+//                         <td class="row1 row11">
+//                             <div class="flex-cart">
+//                                 <div class="title-cart"><%=product.title%></div>
+//                                 <div class="topping-cart">
+//                                     <% if (product.topping.length != 0){ %>
+//                                         <% for (var i=0;i<product.topping.length;i++) { %>
+//                                             <% if (i != product.topping.length-1 ){ %>
+//                                                 <%= product.topping[i].title + ", "%>
+//                                             <% } else { %>
+//                                                 <%= product.topping[i].title %>
+//                                             <% } %>
+//                                             <% sub1=sub1 + product.topping[i].price %>
+//                                         <% } %>
+                                            
+//                                         <% }  %>   
+                                     
+                                                            
+//                                 </div>
 
-var User= require('../models/user');
-var Product= require('../models/product');
-var Category= require('../models/category');
+//                                 <% var sub = product.quantity* (sub1+product.price+product.size.price) %>
+//                                 <%  total = total + sub %>
+//                                 <div class="topping-cart">
+//                                     <% if (product.ice == 0) { %>
+//                                         Đá chung
+//                                     <% } else { %>
+//                                         Đá riêng
+//                                     <% } %>     
+//                                     <%= product.size.title %>                           
+//                                 </div>
+//                             </div>
+//                             </td>
+//                         <td class="row1">
+//                             <div class="buttons_added btn-add">
+//                                 <a class="minus is-form" href="/cart/update/<%= product.idCart%>?action=remove"> - </a>
+//                                 <input aria-label="quantity" class="input-qty" max="20" min="1" name="" type="number"
+//                                     value= <%= product.quantity %> readonly>
+//                                     <a class="plus is-form" href="/cart/update/<%= product.idCart%>?action=add"> + </a>
+//                             </div>
+//                         </td>
+//                         <td class="row1 amount"><%= sub1+product.price+product.size.price %></td>
+//                         <td class="row1 total_money"><%= sub %></td>
+//                         <td class="row1">
+//                             <a class="btn-close btn-xoa confirmDeletion" href="/cart/update/<%= product.idCart%>?action=clear" aria-label="Close"></a>
+//                         </td>
+//                     </tr>                
+//                 <% }) %>
+                
+                
+//             </tbody>
 
-var checkLogin = require('../middleware/checkLogin.middleware')
+//         </table>
+//     </div>
+//     <div class="flex-total">
+//         <div>
+            
+//             <a href="/product"><button type="button" class="btn btn-secondary btn-cont">
+//                 Tiếp tục mua hàng
+//             </button></a>
+            
+//         </div>
+//     <div class="wrapper1">
+//         <div class="total-frame">
+//             <h5> Giỏ hàng</h5>
+//             <div class="span-total"></div>
+//             <div class="total">
+//                 <div class="text-total">TỔNG TIỀN: </div>
+//                 <div class="text-total"><%=total %> VNĐ</div>
+//             </div>
+//             <a href="/order"> <button type="button" class="btn btn-secondary btn-total">
+//                ĐẶT HÀNG
+//                </button></a>
+//         </div>
+//     </div>
+        
+//     </div>
+//     <% } else { %>
+//         <div class="dh-frame dh-empty">
+//             <img class="img-empty" src="/img/buy1.gif">
+//             <h4 class="empty-cart">Giỏ hàng của bạn đang trống, hãy lựa chọn sản phẩm nhé</h4>
+//             <div class="btn-empty">
+            
+//                 <a href="/product"><button type="button" class="btn btn-secondary btn-cont">
+//                     Tiếp tục mua hàng
+//                 </button></a>
+                
+//             </div>
+//         </div>
+        
+//     <% } %>
 
-//post add to cart
 
-router.post('/add/:slug',checkLogin,function(req,res){
-    var topping = req.body.topping    
-    var quantity = req.body.quantity  
-    var ice = req.body.ice  
-    var productId = req.body.productId  
-    var size = req.body.size
-    var slug = req.params.slug;
-    var title= "";
 
-    if (req.session.user){
-        User.findOne({email: req.session.user},function(err,us){
-            if (err) return console.log(err);
-            req.session.cart=us.cart;
-            us.save(function(err){
-                if (err) console.log(err);
-            })
-        })
-    }
-    Product.findOne({slug: slug},function(err,p){
-        if (err) return console.log(err);
-        title=p.title;
-        if (typeof req.session.cart == "undefined") {
-            req.session.cart=[];
-            var idCart=req.session.cart.length;
-            req.session.cart.push({
-                title: title,
-                topping: topping,
-                ice: ice,
-                size: size,
-                quantity: quantity,
-                price: p.price,
-                image: '/img/product_imgs/'+p._id + '/'+p.image,
-                idCart: idCart
-            });
-        }
-        else {
-            var check= true;
-            var idCart = 1;
-            var cart =req.session.cart;
-            var newItem= true;
-            for (var i=0;i<cart.length;i++){
-                if (idCart== cart[i].idCart) idCart++;
-                if (cart[i].title==title && cart[i].topping==topping && cart[i].size==size && cart[i].ice==ice) {
-                    cart[i].quantity++;
-                    newItem=false;
-                    break;
-                }
-            }
+//     <script src="/js/main.js"></script>
+//     <script>
+//         $()
+//     </script>
+// </body>
 
-            if (newItem) {
-                req.session.cart.push({
-                    title: title,
-                    topping: topping,
-                    ice: ice,
-                    size: size,
-                    quantity: quantity,
-                    price: p.price,
-                    image: '/img/product_imgs/'+p._id + '/'+p.image,
-                    idCart: idCart
-                });
-            }
-        }
-        if (typeof req.session.user != "undefined"){
-            User.findOne({email: req.session.user},function(err,us){
-                if (err) return console.log(err);
-                us.cart=req.session.cart;
-                us.save(function(err){
-                    if (err) console.log(err);
-                })
-            })
-        }
-        req.flash('success','product added');
-        res.redirect('back');
-    })
-})
-
-router.get('/update/:idcart',function(req,res){
-    var id = req.params.idcart;
-    var cart=req.session.cart;
-    var action = req.query.action;
-    for (var i=0;i<cart.length;i++){
-        if (cart[i].idCart== id){
-            switch(action){
-                case "add":cart[i].quantity++; break;
-                case "remove": cart[i].quantity--; if(cart[i].quantity==0) cart.splice(i,1) ;break;
-                case "clear": cart.splice(i,1); if (cart.length == 0) delete req.session.cart; break;
-                default: console.log('err'); break;
-            }
-            break;
-        }
-    }
-    if (req.session.user){
-        User.findOne({email: req.session.user},function(err,us){
-            if (err) return console.log(err);
-            us.cart=req.session.cart;
-            us.save(function(err){
-                if (err) console.log(err);
-            })
-        })
-    }
-    res.redirect('/cart');
-})
-
-//get cart
-router.get('/',checkLogin,function(req,res){
-// //     if (!req.session.user){
-// //     if (req.session.cart && req.session.cart.length==0){
-// //         delete req.session.cart;
-// //     }
-// //     res.render('cart/show',{
-// //         cart: req.session.cart
-// //     });
-// // }
-// else {}
-    User.findOne({email: req.session.user},function(err,us){
-        req.session.cart= us.cart;
-        res.render('cart/show',{
-            cart: us.cart
-        });
-    })
-})
-
-module.exports = router;
+// <%- include ('../layouts/footer') -%>

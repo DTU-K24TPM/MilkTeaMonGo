@@ -123,22 +123,40 @@ router.post('/add/:slug',function(req,res){
     })
 })
 
-
-router.get('/update/:idcart',function(req,res){
+router.get('/clear/:idcart',function(req,res){
     var id = req.params.idcart;
     var cart=req.session.cart;
-    var action = req.query.action;
+    for (var i=0;i<cart.length;i++){
+        if (cart[i].idCart== id){
+         { cart.splice(i,1); if (cart.length == 0) delete req.session.cart; break; }
+        }
+    }
+    User.findOne({email: req.session.user},function(err,us){
+        if (err) return console.log(err);
+        us.cart=req.session.cart;
+        us.save(function(err){
+            if (err) console.log(err);
+        })
+    })
+    res.redirect('back');
+})
+router.post('/update/:idcart',function(req,res){
+    var id = req.params.idcart;
+    var cart=req.session.cart;
+    var action = req.body.action;
+    var qty ;
+    var lengthh;
     for (var i=0;i<cart.length;i++){
         if (cart[i].idCart== id){
             switch(action){
-                case "add":cart[i].quantity++; break;
-                case "remove": cart[i].quantity--; if(cart[i].quantity==0) cart.splice(i,1) ;break;
-                case "clear": cart.splice(i,1); if (cart.length == 0) delete req.session.cart; break;
+                case "add":cart[i].quantity++; qty=cart[i].quantity; break;
+                case "remove": cart[i].quantity--;qty=cart[i].quantity; if(cart[i].quantity==0) cart.splice(i,1);  break;
                 default: console.log('err'); break;
             }
             break;
         }
     }
+    lengthh = req.session.cart.length;
     if (req.session.user){
         User.findOne({email: req.session.user},function(err,us){
             if (err) return console.log(err);
@@ -148,7 +166,22 @@ router.get('/update/:idcart',function(req,res){
             })
         })
     }
-    res.redirect('/cart');
+    var cartNone = `<div class="dh-frame dh-empty">
+    <img class="img-empty" src="/img/buy1.gif">
+    <h4 class="empty-cart">Giỏ hàng của bạn đang trống, hãy lựa chọn sản phẩm nhé</h4>
+    <div class="btn-empty">
+    
+        <a href="/product"><button type="button" class="btn btn-secondary btn-cont">
+            Tiếp tục mua hàng
+        </button></a>
+        
+    </div>
+</div>`
+    res.send({
+        quantity: qty,
+        lengthh: lengthh,
+        cartNone:cartNone
+    });
 })
 
 //get cart
