@@ -1,125 +1,176 @@
 <%- include ('../layouts/header') -%>
-<body>
-    <div class="wrapper wr-item">
-        <div class="item">
-            <img class="img-item1" src="../img/product_imgs/<%= product._id %>/<%= product.image %>">
-            <div class="item-title">
-                <h3 class="title-h3"><%= product.title %></h3>
-                <div>
-                    <h5 class="title-h5">Giá: <%= product.price %>đ</h5>
+
+    <body>
+        <div class="wrapper wr-item">
+            <div class="item">
+                <div class="slide-change">
+                    <img class="img-item1" src="../img/product_imgs/<%= product._id %>/<%= product.image %>">
+                    <div id="owl-demo" class="owl-carousel owl-theme">
+
+                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
+                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
+                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
+                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
+                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
+                        <div class="item-slide"><img src="/img/milktea.jpg" alt="Owl Image"></div>
+
+                    </div>
                 </div>
-                <form class="form-login" method="POST" action="/cart/add/<%= product.slug %>">
-                <input name="productId" type="hidden" value=<%= product._id %>>
-                <table class="table-item">
-                    <thead>
-                        <tr>
-                            <th>
-                                <span class="item-size">Size</span>
-                                <span class="item-size-blur">(Bắt buộc)</span>
-                            </th>
-                        </tr>
-    
-                        <tr class="size-form">     
-                            <% sizes.forEach(function(size){ %>
-                                <td>
-                                    <div class="form-check form-check-inline">
-                                        <% if (size.title=="Size M") { %>
-                                            <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="<%= size.title %>"" checked>
+                <div class="item-title">
+                    <h3 class="title-h3">
+                        <%= product.title %>
+                    </h3>
+                    <div>
+                        <h5 class="title-h5">Giá: <%= product.price %>đ</h5>
+                    </div>
+                    <form class="form-login1" method="POST" action="/cart/add/<%= product.slug %>">
+                        <input name="productId" type="hidden" value=<%=product._id %>>
+                        <table class="table-item">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="item-size">Size</span>
+                                        <span class="item-size-blur">(Bắt buộc)</span>
+                                    </th>
+                                </tr>
+
+                                <tr class="size-form">
+                                    <% sizes.forEach(function(size){ %>
+                                        <td>
+                                            <div class="form-check form-check-inline">
+                                                <% if (size.title=="Size M" ) { %>
+                                                    <input class="form-check-input" type="radio" name="size"
+                                                        id="inlineRadio1" value="<%= size.title %>"" checked>
                                         <% } else { %>
-                                            <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="<%= size.title %>"" >
+                                            <input class=" form-check-input" type="radio" name="size" id="inlineRadio1"
+                                                        value="<%= size.title %>"" >
                                         <% } %>
                                         
-                                        <label class="form-check-label" 
-                                            for="inlineRadio1"><%= size.title %>(<%= size.price %>đ)</label>
-                                    </div>
-                                </td>              
-                            <% }); %>                   
-                                    
-                        </tr>
-    
-                        <% if (toppings == 0) { %>
-                            <div></div>
-                        
-                        <% } else { %>
-                        <tr>
-                            <th>
-                                <span class="item-size">Đá</span>
-                                <span class="item-size-blur">(Bắt buộc)</span>
-                            </th>
-                        </tr>
+                                        <label class=" form-check-label" for="inlineRadio1">
+                                                    <%= size.title %>(<%= size.price %>đ)</label>
+                                            </div>
+                                        </td>
+                                        <% }); %>
 
-                        <tr class="da-form">
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input name="ice" class="form-check-input" type="radio" name="inlineRadioOptions1"
-                                        id="inlineRadio2" value="0" checked>
-                                    <label class="form-check-label" for="inlineRadio2">Đá chung</label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input name="ice" class="form-check-input" type="radio" name="inlineRadioOptions1"
-                                        id="inlineRadio1" value="1" >
-                                    <label class="form-check-label" for="inlineRadio1">Đá riêng</label>
-                                </div>
-                            </td> 
-                        </tr>
-                        
+                                </tr>
+
+                                <% if (toppings==0) { %>
+                                    <div></div>
+
+                                    <% } else { %>
+                                        <tr>
+                                            <th>
+                                                <span class="item-size">Đá</span>
+                                                <span class="item-size-blur">(Bắt buộc)</span>
+                                            </th>
+                                        </tr>
+
+                                        <tr class="da-form">
+                                            <td>
+                                                <div class="form-check form-check-inline">
+                                                    <input name="ice" class="form-check-input" type="radio"
+                                                        name="inlineRadioOptions1" id="inlineRadio2" value="0" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Đá chung</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-inline">
+                                                    <input name="ice" class="form-check-input" type="radio"
+                                                        name="inlineRadioOptions1" id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">Đá riêng</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>
+                                                <span class="item-size">Topping</span>
+                                            </th>
+                                        </tr>
+
+
+                                        <tr class="topping-form">
+                                            <% toppings.forEach(function(topping){ %>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input name="topping" class="form-check-input" type="checkbox"
+                                                            id="inlineCheckbox1" value=<%=topping.slug %>>
+                                                        <label class="form-check-label" for="inlineCheckbox1">
+                                                            <%= topping.title %>: <%= topping.price %>đ
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <% }); %>
+                                        </tr>
+                                        <% } %>
+                            </thead>
+                        </table>
+                        <table class="tb-addplus">
+                        <div class="item-table">
                             <tr>
-                                <th>
-                                    <span class="item-size">Topping</span>
-                                </th>
-                            </tr>    
-                           
-    
-                            <tr class="topping-form">
-                                <% toppings.forEach(function(topping){ %>
-                                    <td>
-                                        <div class="form-check form-check-inline">
-                                            <input name="topping" class="form-check-input" type="checkbox" id="inlineCheckbox1" value=<%= topping.slug %>>
-                                            <label class="form-check-label" for="inlineCheckbox1"><%= topping.title %>: <%= topping.price %>đ</label>
-                                        </div>
-                                    </td>       
-                                <% }); %>                                
-                            </tr>
-                        <% } %>
-                    </thead>
-                </table>
+                                <td class="td-plus">
+                            <div class="buttons_added btn-plus">
+                                <input class="minus is-form" type="button" value="-">
+                                <input name="quantity" aria-label="quantity" class="input-qty" max="10" min="1" name=""
+                                    type="number" value="1">
+                                <input class="plus is-form" type="button" value="+">
+                            </div>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-secondary btn-detail">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </td>
+                        </tr>
+                        </table>
+            </div>
+           
+                </form>
             </div>
         </div>
-        <div class="item-table">
-    
-            <div class="buttons_added btn-plus">
-                <input class="minus is-form" type="button" value="-">
-                <input name="quantity" aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" value="1">
-                <input class="plus is-form" type="button" value="+">
-            </div>
-            <button type="submit" class="btn btn-secondary btn-detail">
-                Thêm vào giỏ hàng
-            </button>
-        </form>
-        </div>
-    </div>
     </body>
 
     <script>
+        $(document).ready(function () {
+
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 2000, 
+
+                items: 4,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [979, 3]
+
+            });
+
+        });
+
         $('input.input-qty').each(function () {
             var $this = $(this),
                 qty = $this.parent().find('.is-form'),
-                min= Number($this.attr('min')),
+                min = Number($this.attr('min')),
                 max = Number($this.attr('max'))
             if (min == 0) {
                 var d = 0
             } else d = min
-        $(qty).on('click', function () {
-            if ($(this).hasClass('minus')) {
-                if (d > min) d += -1
-            } else if ($(this).hasClass('plus')) {
-                var x = Number($this.val()) + 1
-                if (x <= max) d += 1
-            }
-            $this.attr('value', d).val(d)
+            $(qty).on('click', function () {
+                if ($(this).hasClass('minus')) {
+                    if (d > min) d += -1
+                } else if ($(this).hasClass('plus')) {
+                    var x = Number($this.val()) + 1
+                    if (x <= max) d += 1
+                }
+                $this.attr('value', d).val(d)
+            });
         });
-    });
     </script>
-<%- include ('../layouts/footer') -%>
+<!-- Important Owl stylesheet -->
+<link rel="stylesheet" href="/css/owl.carousel.css">
+ 
+<!-- Default Theme -->
+<link rel="stylesheet" href="/css/owl.theme.css">
+ 
+<!-- Include js plugin -->
+<script src="/js/owl.carousel.js"></script>
+
+    <%- include ('../layouts/footer') -%>

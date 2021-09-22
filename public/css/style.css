@@ -298,7 +298,7 @@ body {
     display: inline-flex;
     white-space: nowrap;
     vertical-align: top;
-    width: 30%; 
+    width: 100%; 
     margin-right: -150px;
   }
   
@@ -496,6 +496,11 @@ body {
   .form-login{
     justify-content: center;
       display: flex;
+  }
+  .form-login1{
+    justify-content: center;
+      display: flex;
+      flex-direction: column;
   }
   .profile-menu-user {
     list-style: none;
@@ -1424,4 +1429,25 @@ body {
 .table-change{
   margin: 0px !important;
   width: 70%;
+}
+.owl-theme{
+  display: flex;
+}
+#owl-demo .item-slide{
+  margin: 3px;
+}
+#owl-demo .item-slide img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.slide-change{
+  max-width: 550px;
+}
+.td-plus{
+  width: 200px;
+}
+.tb-addplus{
+  margin-top: 30px;
+  margin-left: 40px;
 }
