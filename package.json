@@ -23,6 +23,7 @@
     "mongoose": "^6.0.5",
     "nodemailer": "^6.6.3",
     "resize-img": "^2.0.0",
+    "shortid": "^2.2.16",
     "socket.io": "^4.2.0"
   },
   "devDependencies": {

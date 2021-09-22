@@ -1,9 +1,12 @@
 var express = require('express')
+
+var shortid = require('shortid')
 var router = express.Router();
 
 var User= require('../models/user');
 var Product= require('../models/product');
 var Category= require('../models/category');
+
 
 
 //function equal array Topping
@@ -59,6 +62,7 @@ router.post('/add/:slug',function(req,res){
     })
     var slug = req.params.slug;
     var title= "";
+    var idCart = shortid.generate();
         User.findOne({email: req.session.user},function(err,us){
             if (err) return console.log(err);
             req.session.cart=us.cart;
@@ -71,7 +75,6 @@ router.post('/add/:slug',function(req,res){
         title=p.title;
         if (typeof req.session.cart == "undefined") {
             req.session.cart=[];
-            var idCart=req.session.cart.length;
             req.session.cart.push({
                 title: title,
                 slug:p.slug,
@@ -85,11 +88,9 @@ router.post('/add/:slug',function(req,res){
             });
         }
         else {
-            var idCart = 1;
             var cart =req.session.cart;
             var newItem= true;
             for (var i=0;i<cart.length;i++){
-                if (idCart== cart[i].idCart) idCart++;
                 if (cart[i].title==title && (equalTopping(cart[i].topping,newTp)==true) && cart[i].size.slug==newSz.slug && cart[i].ice==ice) {
                     cart[i].quantity-=(-quantity);
                     newItem=false;
