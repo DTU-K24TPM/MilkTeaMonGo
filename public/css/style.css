@@ -877,7 +877,6 @@ body {
   }
   .profile-input{
     display: flex;
-    justify-content: center;
     padding-top: 20px;
     flex-wrap: wrap;
   }
@@ -1379,9 +1378,19 @@ body {
 .profile-form{
   display: flex;
   align-content: center;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.change-profile-form{
+  display: flex;
+  align-content: center;
+  flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+}
+#changepass{
+  margin-top: 20px;
 }
 .text-sp{
   width: 200px;

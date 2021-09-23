@@ -27,9 +27,9 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="change1" role="tabpanel">
                                 <div class="row">
-                                    <div class="col-6">
-                                        <form class="profile-form" action="/user/change-info" method="POST"
-                                            enctype="multipart/form-data">
+                                    <form class="change-profile-form" action="/user/change-info" method="POST"
+                                        enctype="multipart/form-data">
+                                        <div class="col-6">
                                             <div class="profile-left">
                                                 <div class="profile-input">
                                                     <label>Họ và tên</label>
@@ -69,35 +69,39 @@
                                                         id="birthdaytime" name="birthdaytime" value="<%= us.birthday%>">
                                                 </div>
                                                 <div class="profile-input cls-change-info">
+                                                    <label></label>
                                                     <button id="change-info">Lưu Thay Đổi</button>
                                                 </div>
                                             </div>
-
-                                        </form>
-                                    </div>
-                                    <div class="col-6 change-avatar">
-                                        <div class="profile-right">
-
-                                            <div class="wrap-img">
-                                                <% if (typeof us.photo=="undefined" ){ %>
-                                                    <img src="/img/noimage.jpg" id="imgPreview" class="profile-avatar">
-                                                    <% } else { %>
-                                                        <img src="/img/users/<%=us.email%>/<%=us.photo%>"
-                                                            id="imgPreview" class="profile-avatar">
-                                                        <%} %>
-                                                            <label id="btn-change-avt" for="img">Chọn ảnh</label>
-                                                            <input type="file" class="form-control" name="image"
-                                                                id="img" accept="image/png, image/jpeg, image/jpg"
-                                                                style="display: none;">
-                                                            <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
-                                                                    hình
-                                                                    ảnh của
-                                                                    bạn</i></label>
-                                            </div>
                                         </div>
-                                        <input type="hidden" name="pimage" value="<%=us.photo%>">
+                                        <div class="col-6 change-avatar">
+                                            <div class="profile-right">
 
-                                    </div>
+                                                <div class="wrap-img">
+                                                    <% if (typeof us.photo=="undefined" ){ %>
+                                                        <img src="/img/noimage.jpg" id="imgPreview"
+                                                            class="profile-avatar">
+                                                        <% } else { %>
+                                                            <img src="/img/users/<%=us.email%>/<%=us.photo%>"
+                                                                id="imgPreview" class="profile-avatar">
+                                                            <%} %>
+                                                                <label id="btn-change-avt" for="img">Chọn ảnh</label>
+                                                                <input type="file" class="form-control" name="image"
+                                                                    id="img" accept="image/png, image/jpeg, image/jpg"
+                                                                    style="display: none;">
+                                                                <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
+                                                                        hình
+                                                                        ảnh của
+                                                                        bạn</i></label>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="pimage" value="<%=us.photo%>">
+
+                                        </div>
+
+                                    </form>
+
+
 
 
                                 </div>
@@ -108,42 +112,46 @@
                                     <div class="col-12">
                                         <form id="changepass" class="profile-form" method="POST"
                                             action="/user/change-pass">
-                                            <div class="alert alert-danger tb-change" id="alert" style="display:none"></div>
+                                            <div class="alert alert-danger tb-change" id="alert" style="display:none">
+                                            </div>
                                             <table class="table table-borderless table-change">
 
-                                                    <tr>
-                                                        <td><label>Mật khẩu hiện tại</label></td>
-                                                        <td class="td-change">
-                                                            <input class="cls-input" id="oldpass" name="oldpass"
-                                                                type="password">
-                                                            <span class="span-error" id="passlogin_error"></span>
-                                                        </td>
-                                                        <td><a href="/auth/forgot" id="fogot-pass"> Quên mật khẩu?</a></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td><label>Mật khẩu mới</label></td>
-                                                        <td class="td-change">
-                                                            <input class="cls-input" id="newpass" name="newpass"
-                                                                type="password">
-                                                            <span class="span-error" id="passlogin_error"></span>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td><label>Xác nhận mật khẩu</label></td>
-                                                        <td class="td-change">
-                                                            <input class="cls-input" id="repass" name="repass"
+                                                <tr>
+                                                    <td><label>Mật khẩu hiện tại</label></td>
+                                                    <td class="td-change">
+                                                        <input class="cls-input" id="oldpass" name="oldpass"
                                                             type="password">
-                                                            <span class="span-error" id="passlogin_error"></span>
-                                                        </td>
-                                                    </tr>
+                                                        <span class="span-error" id="passlogin_error"></span>
+                                                    </td>
+                                                    <td><a href="/auth/forgot" id="fogot-pass"> Quên mật khẩu?</a></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><label>Mật khẩu mới</label></td>
+                                                    <td class="td-change">
+                                                        <input class="cls-input" id="newpass" name="newpass"
+                                                            type="password">
+                                                        <span class="span-error" id="passlogin_error"></span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><label>Xác nhận mật khẩu</label></td>
+                                                    <td class="td-change">
+                                                        <input class="cls-input" id="repass" name="repass"
+                                                            type="password">
+                                                        <span class="span-error" id="passlogin_error"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label></label></td>
+                                                   <td><button type="submit" id="change-info">Lưu Thay Đổi</button></td>                                                        
+                                                        
+                                                  
+                                                </tr>
 
                                             </table>
-                                            <div class="profile-input-pass cls-change-info">
-                                                <label></label>
-                                                <button type="submit" id="change-info">Lưu Thay Đổi</button>
-                                            </div>
+                                            
 
 
                                         </form>
@@ -176,7 +184,7 @@
         </div>
         </div>
         </div>
-        <script src="http://localhost:3000/socket.io/socket.io.js"></script>      
+        <script src="http://localhost:3000/socket.io/socket.io.js"></script>
         <script src="../js/validate.js"></script>
         <script>
             Validator({
@@ -187,24 +195,24 @@
                     Validator.isRequired('#newpass'),
                     Validator.minLength('#newpass'),
                     Validator.isRequired('#repass'),
-                    Validator.isConfirm('#repass', function(){
-                return document.querySelector('#changepass #newpass').value;
-            }),
-                Validator.isNotConfirm('#newpass', function(){
-                return document.querySelector('#changepass #oldpass').value;
-            })
-                    
+                    Validator.isConfirm('#repass', function () {
+                        return document.querySelector('#changepass #newpass').value;
+                    }),
+                    Validator.isNotConfirm('#newpass', function () {
+                        return document.querySelector('#changepass #oldpass').value;
+                    })
+
                 ],
-                onSubmit: function(data){
+                onSubmit: function (data) {
                     var socket = io()
                     socket.emit('change-pass', {
                         oldpass: data.oldpass,
-                        newpass: data.newpass         
+                        newpass: data.newpass
                     })
                     socket.on('message', (message) => {
                         var alert = document.querySelector('#alert')
                         alert.textContent = null
-                        alert.style.display="block"
+                        alert.style.display = "block"
                         alert.textContent = message.message
                     })
                 }
