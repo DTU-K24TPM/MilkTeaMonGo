@@ -1,57 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-<<<<<<< HEAD
-    <link rel="stylesheet" href="/css/style.css" />
-=======
-    <link rel="stylesheet" href="/css/style.css">
->>>>>>> b8987b98b2de91092cac7ad534570a31e2537e25
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script src="/js/admin-quanly.js"></script>
-    <title>Trà sữa Bông</title>
-</head>
-
-<body>
-    <div class="wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light nav1">
-            <div class="collapse navbar-collapse navnav" id="Mainnav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link " href="#">Đăng ký</a>
-                    </li>
-                    <div class="nav-cach"></div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng nhập</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="wrapper">
-        <div id="menu">
-            <ul class="menu-ul-ad">
-                <li>
-                    <a href="index.html"><img class="img-logo" src="/img/logo.png" /></a>
-                </li>
-                <li class="li1"><a class="menu-a" href="admin-thongke.html">THỐNG KÊ</a></li>
-                <li><a class="menu-a" href="admin-taikhoan.html">TÀI KHOẢN</a></li>
-                <li><a class="menu-a" href="admin-quanlysanpham.html">SẢN PHẨM</a></li>
-                <li><a class="menu-a" href="admin-quanlydonhang.html">ĐƠN HÀNG</a></li>
-                <li>
-                    <form class="search-form-ad" action="/search" method="GET">
-                        <input name="product" class="form-control me-2 input-search-ad" type="text"
-                            placeholder="Tìm kiếm" aria-label="Search">
-                        <button class="btn btn-outline-success btn-search" type="submit">Tìm kiếm</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </div>
+<%- include('../layouts/adminHeader1') %>
 
     <section>
         <div class="wrapper">
@@ -61,8 +8,7 @@
                         <div class="profile-frame-ad">
                             <br />
                             <div class="head-profile-frame-admin">
-                                <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TẤT CẢ SẢN
-                                    PHẨM
+                                <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TẤT CẢ ĐƠN HÀNG
                                 </div>
                                 <div class="head-search-item">
                                     <form class="search-dh search-item-admin">
@@ -96,200 +42,60 @@
 
                                 <button id="btn-print"><i class="fa fa-print" aria-hidden="true"></i> In</button>
                             </div>
-
-                            <div id="modal-info-order1" class="modal">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Chi tiết đơn hàng</h5>
-                                        <button type="button" class="btn-close close-footer-info"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="admin-each-order">
-                                            <div class="admin-dh">
-                                                <div class="row admin-detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
+                            <% var i=1 %> 
+                           <% bills.forEach(function(bill){ %>
+                                <div id="modal-info-order<%=i%>" class="modal">
+                                    <% i++ %>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Chi tiết đơn hàng</h5>
+                                            <button type="button" class="btn-close close-footer-info"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="admin-each-order">
+                                                <% bill.cart.forEach(function(c){ %>
+                                                    <div class="admin-dh">
+                                                        <div class="row admin-detail-order-list">
+                                                            <div class="col-1">
+                                                                <img class="img-order-list" src=<%=c.image%>>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <div class="name-order-list"><%= c.title%>
+                                                                </div>
+                                                                <div class="total-order-list">x <%= c.quantity %></div>
+                                                            </div>
+        
+                                                            <div class="col-2">
+                                                                <div class="price-order-list"><%= c.price%> VNĐ</div>
+                                                            </div>
                                                         </div>
-                                                        <div class="total-order-list">x 4</div>
+        
                                                     </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="admin-dh">
-                                                <div class="row admin-detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa truyền thống
+                                                <%}) %>
+                                                
+                                                <div class="admin-total-order">
+                                                    <div class="admin-price-order">Tổng số tiền: <%=bill.totalPrice%></div>
+                                                    <div class="footer-order">
+                                                        <div class="time-order">
+                                                            <span style="display: block;">Đơn hàng được đặt vào lúc <%=bill.dateVN%></span>
+                                                            <label>Ghi chú:</label>
+                                                            <span class="admin-ghichu"><%=bill.note%></span>
                                                         </div>
-                                                        <div class="total-order-list">x 1</div>
                                                     </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">30.000 VNĐ</div>
-                                                    </div>
+    
                                                 </div>
-                                                <div class="border-order"></div>
-                                            </div>
-                                            <div class="admin-total-order">
-                                                <div class="admin-price-order">Tổng số tiền: 150.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span style="display: block;">Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                        <label>Ghi chú:</label>
-                                                        <span class="admin-ghichu">Không</span>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary close-footer-info">Đóng</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="modal-info-order2" class="modal">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Chi tiết đơn hàng</h5>
-                                        <button type="button" class="btn-close close-footer-info"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="admin-each-order">
-                                            <div class="admin-dh">
-                                                <div class="row admin-detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
-                                                        </div>
-                                                        <div class="total-order-list">x 4</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="admin-dh">
-                                                <div class="row admin-detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa thái xanh
-                                                        </div>
-                                                        <div class="total-order-list">x 1</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">30.000 VNĐ</div>
-                                                    </div>
-                                                </div>
-                                                <div class="border-order"></div>
-                                            </div>
-                                            <div class="admin-total-order">
-                                                <div class="admin-price-order">Tổng số tiền: 150.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span style="display: block;">Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                        <label>Ghi chú:</label>
-                                                        <span class="admin-ghichu">Không</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
+    
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary close-footer-info">Đóng</button>
+    
                                         </div>
                                     </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary close-footer-info">Đóng</button>
-
-                                    </div>
                                 </div>
-                            </div>
-                            <div id="modal-info-order3" class="modal">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Chi tiết đơn hàng</h5>
-                                        <button type="button" class="btn-close close-footer-info"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="admin-each-order">
-                                            <div class="admin-dh">
-                                                <div class="row admin-detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
-                                                        </div>
-                                                        <div class="total-order-list">x 4</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="admin-dh">
-                                                <div class="row admin-detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa
-                                                        </div>
-                                                        <div class="total-order-list">x 1</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">30.000 VNĐ</div>
-                                                    </div>
-                                                </div>
-                                                <div class="border-order"></div>
-                                            </div>
-                                            <div class="admin-total-order">
-                                                <div class="admin-price-order">Tổng số tiền: 150.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span style="display: block;">Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                        <label>Ghi chú:</label>
-                                                        <span class="admin-ghichu">Không</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary close-footer-info">Đóng</button>
-
-                                    </div>
-                                </div>
-                            </div>
-
+                            <%}) %>
+                        
 
 
                             <table class="table table-ad">
@@ -297,7 +103,7 @@
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">Tình trạng</th>
-                                        <th scope="col">Khách hàng</th>
+                                        <th scope="col">Tài Khoản</th>
                                         <th scope="col">Người nhận</th>
                                         <th scope="col">Địa chỉ giao hàng</th>
                                         <th scope="col">Số điện thoại</th>
@@ -309,99 +115,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">DH01</th>
-                                        <td>Đang giao</td>
-                                        <td>Nguyễn Hằng</td>
-                                        <td>Hằng</td>
-                                        <td>Nhà Hằng</td>
-                                        <td>0982109803</td>
-                                        <td>50000</td>
-                                        <td></td>
-                                        <td>12:00 20/02/2022</td>
-                                        <td>
-                                            <select name="status-order" class="select-status">
-                                                <option value="none">--Tình trạng--</option>
-                                                <option value="cho-xac-nhan">Chờ xác nhận</option>
-                                                <option value="cho-lay-hang">Chờ lấy hàng</option>
-                                                <option value="dang-giao">Đang giao</option>
-                                                <option value="Da giao">Đã giao</option>
-                                                <option value="Da huy">Đã hủy</option>
-                                            </select>
-                                        </td>
-                                        <td style="display: flex;">
-                                            <button class="info-order info-order1"><i class="fa fa-info-circle"
-                                                    aria-hidden="true"></i>
-
-                                            </button>
-
-                                            <a><button type="button" class="btn-close btn-xoa btn-xoa-dh"
-                                                    aria-label="Close"></button></a>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">DH01</th>
-                                        <td>Đang giao</td>
-                                        <td>Nguyễn Hằng</td>
-                                        <td>Hằng</td>
-                                        <td>Nhà Hằng</td>
-                                        <td>0982109803</td>
-                                        <td>50000</td>
-                                        <td></td>
-                                        <td>12:00 20/02/2022</td>
-                                        <td>
-                                            <select name="status-order" class="select-status">
-                                                <option value="none">--Tình trạng--</option>
-                                                <option value="cho-xac-nhan">Chờ xác nhận</option>
-                                                <option value="cho-lay-hang">Chờ lấy hàng</option>
-                                                <option value="dang-giao">Đang giao</option>
-                                                <option value="Da giao">Đã giao</option>
-                                                <option value="Da huy">Đã hủy</option>
-                                            </select>
-                                        </td>
-                                        <td style="display: flex;">
-                                            <button class="info-order info-order2"><i class="fa fa-info-circle"
-                                                    aria-hidden="true"></i>
-
-                                            </button>
-
-                                            <a><button type="button" class="btn-close btn-xoa"
-                                                    aria-label="Close"></button></a>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">DH01</th>
-                                        <td>Đang giao</td>
-                                        <td>Nguyễn Hằng</td>
-                                        <td>Hằng</td>
-                                        <td>Nhà Hằng</td>
-                                        <td>0982109803</td>
-                                        <td>50000</td>
-                                        <td></td>
-                                        <td>12:00 20/02/2022</td>
-                                        <td>
-                                            <select name="status-order" class="select-status">
-                                                <option value="none">--Tình trạng--</option>
-                                                <option value="cho-xac-nhan">Chờ xác nhận</option>
-                                                <option value="cho-lay-hang">Chờ lấy hàng</option>
-                                                <option value="dang-giao">Đang giao</option>
-                                                <option value="Da giao">Đã giao</option>
-                                                <option value="Da huy">Đã hủy</option>
-                                            </select>
-                                        </td>
-                                        <td style="display: flex;">
-                                            <button class="info-order info-order3"><i class="fa fa-info-circle"
-                                                    aria-hidden="true"></i>
-
-                                            </button>
-
-                                            <a><button type="button" class="btn-close btn-xoa"
-                                                    aria-label="Close"></button></a>
-
-                                        </td>
-                                    </tr>
+                                    <% var i1=1 %>
+                                   <% bills.forEach(function(bill){ %>
+                                        <tr>
+                                            <th scope="row"><%=bill._id%></th>
+                                            <td><%=bill.type%></td>
+                                            <td><%=bill.email%></td>
+                                            <td><%=bill.name%></td>
+                                            <td><%=bill.address%></td>
+                                            <td><%=bill.phone%></td>
+                                            <td><%=bill.totalPrice%></td>
+                                            <td></td>
+                                            <td><%=bill.createAt.toUTCString()%></td>
+                                            <td>
+                                                <select name="status-order" class="select-status">
+                                                    <option value="none">--Tình trạng--</option>
+                                                    <option value="cho-xac-nhan">Chờ xác nhận</option>
+                                                    <option value="cho-lay-hang">Chờ lấy hàng</option>
+                                                    <option value="dang-giao">Đang giao</option>
+                                                    <option value="Da giao">Đã giao</option>
+                                                    <option value="Da huy">Đã hủy</option>
+                                                </select>
+                                            </td>
+                                            <td style="display: flex;">
+                                                <button class="info-order info-order<%=i1%>" ><i class="fa fa-info-circle"
+                                                        aria-hidden="true"></i>
+                                                        <% i1++ %>
+    
+                                                </button>
+    
+                                                <a><button type="button" class="btn-close btn-xoa btn-xoa-dh"
+                                                        aria-label="Close"></button></a>
+    
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+ 
                                 </tbody>
 
                                 <!-- <div id="modal-info-order" class="modal">
@@ -438,21 +187,4 @@
 
 
 </body>
-<footer>
-    <br />
-    <br />
-    <div class="span-footer"> </div>
-    <div class="text-footer">
-        Mọi thông tin thắc mắc cũng như phản hồi, xin quý khách vui lòng liên hệ đến
-    </div>
-    <div class="img-footer">
-        <a href="#" class="a-footer"><img src="img/face.png" class="img-face"> Bông food & drink</a>
-        <img src="img/call.png" class="img-face"> 0907339982
-    </div>
-</footer>
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/admin-quanly.js"></script>
-
-</html>
+<%- include('../layouts/footer') %>

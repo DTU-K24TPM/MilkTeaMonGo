@@ -81,6 +81,7 @@ router.post('/complete',function(req,res){
     var newCm="";
     var totalPrice = req.body.totalPrice;
     var name= req.body.name;
+    var phone = req.body.phone;
 
     Commune.findOne({type:"commune"},function(err,cm){
         if (err) return console.log(err);
@@ -109,6 +110,7 @@ router.post('/complete',function(req,res){
             cart: us.cart,
             totalPrice: totalPrice,
             name: name,
+            phone:phone,
             dateVN: formatDate(new Date())
         })
         bill.save(function(err){

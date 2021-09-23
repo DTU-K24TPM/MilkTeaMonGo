@@ -14,6 +14,7 @@ var BillSchema = mongoose.Schema({
     address:{
         type:String
     },
+    phone:{type:String},
     createAt: { type: Date, default: Date.now},
     dateVN: {type:String},
     type: {type: String},
