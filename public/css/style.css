@@ -563,7 +563,7 @@ body {
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-start;
-      margin-left: 60px;
+      margin-left: 40px;
   }
   .dh-h6{
     margin-top: 10px;
@@ -1465,4 +1465,7 @@ body {
   width: 13%;
     margin-bottom: 10px;
     border-radius: 20px
+}
+.order-cpt{
+  max-width: 1350px;
 }
