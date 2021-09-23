@@ -5,6 +5,9 @@ var BillSchema = mongoose.Schema({
         type: String,
         require:true
     },
+    name:{
+        type:String
+    },
     note:{
         type:String
     },

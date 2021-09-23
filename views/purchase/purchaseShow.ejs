@@ -57,6 +57,7 @@
 
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="all" role="tabpanel">
+                                        <%if (bills.length != 0){ %>
                                         <% bills.forEach(function(bill){ %>
                                             <div class="each-order">
                                                 <% bill.cart.forEach(function(c){ %>
@@ -123,213 +124,371 @@
 
                                                             </div>
                                             </div>
-                                            <% }) %>
+                                            <% }) } else { %>
+                                                <h1 class="text-center">ÉO CÓ ĐƠN HÀNG NÀO HẾT</h1> 
+                                             <% } %>
 
                                     </div>
                                     <div class="tab-pane" id="wait-confirm" role="tabpanel">
-                                        <div class="each-order">
-                                            <div class="1dh">
-                                                <a href="#" class="row detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
+                                        <%if (billCf.length != 0){ %>
+                                        <% billCf.forEach(function(bill){ %>
+                                            <div class="each-order">
+                                                <% bill.cart.forEach(function(c){ %>
+                                                    <% sub1=0 %>
+                                                        <div class="1dh">
+                                                            <a href="/product/<%= c.slug %>" class="row detail-order-list">
+                                                                <div class="col-1">
+                                                                    <img class="img-order-list" src="<%=c.image%>">
+                                                                </div>
+                                                                <div class="col-9">
+                                                                    <div class="name-order-list">
+                                                                        <%=c.title%>
+                                                                    </div>
+                                                                    <div class="total-order-list">x<%= c.quantity%>
+                                                                    </div>
+                                                                    <div class="top-total">
+                                                                        <% if (c.ice==0) { %>
+                                                                            Đá chung
+                                                                            <% } else { %>
+                                                                                Đá riêng
+                                                                                <% } %>, <%= c.size.title %>
+                                                                    </div>
+                                                                    <div class="top-total">
+                                                                        <% if (c.topping.length !=0){ %>
+                                                                            <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                                <% if (i !=c.topping.length-1 ){ %>
+                                                                                    <%= c.topping[i].title + ", " %>
+                                                                                        <% } else { %>
+                                                                                            <%= c.topping[i].title %>
+                                                                                                <% } %>
+                                                                                                    <% sub1=sub1 +
+                                                                                                        c.topping[i].price
+                                                                                                        %>
+                                                                                                        <% } %>
+
+                                                                                                            <% } %>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-2">
+                                                                    <div class="price-order-list">
+                                                                        <%= c.quantity* (sub1+c.price+c.size.price) %>đ
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+
                                                         </div>
-                                                        <div class="total-order-list">x 4</div>
-                                                    </div>
+                                                        <% }) %>
 
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </a>
+                                                            <div class="total-order">
+                                                                <div class="price-order">Tổng số tiền: <%=
+                                                                        bill.totalPrice %> VNĐ</div>
+                                                                <div class="footer-order">
+                                                                    <div class="time-order">
+                                                                        <span>Đơn hàng được đặt vào lúc: <%=
+                                                                                bill.dateVN %></span>
+                                                                    </div>
+                                                                    <div class="btn-each-order">
+                                                                        <button class="contact-order">Liên hệ</button>
+                                                                        <button class="cancel-order">Hủy đơn
+                                                                            hàng</button>
+                                                                    </div>
+                                                                </div>
 
+                                                            </div>
                                             </div>
-                                            <div class="1dh">
-                                                <a href="#" class="row detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa
-                                                        </div>
-                                                        <div class="total-order-list">x 1</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">30.000 VNĐ</div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                            <div class="total-order">
-                                                <div class="price-order">Tổng số tiền: 150.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span>Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                    </div>
-                                                    <div class="btn-each-order">
-                                                        <button class="contact-order">Liên hệ</button>
-                                                        <button class="cancel-order">Hủy đơn
-                                                            hàng</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                            <% }) } else { %>
+                                               <h1 class="text-center">ÉO CÓ ĐƠN HÀNG NÀO HẾT</h1> 
+                                            <% } %>
+                                        
                                     </div>
                                     <div class="tab-pane" id="waiter-rev" role="tabpanel">
-                                        <div class="each-order">
-                                            <div class="1dh">
-                                                <a href="#" class="row detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
-                                                        </div>
-                                                        <div class="total-order-list">x 4</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
-
-                                            <div class="total-order">
-                                                <div class="price-order">Tổng số tiền: 120.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span>Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                    </div>
-                                                    <div class="btn-each-order">
-                                                        <button class="contact-order">Liên hệ</button>
-                                                        <button class="continue cancel-order">Xem sản
-                                                            phẩm khác</button>
-                                                        <!-- <button class="cancel-order">Hủy đơn hàng</button> -->
-                                                    </div>
+                                        <%if (billRv.length != 0){ %>
+                                            <% billRv.forEach(function(bill){ %>
+                                                <div class="each-order">
+                                                    <% bill.cart.forEach(function(c){ %>
+                                                        <% sub1=0 %>
+                                                            <div class="1dh">
+                                                                <a href="/product/<%= c.slug %>" class="row detail-order-list">
+                                                                    <div class="col-1">
+                                                                        <img class="img-order-list" src="<%=c.image%>">
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                        <div class="name-order-list">
+                                                                            <%=c.title%>
+                                                                        </div>
+                                                                        <div class="total-order-list">x<%= c.quantity%>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.ice==0) { %>
+                                                                                Đá chung
+                                                                                <% } else { %>
+                                                                                    Đá riêng
+                                                                                    <% } %>, <%= c.size.title %>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.topping.length !=0){ %>
+                                                                                <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                                    <% if (i !=c.topping.length-1 ){ %>
+                                                                                        <%= c.topping[i].title + ", " %>
+                                                                                            <% } else { %>
+                                                                                                <%= c.topping[i].title %>
+                                                                                                    <% } %>
+                                                                                                        <% sub1=sub1 +
+                                                                                                            c.topping[i].price
+                                                                                                            %>
+                                                                                                            <% } %>
+    
+                                                                                                                <% } %>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                    <div class="col-2">
+                                                                        <div class="price-order-list">
+                                                                            <%= c.quantity* (sub1+c.price+c.size.price) %>đ
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+    
+                                                            </div>
+                                                            <% }) %>
+    
+                                                                <div class="total-order">
+                                                                    <div class="price-order">Tổng số tiền: <%=
+                                                                            bill.totalPrice %> VNĐ</div>
+                                                                    <div class="footer-order">
+                                                                        <div class="time-order">
+                                                                            <span>Đơn hàng được đặt vào lúc: <%=
+                                                                                    bill.dateVN %></span>
+                                                                        </div>
+                                                                        <div class="btn-each-order">
+                                                                            <button class="contact-order">Liên hệ</button>
+                                                                            <button class="cancel-order">Hủy đơn
+                                                                                hàng</button>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                </div>
                                                 </div>
-
-                                            </div>
-                                        </div>
+                                                <% }) } else { %>
+                                                   <h1 class="text-center">ÉO CÓ ĐƠN HÀNG NÀO HẾT</h1> 
+                                                <% } %>
                                     </div>
                                     <div class="tab-pane" id="delivering" role="tabpanel">
-                                        <div class="each-order">
-                                            <div class="1dh">
-                                                <a href="#" class="row detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
-                                                        </div>
-                                                        <div class="total-order-list">x 4</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
-
-                                            <div class="total-order">
-                                                <div class="price-order">Tổng số tiền: 120.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span>Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                    </div>
-                                                    <div class="btn-each-order">
-                                                        <button class="contact-order">Liên hệ</button>
-                                                        <button class="continue cancel-order">Xem sản
-                                                            phẩm khác</button>
-                                                        <!-- <button class="cancel-order">Hủy đơn hàng</button> -->
-                                                    </div>
+                                        <%if (billDling.length != 0){ %>
+                                            <% billDling.forEach(function(bill){ %>
+                                                <div class="each-order">
+                                                    <% bill.cart.forEach(function(c){ %>
+                                                        <% sub1=0 %>
+                                                            <div class="1dh">
+                                                                <a href="/product/<%= c.slug %>" class="row detail-order-list">
+                                                                    <div class="col-1">
+                                                                        <img class="img-order-list" src="<%=c.image%>">
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                        <div class="name-order-list">
+                                                                            <%=c.title%>
+                                                                        </div>
+                                                                        <div class="total-order-list">x<%= c.quantity%>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.ice==0) { %>
+                                                                                Đá chung
+                                                                                <% } else { %>
+                                                                                    Đá riêng
+                                                                                    <% } %>, <%= c.size.title %>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.topping.length !=0){ %>
+                                                                                <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                                    <% if (i !=c.topping.length-1 ){ %>
+                                                                                        <%= c.topping[i].title + ", " %>
+                                                                                            <% } else { %>
+                                                                                                <%= c.topping[i].title %>
+                                                                                                    <% } %>
+                                                                                                        <% sub1=sub1 +
+                                                                                                            c.topping[i].price
+                                                                                                            %>
+                                                                                                            <% } %>
+    
+                                                                                                                <% } %>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                    <div class="col-2">
+                                                                        <div class="price-order-list">
+                                                                            <%= c.quantity* (sub1+c.price+c.size.price) %>đ
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+    
+                                                            </div>
+                                                            <% }) %>
+    
+                                                                <div class="total-order">
+                                                                    <div class="price-order">Tổng số tiền: <%=
+                                                                            bill.totalPrice %> VNĐ</div>
+                                                                    <div class="footer-order">
+                                                                        <div class="time-order">
+                                                                            <span>Đơn hàng được đặt vào lúc: <%=
+                                                                                    bill.dateVN %></span>
+                                                                        </div>
+                                                                        <div class="btn-each-order">
+                                                                            <button class="contact-order">Liên hệ</button>
+                                                                            <button class="cancel-order">Hủy đơn
+                                                                                hàng</button>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                </div>
                                                 </div>
-
-                                            </div>
-                                        </div>
+                                                <% }) } else { %>
+                                                   <h1 class="text-center">ÉO CÓ ĐƠN HÀNG NÀO HẾT</h1> 
+                                                <% } %>
                                     </div>
                                     <div class="tab-pane" id="delivered" role="tabpanel">
-                                        <div class="each-order">
-                                            <div class="1dh">
-                                                <a href="#" class="row detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
-                                                        </div>
-                                                        <div class="total-order-list">x 4</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
-
-                                            <div class="total-order">
-                                                <div class="price-order">Tổng số tiền: 120.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span>Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                    </div>
-                                                    <div class="btn-each-order">
-                                                        <button class="contact-order">Liên hệ</button>
-                                                        <button class="continue cancel-order">Xem sản
-                                                            phẩm khác</button>
-                                                        <!-- <button class="cancel-order">Hủy đơn hàng</button> -->
-                                                    </div>
+                                        <%if (billDled.length != 0){ %>
+                                            <% billDled.forEach(function(bill){ %>
+                                                <div class="each-order">
+                                                    <% bill.cart.forEach(function(c){ %>
+                                                        <% sub1=0 %>
+                                                            <div class="1dh">
+                                                                <a href="/product/<%= c.slug %>" class="row detail-order-list">
+                                                                    <div class="col-1">
+                                                                        <img class="img-order-list" src="<%=c.image%>">
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                        <div class="name-order-list">
+                                                                            <%=c.title%>
+                                                                        </div>
+                                                                        <div class="total-order-list">x<%= c.quantity%>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.ice==0) { %>
+                                                                                Đá chung
+                                                                                <% } else { %>
+                                                                                    Đá riêng
+                                                                                    <% } %>, <%= c.size.title %>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.topping.length !=0){ %>
+                                                                                <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                                    <% if (i !=c.topping.length-1 ){ %>
+                                                                                        <%= c.topping[i].title + ", " %>
+                                                                                            <% } else { %>
+                                                                                                <%= c.topping[i].title %>
+                                                                                                    <% } %>
+                                                                                                        <% sub1=sub1 +
+                                                                                                            c.topping[i].price
+                                                                                                            %>
+                                                                                                            <% } %>
+    
+                                                                                                                <% } %>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                    <div class="col-2">
+                                                                        <div class="price-order-list">
+                                                                            <%= c.quantity* (sub1+c.price+c.size.price) %>đ
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+    
+                                                            </div>
+                                                            <% }) %>
+    
+                                                                <div class="total-order">
+                                                                    <div class="price-order">Tổng số tiền: <%=
+                                                                            bill.totalPrice %> VNĐ</div>
+                                                                    <div class="footer-order">
+                                                                        <div class="time-order">
+                                                                            <span>Đơn hàng được đặt vào lúc: <%=
+                                                                                    bill.dateVN %></span>
+                                                                        </div>
+                                                                        <div class="btn-each-order">
+                                                                            <button class="contact-order">Liên hệ</button>
+                                                                            <button class="cancel-order">Hủy đơn
+                                                                                hàng</button>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                </div>
                                                 </div>
-
-                                            </div>
-                                        </div>
+                                                <% }) } else { %>
+                                                   <h1 class="text-center">ÉO CÓ ĐƠN HÀNG NÀO HẾT</h1> 
+                                                <% } %>
                                     </div>
                                     <div class="tab-pane" id="cancelled" role="tabpanel">
-                                        <div class="each-order">
-                                            <div class="1dh">
-                                                <a href="#" class="row detail-order-list">
-                                                    <div class="col-1">
-                                                        <img class="img-order-list" src="img/anh1.jpg">
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="name-order-list">Trà sữa Rainbow
-                                                        </div>
-                                                        <div class="total-order-list">x 4</div>
-                                                    </div>
-
-                                                    <div class="col-2">
-                                                        <div class="price-order-list">120.000 VNĐ</div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
-
-                                            <div class="total-order">
-                                                <div class="price-order">Tổng số tiền: 120.000 VNĐ</div>
-                                                <div class="footer-order">
-                                                    <div class="time-order">
-                                                        <span>Đơn hàng được đặt vào lúc 12:00
-                                                            02/02/2021</span>
-                                                    </div>
-                                                    <div class="btn-each-order">
-                                                        <button class="contact-order">Liên hệ</button>
-                                                        <button class="continue cancel-order">Xem sản
-                                                            phẩm khác</button>
-                                                        <!-- <button class="cancel-order">Hủy đơn hàng</button> -->
-                                                    </div>
+                                        <%if (billCc.length != 0){ %>
+                                            <% billCc.forEach(function(bill){ %>
+                                                <div class="each-order">
+                                                    <% bill.cart.forEach(function(c){ %>
+                                                        <% sub1=0 %>
+                                                            <div class="1dh">
+                                                                <a href="/product/<%= c.slug %>" class="row detail-order-list">
+                                                                    <div class="col-1">
+                                                                        <img class="img-order-list" src="<%=c.image%>">
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                        <div class="name-order-list">
+                                                                            <%=c.title%>
+                                                                        </div>
+                                                                        <div class="total-order-list">x<%= c.quantity%>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.ice==0) { %>
+                                                                                Đá chung
+                                                                                <% } else { %>
+                                                                                    Đá riêng
+                                                                                    <% } %>, <%= c.size.title %>
+                                                                        </div>
+                                                                        <div class="top-total">
+                                                                            <% if (c.topping.length !=0){ %>
+                                                                                <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                                    <% if (i !=c.topping.length-1 ){ %>
+                                                                                        <%= c.topping[i].title + ", " %>
+                                                                                            <% } else { %>
+                                                                                                <%= c.topping[i].title %>
+                                                                                                    <% } %>
+                                                                                                        <% sub1=sub1 +
+                                                                                                            c.topping[i].price
+                                                                                                            %>
+                                                                                                            <% } %>
+    
+                                                                                                                <% } %>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                    <div class="col-2">
+                                                                        <div class="price-order-list">
+                                                                            <%= c.quantity* (sub1+c.price+c.size.price) %>đ
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+    
+                                                            </div>
+                                                            <% }) %>
+    
+                                                                <div class="total-order">
+                                                                    <div class="price-order">Tổng số tiền: <%=
+                                                                            bill.totalPrice %> VNĐ</div>
+                                                                    <div class="footer-order">
+                                                                        <div class="time-order">
+                                                                            <span>Đơn hàng được đặt vào lúc: <%=
+                                                                                    bill.dateVN %></span>
+                                                                        </div>
+                                                                        <div class="btn-each-order">
+                                                                            <button class="contact-order">Liên hệ</button>
+                                                                            <button class="cancel-order">Hủy đơn
+                                                                                hàng</button>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                </div>
                                                 </div>
-
-                                            </div>
-                                        </div>
+                                                <% }) } else { %>
+                                                   <h1 class="text-center">ÉO CÓ ĐƠN HÀNG NÀO HẾT</h1> 
+                                                <% } %>
                                     </div>
 
                                 </div>

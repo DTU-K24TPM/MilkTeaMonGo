@@ -80,6 +80,7 @@ router.post('/complete',function(req,res){
     var newDt="" ;
     var newCm="";
     var totalPrice = req.body.totalPrice;
+    var name= req.body.name;
 
     Commune.findOne({type:"commune"},function(err,cm){
         if (err) return console.log(err);
@@ -107,6 +108,7 @@ router.post('/complete',function(req,res){
             type: "wait-confirm",
             cart: us.cart,
             totalPrice: totalPrice,
+            name: name,
             dateVN: formatDate(new Date())
         })
         bill.save(function(err){
