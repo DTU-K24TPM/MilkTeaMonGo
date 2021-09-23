@@ -134,7 +134,7 @@
             var amount = $this.closest('.tr-item').find('.amount'),
             total = $this.closest('.tr-item').find('.total_money'),
             deleteTr=$this.closest('.tr-item');
-            $(qty).on('click', function () {
+            $(qty).on('click', function (e) {
             if ($(this).hasClass('minus')) {
                 $.ajax({
                 url:"/cart/update/"+id,

@@ -119,7 +119,6 @@ router.post('/add/:slug',function(req,res){
                     if (err) console.log(err);
                 })
             })
-        req.flash('success','product added');
         res.redirect('back');
     })
 })

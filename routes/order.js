@@ -57,7 +57,19 @@ router.get('/',function(req,res){
 //         })
 //     })
 // })
-
+function formatDate(d){
+    var yyyy= d.getFullYear();
+    var mm= d.getMonth();
+    var datee = d.getDate();
+    var hh= d.getHours();
+    var m= d.getMinutes();
+    var s= d.getSeconds();
+    var dayy = d.getDay();
+    var dayyVN;
+    if (dayy<7) dayyVN ="Thứ "+(dayy+1); 
+    else dayyVN = "Chủ nhật";
+    return (String(dayyVN+" ngày "+(datee)+" tháng "+(mm+1)+" năm "+yyyy+", "+hh+":"+m+":"+s));
+}
 router.post('/complete',function(req,res){
     var email= req.body.email;
     var city = req.body.city;
@@ -94,7 +106,8 @@ router.post('/complete',function(req,res){
             address: address_detail + ', ' + newCm +', ' +newDt+', '+ 'thành phố ' + city ,
             type: "wait-confirm",
             cart: us.cart,
-            totalPrice: totalPrice
+            totalPrice: totalPrice,
+            dateVN: formatDate(new Date())
         })
         bill.save(function(err){
             if (err) return console.log(err);

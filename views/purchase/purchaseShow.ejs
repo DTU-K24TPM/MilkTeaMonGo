@@ -62,7 +62,7 @@
                                                 <% bill.cart.forEach(function(c){ %>
                                                     <% sub1=0 %>
                                                         <div class="1dh">
-                                                            <a href="#" class="row detail-order-list">
+                                                            <a href="/product/<%= c.slug %>" class="row detail-order-list">
                                                                 <div class="col-1">
                                                                     <img class="img-order-list" src="<%=c.image%>">
                                                                 </div>
@@ -111,8 +111,8 @@
                                                                         bill.totalPrice %> VNĐ</div>
                                                                 <div class="footer-order">
                                                                     <div class="time-order">
-                                                                        <span>Đơn hàng được đặt vào lúc <%=
-                                                                                bill.createAt %></span>
+                                                                        <span>Đơn hàng được đặt vào lúc: <%=
+                                                                                bill.dateVN %></span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="contact-order">Liên hệ</button>

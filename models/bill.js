@@ -12,6 +12,7 @@ var BillSchema = mongoose.Schema({
         type:String
     },
     createAt: { type: Date, default: Date.now},
+    dateVN: {type:String},
     type: {type: String},
     cart: {type: Array},
     totalPrice: {type: Number},
