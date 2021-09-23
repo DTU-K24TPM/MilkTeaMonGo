@@ -1449,7 +1449,7 @@ body {
 #owl-demo .item-slide img{
   display: block;
   width: 100%;
-  height: auto;
+  max-height: 125px;
 }
 .slide-change{
   max-width: 500px;
