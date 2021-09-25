@@ -65,10 +65,12 @@ router.post('/add/:slug',function(req,res){
     var idCart = shortid.generate();
         User.findOne({email: req.session.user},function(err,us){
             if (err) return console.log(err);
-            req.session.cart=us.cart;
-            us.save(function(err){
-                if (err) console.log(err);
-            })
+            if(us){
+                req.session.cart=us.cart;
+                us.save(function(err){
+                    if (err) console.log(err);
+                })
+            }            
         })
     Product.findOne({slug: slug},function(err,p){
         if (err) return console.log(err);
@@ -114,10 +116,12 @@ router.post('/add/:slug',function(req,res){
         }
             User.findOne({email: req.session.user},function(err,us){
                 if (err) return console.log(err);
-                us.cart=req.session.cart;
-                us.save(function(err){
-                    if (err) console.log(err);
-                })
+                if(us){
+                    us.cart=req.session.cart;
+                    us.save(function(err){
+                        if (err) console.log(err);
+                    })
+                }                
             })
         res.redirect('back');
     })
@@ -187,8 +191,8 @@ router.post('/update/:idcart',function(req,res){
 //get cart
 router.get('/',function(req,res){
     User.findOne({email: req.session.user},function(err,us){
-        req.session.cart= us.cart;
-        if (req.session.cart.length==0) delete req.session.cart;
+        if(us) req.session.cart= us.cart;
+        if (req.session.cart && req.session.cart.length==0) delete req.session.cart;
         res.render('cart/show',{
             cart: req.session.cart
         });

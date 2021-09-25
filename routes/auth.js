@@ -75,6 +75,14 @@ router.get('/login',function(req,res){
     });
 })
 
+function equalTopping(a,b){
+    if (a.length == b.length && b.length ==0) return true;
+    if (a.length != b.length) return false;
+    for (var i=0;i<a.length;i++){
+        if (a[i].title != b[i].title || a[i].price!=b[i].price) return false;
+    }
+    return true;
+}
 //post login
 router.post('/login',function(req,res){
     var email= req.body.email;
@@ -84,7 +92,28 @@ router.post('/login',function(req,res){
         if (user){
             if (user.password== password){
                 req.session.user = email;
-                res.redirect('/');
+                var newItem=true
+                if(req.session.cart) {                
+                    for(let i=0;i<user.cart.length;i++) {                                                
+                        for(let j=0;j<req.session.cart.length;j++){                            
+                            if(user.cart[i].title==req.session.cart[j].title
+                                && (equalTopping(user.cart[i].topping,req.session.cart[j].topping))
+                                && user.cart[i].size.slug==req.session.cart[j].size.slug
+                                && user.cart[i].ice==req.session.cart[j].ice){
+                                    req.session.cart[j].quantity-=(-user.cart[i].quantity)                                                                       
+                                    newItem=false;                                    
+                            }
+                        } 
+                        if(newItem) req.session.cart.push(user.cart[i])
+                        newItem=true
+                    }
+                    user.cart=req.session.cart;
+                    user.save(function(err){
+                        if (err) console.log(err);
+                    })
+                }
+                else req.session.cart=user.cart
+                res.redirect('/')
             }
             else {
                 res.render('auth/login',{

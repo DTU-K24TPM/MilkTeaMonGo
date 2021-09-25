@@ -95,7 +95,7 @@ app.use('/admin/products',checkUser,adminProducts);
 app.use('/admin/purchase',checkUser,adminPurchase);
 app.use('/',checkUser,sites);
 app.use('/product',checkUser,product);
-app.use('/cart',checkLogin,checkUser,cart);
+app.use('/cart',checkUser,cart);
 app.use('/auth',auth);
 app.use('/user',checkLogin,checkUser,user);
 app.use('/order',checkLogin,order);
