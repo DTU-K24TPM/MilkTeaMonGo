@@ -1036,7 +1036,7 @@ body {
     text-align: end;
   }
   .user-admin{
-    min-width: 1250px;
+    min-width: 1390px;
     margin-left: 10px;
   
   }
@@ -1491,4 +1491,8 @@ body {
 .text-ad-pur{
   text-align: left;
   width: 70%;
+}
+.wr-admin{
+  min-width: 1300px;
+    margin-left: 60px;
 }
