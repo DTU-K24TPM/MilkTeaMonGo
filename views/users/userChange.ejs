@@ -27,15 +27,15 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="change1" role="tabpanel">
                                 <div class="row">
-                                    <form class="change-profile-form" action="/user/change-info" method="POST"
+                                    <form class="change-profile-form" id="changeinfo" action="/user/change-info" method="POST"
                                         enctype="multipart/form-data">
                                         <div class="col-6">
                                             <div class="profile-left">
                                                 <div class="profile-input">
                                                     <label>Họ và tên</label>
-                                                    <input class="cls-input" name="fullname" type="text"
+                                                    <input class="cls-input" id="name" name="fullname" type="text"
                                                         value="<%=us.fullname%>">
-
+                                                    <span class="span-error" id="name_error"></span>
                                                 </div>
                                                 <div class="profile-input">
                                                     <label>Email</label>
@@ -46,10 +46,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="profile-input">
-                                                    <label>Số điện thoại</label>
-                                                    <div class="phone-input">
-                                                        <input class="cls-input" type="tel" value="<%=us.phone%>">
-                                                    </div>
+                                                    <label>Số điện thoại</label>                                                    
+                                                    <input id="phone" name="phone" class="cls-input phone-input" type="tel" value="<%=us.phone%>">
+                                                    <span class="span-error" id="phone_error"></span>
                                                 </div>
                                                 <div class="profile-input">
                                                     <label>Giới Tính</label>
@@ -67,6 +66,7 @@
                                                     <label>Ngày Sinh</label>
                                                     <input class="cls-input" name="birthday" type="date"
                                                         id="birthdaytime" name="birthdaytime" value="<%= us.birthday%>">
+                                                    <span class="span-error" id="birth_error"></span>
                                                 </div>
                                                 <div class="profile-input cls-change-info">
                                                     <label></label>
@@ -145,7 +145,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td><label></label></td>
-                                                   <td><button type="submit" id="change-info">Lưu Thay Đổi</button></td>                                                        
+                                                   <td><button type="submit" id="change-pass">Lưu Thay Đổi</button></td>                                                        
                                                         
                                                   
                                                 </tr>
@@ -187,6 +187,17 @@
         <script src="http://localhost:3000/socket.io/socket.io.js"></script>
         <script src="../js/validate.js"></script>
         <script>
+            Validator({
+                form: '#changeinfo',
+                errorSelect: '.span-error',
+                rules: [
+                    Validator.isRequired('#name'),
+                    Validator.isName('#name'),                    
+                    Validator.isRequired('#phone'),
+                    Validator.isPhone('#phone'),
+                    Validator.isRequired('#birthdaytime')                    
+                ]
+            });
             Validator({
                 form: '#changepass',
                 errorSelect: '.span-error',
