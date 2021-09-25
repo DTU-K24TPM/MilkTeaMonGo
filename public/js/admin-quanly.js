@@ -23,13 +23,6 @@ $('#btn-save-change-item').on('click',function(){
     modalEdit.style.display = "none"; 
     alert('Chỉnh sửa hoàn tất!');
 });
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modalEdit.style.display = "none";
-    modalAdd.style.display = "none";
-    modalInfo.style.display = "none";
-  }
-};
 $('.btn-xoa').on('click',function(){
     alert('Đã xóa!');
 });
