@@ -763,8 +763,8 @@ body {
   }
   
   .img-order-list{
-    width: 4.3rem;
-    height:4.3rem;
+    width: 4rem;
+    height:4rem;
   }
   .name-order-list{
     font-size: 16px;
@@ -800,6 +800,7 @@ body {
     padding-top: 20px;
     color: rgb(113, 102, 102);
     font-size: 14px;
+    text-align: left;
   
   }
   .btn-each-order{
@@ -1483,4 +1484,11 @@ body {
 #time-from:hover, #time-to:hover{
   border: 1px solid indianred;
   background-color: #f7e0e0;
+}
+.img-ad-pur{
+  width: 11%;
+}
+.text-ad-pur{
+  text-align: left;
+  width: 70%;
 }
