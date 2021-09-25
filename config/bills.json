@@ -1,0 +1,540 @@
+[{
+  "_id": {
+    "$oid": "614c3be0597d1a46b67e1ed2"
+  },
+  "email": "holipenta@gmail.com",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Hòa Hiệp Nam, Liên Chiểu, thành phố Đà nẵng",
+  "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:33:36",
+  "type": "wait-confirm",
+  "cart": [
+    {
+      "title": "Thái xanh đặc biệt",
+      "slug": "thái-xanh-đặc-biệt",
+      "topping": [],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 23000,
+      "image": "/img/product_imgs/613f7033c6760a3cad79edb3/MT-2.jpeg",
+      "idCart": "4NgCdGsVn"
+    }
+  ],
+  "totalPrice": 23000,
+  "createAt": {
+    "$date": "2021-09-23T08:33:36.205Z"
+  },
+  "__v": 0,
+  "name": "Alaba",
+  "phone": "0854881234"
+},{
+  "_id": {
+    "$oid": "614c3bf3597d1a46b67e1f1d"
+  },
+  "email": "holipenta@gmail.com",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Hòa Hiệp Bắc, Liên Chiểu, thành phố Đà nẵng",
+  "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:33:55",
+  "type": "wait-rev",
+  "cart": [
+    {
+      "title": "Trà sữa đặc biệt",
+      "slug": "trà-sữa-đặc-biệt",
+      "topping": [],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "3",
+      "price": 23000,
+      "image": "/img/product_imgs/613f7026c6760a3cad79edac/MT-3.jpeg",
+      "idCart": "foG5VlVWC"
+    },
+    {
+      "title": "Trà sữa đặc biệt",
+      "slug": "trà-sữa-đặc-biệt",
+      "topping": [
+        {
+          "title": "Bánh flan",
+          "price": 5000
+        },
+        {
+          "title": "Sương sáo",
+          "price": 10000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 23000,
+      "image": "/img/product_imgs/613f7026c6760a3cad79edac/MT-3.jpeg",
+      "idCart": "ZyTr-lvTP"
+    }
+  ],
+  "totalPrice": 107000,
+  "createAt": {
+    "$date": "2021-09-23T08:33:55.063Z"
+  },
+  "__v": 0,
+  "name": "Alaba",
+  "phone": "0854881234"
+},{
+  "_id": {
+    "$oid": "614c3c15597d1a46b67e1f68"
+  },
+  "email": "holipenta@gmail.com",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Hòa Hiệp Bắc, Liên Chiểu, thành phố Đà nẵng",
+  "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:34:29",
+  "type": "wait-rev",
+  "cart": [
+    {
+      "title": "Oreo đá xay",
+      "slug": "oreo-đá-xay",
+      "topping": [
+        {
+          "title": "Bánh flan",
+          "price": 5000
+        },
+        {
+          "title": "Sương sáo",
+          "price": 10000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 29000,
+      "image": "/img/product_imgs/613f7090c6760a3cad79edcf/DX-3.jpeg",
+      "idCart": "M8XuOd7FQ"
+    },
+    {
+      "title": "Oreo đá xay",
+      "slug": "oreo-đá-xay",
+      "topping": [
+        {
+          "title": "Trân châu đường đen",
+          "price": 10000
+        },
+        {
+          "title": "Popping",
+          "price": 5000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 29000,
+      "image": "/img/product_imgs/613f7090c6760a3cad79edcf/DX-3.jpeg",
+      "idCart": "VrbIKlznj"
+    }
+  ],
+  "totalPrice": 88000,
+  "createAt": {
+    "$date": "2021-09-23T08:34:29.720Z"
+  },
+  "__v": 0,
+  "name": "Alaba",
+  "phone": "0854881234"
+},{
+  "_id": {
+    "$oid": "614c3c26597d1a46b67e1fb3"
+  },
+  "email": "holipenta@gmail.com",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Hòa Khánh Bắc, Liên Chiểu, thành phố Đà nẵng",
+  "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:34:46",
+  "type": "delivering",
+  "cart": [
+    {
+      "title": "Trà sữa rainbow",
+      "slug": "trà-sữa-rainbow",
+      "topping": [
+        {
+          "title": "Popping",
+          "price": 5000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 29000,
+      "image": "/img/product_imgs/613f704dc6760a3cad79edba/MT-10.jpeg",
+      "idCart": "5H3cglqvZ"
+    },
+    {
+      "title": "Trà sữa rainbow",
+      "slug": "trà-sữa-rainbow",
+      "topping": [
+        {
+          "title": "Bánh flan",
+          "price": 5000
+        },
+        {
+          "title": "Trân châu trắng",
+          "price": 6000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 29000,
+      "image": "/img/product_imgs/613f704dc6760a3cad79edba/MT-10.jpeg",
+      "idCart": "0J-9zqa77"
+    }
+  ],
+  "totalPrice": 74000,
+  "createAt": {
+    "$date": "2021-09-23T08:34:46.632Z"
+  },
+  "__v": 0,
+  "name": "hehe",
+  "phone": "0854881234"
+},{
+  "_id": {
+    "$oid": "614c3c3e597d1a46b67e2017"
+  },
+  "email": "holipenta@gmail.com",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Hòa Hiệp Bắc, Liên Chiểu, thành phố Đà nẵng",
+  "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:35:10",
+  "type": "wait-confirm",
+  "cart": [
+    {
+      "title": "Sữa tươi trân châu đường đen oreo",
+      "slug": "sữa-tươi-trân-châu-đường-đen-oreo",
+      "topping": [
+        {
+          "title": "Bánh flan",
+          "price": 5000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "3",
+      "price": 36000,
+      "image": "/img/product_imgs/613f70f7c6760a3cad79eddd/M-2.jpeg",
+      "idCart": "V81_JeDs0"
+    },
+    {
+      "title": "Sữa tươi trân châu đường đen oreo",
+      "slug": "sữa-tươi-trân-châu-đường-đen-oreo",
+      "topping": [
+        {
+          "title": "Thạch cà phê",
+          "price": 5000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 36000,
+      "image": "/img/product_imgs/613f70f7c6760a3cad79eddd/M-2.jpeg",
+      "idCart": "m2IzUnVKq"
+    },
+    {
+      "title": "Trà việt quất nha đam",
+      "slug": "trà-việt-quất-nha-đam",
+      "topping": [
+        {
+          "title": "Thạch nhà làm",
+          "price": 6000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "2",
+      "price": 22000,
+      "image": "/img/product_imgs/61484c2fd8513b21ed9e6297/img6.jpg",
+      "idCart": "ZKcqGslfL"
+    }
+  ],
+  "totalPrice": 220000,
+  "createAt": {
+    "$date": "2021-09-23T08:35:10.383Z"
+  },
+  "__v": 0,
+  "name": "Alaba",
+  "phone": "0854881234"
+},{
+  "_id": {
+    "$oid": "614c3c73597d1a46b67e206a"
+  },
+  "email": "holipenta@gmail.com",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Tam Thuận, Thanh Khê, thành phố Đà nẵng",
+  "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:36:3",
+  "type": "wait-confirm",
+  "cart": [
+    {
+      "title": "Sữa tươi trân châu đường đen brulee",
+      "slug": "sữa-tươi-trân-châu-đường-đen-brulee",
+      "topping": [
+        {
+          "title": "Bánh flan",
+          "price": 5000
+        },
+        {
+          "title": "Popping",
+          "price": 5000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 38000,
+      "image": "/img/product_imgs/613f7118c6760a3cad79ede4/M-3.jpeg",
+      "idCart": "c5HZMe0VA"
+    },
+    {
+      "title": "Sữa tươi trân châu đường đen brulee",
+      "slug": "sữa-tươi-trân-châu-đường-đen-brulee",
+      "topping": [
+        {
+          "title": "Pudding khoai môn",
+          "price": 6000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "3",
+      "price": 38000,
+      "image": "/img/product_imgs/613f7118c6760a3cad79ede4/M-3.jpeg",
+      "idCart": "0locdJn_q"
+    }
+  ],
+  "totalPrice": 180000,
+  "createAt": {
+    "$date": "2021-09-23T08:36:03.700Z"
+  },
+  "__v": 0,
+  "name": "Alaba",
+  "phone": "0854881234"
+},{
+  "_id": {
+    "$oid": "614c3f06e74ad1f12cdfe6f2"
+  },
+  "email": "holipenta@gmail.com",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, An Hải Tây, Sơn Trà, thành phố Đà nẵng",
+  "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:47:2",
+  "type": "wait-confirm",
+  "cart": [
+    {
+      "title": "Thái xanh đặc biệt",
+      "slug": "thái-xanh-đặc-biệt",
+      "topping": [],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": "1",
+      "price": 23000,
+      "image": "/img/product_imgs/613f7033c6760a3cad79edb3/MT-2.jpeg",
+      "idCart": "qdscxkVYi"
+    }
+  ],
+  "totalPrice": 23000,
+  "createAt": {
+    "$date": "2021-09-23T08:47:02.397Z"
+  },
+  "__v": 0,
+  "name": "Toi la ai",
+  "phone": "08548812314"
+},{
+  "_id": {
+    "$oid": "614ec0bdc10b0c0ac3612a2c"
+  },
+  "email": "holipenta@gmail.com",
+  "name": "Thi Trần",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Hòa Khánh Bắc, Liên Chiểu, thành phố Đà nẵng",
+  "phone": "0854830109",
+  "dateVN": "Thứ 7 ngày 25 tháng 9 năm 2021, 13:25:1",
+  "type": "wait-confirm",
+  "cart": [
+    {
+      "title": "Milo cốt dừa trân châu đường đen",
+      "slug": "milo-cốt-dừa-trân-châu-đường-đen",
+      "topping": [
+        {
+          "title": "Bánh flan",
+          "price": 5000
+        },
+        {
+          "title": "Sương sáo",
+          "price": 10000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": "61402a29e21b596165b5a979",
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": 4,
+      "price": 29000,
+      "image": "/img/product_imgs/61484cfad8513b21ed9e62ad/M-1.jpeg",
+      "idCart": "dbBWz-mHt"
+    },
+    {
+      "title": "Bạc xỉu",
+      "slug": "bạc-xỉu",
+      "topping": [
+        {
+          "title": "Trân châu trắng",
+          "price": 6000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": "61402a29e21b596165b5a979",
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": 2,
+      "price": 20000,
+      "image": "/img/product_imgs/61484bccd8513b21ed9e6260/cf-1.jpeg",
+      "idCart": "3RRacaxTC"
+    }
+  ],
+  "totalPrice": 228000,
+  "createAt": {
+    "$date": "2021-09-25T06:25:01.949Z"
+  },
+  "__v": 0
+}]

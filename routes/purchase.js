@@ -21,7 +21,7 @@ router.get('/',function(req,res){
                         Bill.find({$and:[{email:usEm},{type:"delivered"}]},function(err,b4){
                             Bill.find({$and:[{email:usEm},{type:"cancelled"}]},function(err,b5){
                                 if (err) return console.log(err);
-                                var newBill= reverseArray(b);
+                                 b = reverseArray(b);
                                  b1= reverseArray(b1);
                                  b2= reverseArray(b2);
                                  b3= reverseArray(b3);
@@ -29,7 +29,7 @@ router.get('/',function(req,res){
                                  b5= reverseArray(b5);
                                 res.render('purchase/purchaseShow',{
                                     us: us,
-                                    bills: newBill,
+                                    bills: b,
                                     billCf: b1,
                                     billRv: b2,
                                     billDling: b3,
