@@ -763,11 +763,12 @@ body {
   }
   
   .img-order-list{
-    width: 60px;
-    height:60px;
+    width: 4.3rem;
+    height:4.3rem;
   }
   .name-order-list{
     font-size: 16px;
+    color: indianred;
   }
   .total-order-list{
     font-size: 12px;
@@ -1302,7 +1303,7 @@ body {
     border-radius: 3px;
     background: none;
     color: indianred;
-  
+    width: 4rem;
   }
   #btn-print:hover{
     background: #f7e0e0;
@@ -1337,12 +1338,16 @@ body {
     background-color: #f7e0e0;
   }
   .period-order >input{
-    width: 200px;
+    width: 12rem;
     height: 100%;
+    margin: 0 0.5rem;
   }
   .period-order{
     flex-grow: 2;
-    padding-left: 10px;
+    padding-left: 1rem;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
   }
   .info-order{
     border: none;
@@ -1365,6 +1370,7 @@ body {
   .admin-detail-order-list{
     align-items: center;
     padding-left: 20px;
+    margin-bottom: 0.5rem;
   }
   .admin-price-order{
     padding-right: 20px;
@@ -1467,4 +1473,14 @@ body {
 }
 .order-cpt{
   max-width: 1350px;
+}
+#time-from, #time-to{
+  border-radius: 3px;
+    background: #FDF4F4;
+    border: 1px solid indianred;
+    color: indianred;
+}
+#time-from:hover, #time-to:hover{
+  border: 1px solid indianred;
+  background-color: #f7e0e0;
 }

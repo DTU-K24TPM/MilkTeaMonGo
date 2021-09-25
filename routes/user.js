@@ -54,6 +54,7 @@ router.post('/change-info',function(req,res){
     var fullname =req.body.fullname;
     var gender = req.body.gender;
     var birthday = req.body.birthday;
+    var phone = req.body.phone
     var imageFile =  (req.files != null)? req.files.image.name:""; 
     var pimage = req.body.pimage;
     User.findOne({email: req.session.user},function(err,us){
@@ -61,6 +62,7 @@ router.post('/change-info',function(req,res){
         us.fullname=fullname;
         us.gender=gender;
         us.birthday=birthday;
+        us.phone=phone
         if (imageFile != ""){
             us.photo= imageFile;
         }
