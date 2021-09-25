@@ -689,6 +689,10 @@ body {
   .order-list{
     margin-top: 20px;
   }
+  .address-order{
+    font-weight: 500;
+    font-size: 17px;
+  }
   .menu-list-entry{
     font-size: 16px;
     font-weight: 500;
@@ -797,6 +801,7 @@ body {
   }
   .time-order{
     padding-left: 20px;
+    padding-bottom: 10px;
     color: rgb(113, 102, 102);
     font-size: 14px;
     text-align: left;
@@ -808,7 +813,7 @@ body {
     padding-bottom: 20px;
     padding-right: 40px;
   }
-  .contact-order{
+  .detail-order{
     padding: 5px 20px;
     margin-right: 20px;
     background: rgb(230, 125, 125);
@@ -820,7 +825,7 @@ body {
     border: 1px solid #ebebeb ;
     background: #ffffff;
   }
-  .contact-order:hover{
+  .detail-order:hover{
     background: indianred;
     color: white;
   }

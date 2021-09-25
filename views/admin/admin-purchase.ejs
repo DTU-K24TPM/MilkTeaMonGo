@@ -95,9 +95,15 @@
                                                     <div class="modal-body">
                                                         <div class="admin-each-order">
                                                             <div class="time-order">
-                                                                <span style="display: block;">Người nhận: <%=bill.name%></span>
-                                                                <span><%=bill.address%></span>
-                                                                <span><%=bill.phone%></span>
+                                                                <span class="address-order">Địa chỉ nhận hàng</span>
+                                                                <span style="font-weight: 500;"> <%=bill.name%>
+                                                                        </span>
+                                                                <span>
+                                                                    <%=bill.address%>
+                                                                </span>
+                                                                <span>
+                                                                    <%=bill.phone%>
+                                                                </span>
                                                             </div>
                                                             <%bill.cart.forEach(function(c){ %>
                                                                 <div class="admin-dh">
