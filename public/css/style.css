@@ -776,7 +776,7 @@ body {
   .price-order-list{
     color: indianred;
     font-size: 16px;
-    text-align: center;
+    text-align: end;
     padding: 15px;
   }
   .border-order{
