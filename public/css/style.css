@@ -797,11 +797,11 @@ body {
   }
   .time-order{
     padding-left: 20px;
-    padding-top: 20px;
     color: rgb(113, 102, 102);
     font-size: 14px;
     text-align: left;
-  
+    display: flex;
+    flex-direction: column;
   }
   .btn-each-order{
   
@@ -1056,6 +1056,21 @@ body {
     margin: 0px;
     width: 100%;
   }
+  .table-admin{
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .table-admin tr{
+    height: 3rem;
+  }
+  .table-admin tr:nth-child(even){background-color: rgb(255, 221, 221);}
+
+  .table-admin tr:hover {background-color: rgb(250, 206, 206);}
+  .table-admin >thead> tr > th{
+    background-color: indianred;
+    color: white;
+  }
+
   .profile-frame-ad{
     font-size: 16px;
     padding: 30px;
