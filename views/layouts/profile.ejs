@@ -3,7 +3,11 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="order-user">
-                            <img class="icon_user user-avatar" src="/img/users/<%=us.email%>/<%=us.photo%>">
+                            <% if (typeof us.photo=="undefined" ){ %>
+                                <img class="icon_user user-avatar" src="/img/avatar.png"> 
+                            <% }else{ %>
+                                <img class="icon_user user-avatar" src="/img/users/<%=us.email%>/<%=us.photo%>">
+                            <% } %>  
                             <a class="user-name" href="/user">
                                 <%= us.fullname%>
                             </a>

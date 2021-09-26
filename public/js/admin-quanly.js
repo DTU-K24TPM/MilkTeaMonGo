@@ -23,9 +23,6 @@ $('#btn-save-change-item').on('click',function(){
     modalEdit.style.display = "none"; 
     alert('Chỉnh sửa hoàn tất!');
 });
-$('.btn-xoa').on('click',function(){
-    alert('Đã xóa!');
-});
 
 $('#btn-print').on('click',function(){
   window.print();

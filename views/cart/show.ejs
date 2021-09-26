@@ -136,6 +136,9 @@
             deleteTr=$this.closest('.tr-item');
             $(qty).on('click', function (e) {
             if ($(this).hasClass('minus')) {
+                if ($this.val()==1){
+                    if (!confirm('Bạn chắc chắn xóa sản phẩm này ?')) return;
+                }
                 $.ajax({
                 url:"/cart/update/"+id,
                 method: "POST",

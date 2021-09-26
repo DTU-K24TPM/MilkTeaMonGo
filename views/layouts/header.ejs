@@ -17,7 +17,11 @@
                          <% if (user != "") { %>
                             <ul class="profile-menu-user">
                                 <li class="profile-menu-list" data-trigger="dropdown">
-                                    <img class="img-ava" src="/img/users/<%=user.email%>/<%=user.photo%>">
+                                    <% if (typeof user.photo=="undefined" ){ %>
+                                        <img class="img-ava" src="/img/avatar.png">
+                                    <% }else{ %>
+                                        <img class="img-ava" src="/img/users/<%=user.email%>/<%=user.photo%>">
+                                    <% } %>  
                                     <button class="btn-hello">Chào <%= user.fullname %> </button>
                                 </li>
                                 <ul class="profile-submenu submenu">

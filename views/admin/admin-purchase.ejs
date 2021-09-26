@@ -8,12 +8,12 @@
                     <div class="profile-frame-ad">
                         <br />
                         <div class="head-profile-frame-admin">
-                            <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TẤT CẢ SẢN
-                                PHẨM
+                            <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TẤT CẢ ĐƠN
+                                HÀNG
                             </div>
                             <div class="head-search-item">
-                                <form class="search-dh search-item-admin">
-                                    <input type="text" placeholder="Tìm kiếm sản phẩm" name="search">
+                                <form method="GET" action="/admin/purchase/search" class="search-dh search-item-admin">
+                                    <input type="text" placeholder="Tìm kiếm theo id đơn hàng" name="search">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
@@ -26,19 +26,22 @@
                                     Tình trạng
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Tất Cả</a></li>
-                                    <li><a class="dropdown-item" href="#">Chờ xác nhận</a></li>
-                                    <li><a class="dropdown-item" href="#">Chờ lấy hàng</a></li>
-                                    <li><a class="dropdown-item" href="#">Đang giao</a></li>
-                                    <li><a class="dropdown-item" href="#">Đã giao</a></li>
-                                    <li><a class="dropdown-item" href="#">Đã hủy</a></li>
+                                    <li><a class="dropdown-item" href="/admin/purchase">Tất Cả</a></li>
+                                    <li><a class="dropdown-item" href="/admin/purchase/wait-confirm">Chờ xác nhận</a></li>
+                                    <li><a class="dropdown-item" href="/admin/purchase/wait-rev">Chờ lấy hàng</a></li>
+                                    <li><a class="dropdown-item" href="/admin/purchase/delivering">Đang giao</a></li>
+                                    <li><a class="dropdown-item" href="/admin/purchase/delivered">Đã giao</a></li>
+                                    <li><a class="dropdown-item" href="/admin/purchase/cancelled">Đã hủy</a></li>
                                 </ul>
                             </div>
                             <div class="period-order">
+                                <form action="/admin/purchase/search-time" method="POST">
                                 <label>Từ</label>
-                                <input type="datetime-local" id="time-from">
+                                <input name="datefrom"type="datetime-local" id="time-from" <%if (typeof datefrom!= "undefined"){%>value=<%=datefrom%> <%}%>>
                                 <label>Đến</label>
-                                <input type="datetime-local" id="time-to">
+                                <input name="dateto" type="datetime-local" id="time-to" <%if (typeof dateto!= "undefined"){%>value=<%=dateto%> <%}%>>
+                                <button type="submit">Tìm</button>
+                                </form>
                             </div>
 
 
@@ -46,121 +49,139 @@
                         </div>
 
 
-
-                        <table class="table-admin">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Thời gian</th>
-                                    <th scope="col">Tình trạng</th>
-                                    <th scope="col">Khách hàng</th>
-                                    <th scope="col">Người nhận</th>                                   
-                                    <th scope="col">Tổng tiền</th>
-                                    <th scope="col">Tác vụ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%bills.forEach(function(bill){ %>
+                        <% if (bills.length!=0) { %>
+                            <table class="table-admin">
+                                <thead>
                                     <tr>
-                                        <th scope="row"><%=bill._id%></th>
-                                        <td><%=bill.createAt.toUTCString()%></td>
-                                        <td>
-                                            <select name="status-order" class="select-status">
-                                                <option value="none">--Tình trạng--</option>
-                                                <option value="cho-xac-nhan">Chờ xác nhận</option>
-                                                <option value="cho-lay-hang">Chờ lấy hàng</option>
-                                                <option value="dang-giao">Đang giao</option>
-                                                <option value="Da giao">Đã giao</option>
-                                                <option value="Da huy">Đã hủy</option>
-                                            </select>
-                                        </td>
-                                        <td><%=bill.email%></td>
-                                        <td><%=bill.name%></td>
-                                        <td><%=bill.totalPrice%></td>
-                                        
-                                        <td style="display: flex;justify-content: space-around;">
-                                            <button class="info-order"><i class="fa fa-info-circle"
-                                                    aria-hidden="true"></i>
-                                            </button>
-                                            <a><button type="button" class="btn-close btn-xoa btn-xoa-dh"
-                                                    aria-label="Close"></button></a>
-    
-                                            <div id="modal-info-order" class="modal">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Chi tiết đơn hàng</h5>
-                                                        <button type="button" class="btn-close close-footer-info"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="admin-each-order">
-                                                            <div class="time-order">
-                                                                <span class="address-order">Địa chỉ nhận hàng</span>
-                                                                <span style="font-weight: 500;"> <%=bill.name%>
-                                                                        </span>
-                                                                <span>
-                                                                    <%=bill.address%>
-                                                                </span>
-                                                                <span>
-                                                                    <%=bill.phone%>
-                                                                </span>
-                                                            </div>
-                                                            <%bill.cart.forEach(function(c){ %>
-                                                                <div class="admin-dh">
-                                                                    <div class="row admin-detail-order-list">
-                                                                        
-                                                                        <div class="col-1 img-ad-pur">
-                                                                            <img class="img-order-list" src=<%=c.image%>>
-                                                                        </div>
-                                                                        <div class="col-9 text-ad-pur" style="padding-left: 2rem;">
-                                                                            <div class="name-order-list"><%=c.title%>
-                                                                            </div>
-                                                                            <div class="total-order-list">x <%=c.quantity%></div>
-                                                                            <div class="top-total">
-                                                                                Size M
-                                                                            </div>
-                                                                           <div class="top-total">
-                                                                               Trân châu trắng
-                                                                           </div>
-                                                                        </div>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Thời gian</th>
+                                        <th scope="col">Tình trạng</th>
+                                        <th scope="col">Tài khoản</th>
+                                        <th scope="col">Người nhận</th>                                   
+                                        <th scope="col">Tổng tiền</th>
+                                        <th scope="col">Tác vụ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%bills.forEach(function(bill){ %>
+                                        <tr>
+                                            <th scope="row"><%=bill._id%></th>
+                                            <td><%=bill.dateVN%></td>
+                                            <td>
+                                                <select name="status-order" id=<%=bill._id%> class="select-status" <% if (bill.type == "cancelled"){%> disabled <%} %>>
+                                                    <option value="wait-confirm" <% if (bill.type == "wait-confirm"){%> selected="selected" <%} %> >Chờ xác nhận</option>
+                                                    <option value="wait-rev"<% if (bill.type == "wait-rev"){%> selected="selected" <%} %>>Chờ lấy hàng</option>
+                                                    <option value="delivering"<% if (bill.type == "delivering"){%> selected="selected" <%} %>>Đang giao</option>
+                                                    <option value="delivered"<% if (bill.type == "delivered"){%> selected="selected" <%} %>>Đã giao</option>
+                                                    <option value="cancelled"<% if (bill.type == "cancelled"){%> selected="selected" <%} %>>Đã hủy</option>
+                                                </select>
+                                            </td>
+                                            <td><%=bill.email%></td>
+                                            <td><%=bill.name%></td>
+                                            <td><%=bill.totalPrice%></td>
+                                            
+                                            <td style="display: flex;justify-content: space-around;">
+                                                <button class="info-order"><i class="fa fa-info-circle"
+                                                        aria-hidden="true"></i>
+                                                </button>
+                                                <a href="/admin/purchase/delete/<%=bill._id%>" class="confirmDeletion"><button type="button" class="btn-close btn-xoa btn-xoa-dh"
+                                                        aria-label="Close"></button></a>
         
-                                                                        <div class="col-2">
-                                                                            <div class="price-order-list"><%=c.price%> VNĐ</div>
+                                                <div id="modal-info-order" class="modal">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Chi tiết đơn hàng</h5>
+                                                            <button type="button" class="btn-close close-footer-info"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="admin-each-order">
+                                                                <div class="time-order">
+                                                                    <span class="address-order">Địa chỉ nhận hàng</span>
+                                                                    <span style="font-weight: 500;"> <%=bill.name%>
+                                                                            </span>
+                                                                    <span>
+                                                                        <%=bill.address%>
+                                                                    </span>
+                                                                    <span>
+                                                                        <%=bill.phone%>
+                                                                    </span>
+                                                                </div>
+                                                                <%bill.cart.forEach(function(c){ %>
+                                                                    <% var sub1 = 0 %>
+                                                                    <div class="admin-dh">
+                                                                        <div class="row admin-detail-order-list">
+                                                                            
+                                                                            <div class="col-1 img-ad-pur">
+                                                                                <img class="img-order-list" src=<%=c.image%>>
+                                                                            </div>
+                                                                            <div class="col-9 text-ad-pur" style="padding-left: 2rem;">
+                                                                                <div class="name-order-list"><%=c.title%>
+                                                                                </div>
+                                                                                <div class="total-order-list">x <%=c.quantity%></div>
+                                                                                <div class="top-total">
+                                                                                    <% if (c.ice == 0) { %>
+                                                                                        Đá chung
+                                                                                    <% } else { %>
+                                                                                        Đá riêng
+                                                                                    <% } %>, <%= c.size.title %>
+                                                                                </div>
+                                                                               <div class="top-total">
+                                                                                <% if (c.topping.length != 0){ %>
+                                                                                    <% for (var i=0;i<c.topping.length;i++) { %>
+                                                                                        <% if (i != c.topping.length-1 ){ %>
+                                                                                            <%= c.topping[i].title + ", "%>
+                                                                                        <% } else { %>
+                                                                                            <%= c.topping[i].title %>
+                                                                                        <% } %>
+                                                                                        <% sub1=sub1 + c.topping[i].price %>
+                                                                                    <% } %>
+                                                                                        
+                                                                                    <% }  %>
+                                                                               </div>
+                                                                            </div>
+            
+                                                                            <div class="col-2">
+                                                                                <div class="price-order-list"><%= c.quantity* (sub1+c.price+c.size.price) %> VNĐ</div>
+                                                                            </div>
+                                                                        </div>
+            
+                                                                    </div>
+                                                                <% }) %>
+                                                                
+                                                                <div class="admin-total-order">
+                                                                    <div class="admin-price-order">Tổng số tiền: <%=bill.totalPrice%> VNĐ
+                                                                    </div>
+                                                                    <div class="footer-order">
+                                                                        <div class="time-order">
+                                                                            <span>Đơn hàng được đặt
+                                                                                vào lúc <%=bill.dateVN%></span>                                                                        
+                                                                            <span class="admin-ghichu">Ghi chú: <%=bill.note%></span>
                                                                         </div>
                                                                     </div>
         
                                                                 </div>
-                                                            <% }) %>
-                                                            
-                                                            <div class="admin-total-order">
-                                                                <div class="admin-price-order">Tổng số tiền: <%=bill.totalPrice%> VNĐ
-                                                                </div>
-                                                                <div class="footer-order">
-                                                                    <div class="time-order">
-                                                                        <span>Đơn hàng được đặt
-                                                                            vào lúc <%=bill.dateVN%></span>                                                                        
-                                                                        <span class="admin-ghichu">Ghi chú: <%=bill.note%></span>
-                                                                    </div>
-                                                                </div>
-    
                                                             </div>
                                                         </div>
-                                                    </div>
-    
-                                                    <div class="modal-footer">
-                                                        <button type="button"
-                                                            class="btn btn-secondary close-footer-info">Đóng</button>
-    
+        
+                                                        <div class="modal-footer">
+                                                            <button type="button"
+                                                                class="btn btn-secondary close-footer-info">Đóng</button>
+        
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-    
-                                        </td>
-                                    </tr>
-                                <%}) %>                                
-                                
-                            </tbody>                           
-                        </table>
+        
+                                            </td>
+                                        </tr>
+                                    <%}) %>                                
+                                    
+                                </tbody>                           
+                            </table>
+                        <% } else { %>
+                            <h3 class="text-center">ÉO CÓ ĐƠN HÀNG NÀO HẾT</h3>
+                        <% } %>
+                        
                     </div>
                 </div>
             </div>
@@ -168,12 +189,45 @@
     </div>
 </section>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="/js/bootstrap.bundle.min.js"></script> 
 <script src="/js/admin-quanly.js"></script>
+<script>
+    $('a.confirmDeletion').on('click',function(){
+        if (!confirm('Confirm Deletion ? '))
+        return false;
+    })
+    $('.select-status').each(function(){
+        var $this= $(this);
+        var id=$this.attr('id');
+        var value1= $this.val();
+        $this.change(function (e) {
+            var value=$this.val();
+            if (value=="cancelled") {
+                if (!confirm('Đơn đã hủy sẽ không thay đổi được trạng thái nữa, bạn chắc chắn hủy ?')){
+                            // Set the URL to whatever it was plus "#".
+                url = document.URL+"#";
+                location = "#";
+
+                //Reload the page
+                 location.reload(true);
+                            return;} 
+                        else $this.attr('disabled','disabled');
+            }
+                $.ajax({
+                url:"/admin/purchase/change-type",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({value: value,id:id}),
+                success: function(result){}
+            })
+    })
+})
+</script>
 
 
 </body>
