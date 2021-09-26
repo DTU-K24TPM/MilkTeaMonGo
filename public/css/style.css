@@ -1326,6 +1326,7 @@ body {
     background: none;
     color: indianred;
     width: 4rem;
+    max-height: 40px;
   }
   #btn-print:hover{
     background: #f7e0e0;
@@ -1523,5 +1524,16 @@ body {
   min-width: 1300px;
     margin-left: 60px;
 }
-
-/*hihih*/
+.label-date{
+  display: flex;
+}
+.input-date{
+  display: flex;
+    flex-direction: column;
+}
+.labeltime{
+  margin-right: 10px;
+}
+.inputtime{
+  margin-right: 10px;
+}

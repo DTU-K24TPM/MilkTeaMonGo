@@ -165,31 +165,36 @@ Validator.isWard = function(selector, message){
 
 
 
-// function showError(key, mess){
-//     document.getElementById(key + '_error').innerHTML = mess;
-// }
+function showError(key, mess){
+    document.getElementById(key + '_error').innerHTML = mess;
+}
 
-// function validate()
-// {
-//     var flag = true;
+function validate()
+{
+    var flag = true;
 
-//     var username = document.getElementById('name').value;
-//     if (username == ''){
-//         showError('name', 'Vui lòng không để trống họ tên');
-//         flag = false;
-//     }
-//     else if (username.length < 5 ){
-//         showError('name', 'Độ dài phải lớn hơn 5 ký tự');
-//         flag = false;
-//     }
-//     else if ( !/^[a-zA-Z0-9]+$/.test(username)) {
-//         showError('name', 'Họ tên không chứa các ký tự đặc biệt');
-//         flag = false;
-//     }
-//     else{
-//         showError('name','');
-//         flag = true;
-//     }
+    var timefrom = document.getElementById('time-from').value;
+    if (timefrom == ''){
+        showError('timefrom', 'Vui lòng chọn ngày');
+        flag = false;
+    }
+   
+    else{
+        showError('timefrom','');
+        flag = true;
+    }
+
+    var timeto = document.getElementById('time-to').value;
+    if (timeto == ''){
+        showError('timeto', 'Vui lòng chọn ngày');
+        flag = false;
+    }
+   
+    else{
+        showError('timeto','');
+        flag = true;
+    }
+}
 
 
 
