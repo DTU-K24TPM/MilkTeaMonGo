@@ -966,32 +966,33 @@ body {
     min-width: auto;
     padding: 0px 5px;
   }
-  #change-info{
+
+  .btn-save-change{
     color: indianred;
     border: rgba(205, 92, 92, 0.062);
     padding: 5px 10px;
     border-radius: 3px;
     background: rgba(205, 92, 92, 0.062);
-
   }
-  #change-info:hover{
+  .btn-save-change:hover{
     background: indianred;
     color: white;
   }
-  
   #btn-change-avt{
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: block;
-    padding: 5px;
-    border: 1px solid rgb(164, 158, 158);
-    background: rgb(255, 251, 251);
+    padding: 7px;
+    background: indianred;
     cursor: pointer;
     border-radius: 3px;
     width: fit-content;
+    color: white;
   }
   
   #btn-change-avt:hover{
-    background: #f5efef;
+    color: indianred;
+    background: rgba(205, 92, 92, 0.062);
   }
   .wrap-img{
     display: flex;
@@ -1404,6 +1405,12 @@ body {
 }
 .profile-form{
   display: flex;
+  align-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile-form1{
   align-content: center;
   flex-direction: row;
   justify-content: space-between;

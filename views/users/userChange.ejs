@@ -70,7 +70,7 @@
                                                 </div>
                                                 <div class="profile-input cls-change-info">
                                                     <label></label>
-                                                    <button id="change-info">Lưu Thay Đổi</button>
+                                                    <button class="btn-save-change" id="change-info">Lưu Thay Đổi</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                                             <img src="/img/users/<%=us.email%>/<%=us.photo%>"
                                                                 id="imgPreview" class="profile-avatar">
                                                             <%} %>
-                                                                <label id="btn-change-avt" for="img">Chọn ảnh</label>
+                                                                <label  id="btn-change-avt" for="img">Chọn ảnh</label>
                                                                 <input type="file" class="form-control" name="image"
                                                                     id="img" accept="image/png, image/jpeg, image/jpg"
                                                                     style="display: none;">
@@ -110,7 +110,7 @@
                             <div class="tab-pane" id="change2" role="tabpanel">
                                 <div class="row">
                                     <div class="col-12">
-                                        <form id="changepass" class="profile-form" method="POST"
+                                        <form id="changepass" class="profile-form1" method="POST"
                                             action="/user/change-pass">
                                             <div class="alert alert-danger tb-change" id="alert" style="display:none">
                                             </div>
@@ -145,7 +145,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td><label></label></td>
-                                                   <td><button type="submit" id="change-pass">Lưu Thay Đổi</button></td>                                                        
+                                                   <td><button class="btn-save-change" type="submit" id="change-pass">Lưu Thay Đổi</button></td>                                                        
                                                         
                                                   
                                                 </tr>
