@@ -6,6 +6,8 @@ var Commune= require('../models/commune');
 var Ward= require('../models/ward');
 var Bill = require('../models/bill');
 
+var shortid = require('shortid')
+
 router.get('/',function(req,res){
     
     var io=req.app.get('socketio')
@@ -103,6 +105,7 @@ router.post('/complete',function(req,res){
     User.findOne({email: email},function(err,us){
         if (err) return console.log(err);
         var bill = new Bill({
+            idb : shortid.generate(),
             email:email,
             note: note,
             address: address_detail + ', ' + newCm +', ' +newDt+', '+ 'thành phố ' + city ,

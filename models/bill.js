@@ -1,6 +1,10 @@
 var mongoose = require('mongoose')
 
 var BillSchema = mongoose.Schema({
+    idb:{
+        type: String,
+        require:true
+    },
     email:{
         type: String,
         require:true

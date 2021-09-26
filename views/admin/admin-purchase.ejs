@@ -77,7 +77,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Thời gian</th>
+                                            <th scope="col">Thời gian đặt</th>
                                             <th scope="col">Tình trạng</th>
                                             <th scope="col">Tài khoản</th>
                                             <th scope="col">Người nhận</th>
@@ -86,13 +86,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% var i =0 %>
                                         <%bills.forEach(function(bill){ %>
                                             <tr>
                                                 <th scope="row">
-                                                    <%=bill._id%>
+                                                    <%=bill.idb%>
                                                 </th>
                                                 <td>
-                                                    <%=bill.dateVN%>
+                                                    <%=newDate[i]%>
+                                                    <% i++ %>
                                                 </td>
                                                 <td>
                                                     <select name="status-order" id=<%=bill._id%> class="select-status"
