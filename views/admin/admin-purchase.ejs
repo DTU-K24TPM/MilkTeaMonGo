@@ -40,8 +40,9 @@
                                 <input name="datefrom"type="datetime-local" id="time-from" <%if (typeof datefrom!= "undefined"){%>value=<%=datefrom%> <%}%>>
                                 <label>Đến</label>
                                 <input name="dateto" type="datetime-local" id="time-to" <%if (typeof dateto!= "undefined"){%>value=<%=dateto%> <%}%>>
-                                <button type="submit">Tìm</button>
+                                <button type="submit">Tìm</button> 
                                 </form>
+                                <%if (typeof mes != "undefined"){%> <p><%= mes%></p> <%}%>
                             </div>
 
 

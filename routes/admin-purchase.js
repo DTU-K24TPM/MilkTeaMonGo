@@ -54,6 +54,17 @@ router.post('/change-type',function(req,res){
 router.post('/search-time',function(req,res){
     var datefrom = req.body.datefrom;
     var dateto= req.body.dateto;
+    if (new Date(datefrom)>new Date(dateto)) {
+        Bill.find(function(err,b){
+        res.render('admin/admin-purchase',{
+            datefrom: datefrom,
+            dateto:dateto,
+            mes: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc",
+            bills: b,
+            })
+        })
+    }
+    else {
     Bill.find({createAt:{$gte:new Date(datefrom),$lt:new Date(dateto)}},function(err,b){
         if (err) return console.log(err);
         res.render('admin/admin-purchase',{
@@ -62,6 +73,7 @@ router.post('/search-time',function(req,res){
             bills: b,
         })
     })
+    }
 })
 router.get('/delete/:id',function(req,res){
     var id = req.params.id;
