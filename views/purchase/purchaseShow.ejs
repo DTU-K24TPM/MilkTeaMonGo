@@ -49,7 +49,7 @@
 
                             <form class="search-dh">
                                 <input type="text" placeholder="Tìm kiếm theo tên sản phẩm, đơn hàng,..." name="search">
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                                <button type="submit"><i style="color: white;" class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
 
 
@@ -111,8 +111,9 @@
                                                                         bill.totalPrice %> VNĐ</div>
                                                                 <div class="footer-order">
                                                                     <div class="time-order">
-                                                                        <span>Đơn hàng được đặt vào lúc: <%= bill.dateVN
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
@@ -132,14 +133,19 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="address-order">Địa chỉ nhận hàng</span>
-                                                                                                <span style="font-weight: 500;"> <%=bill.name%>
+                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <div class="head-address">
+                                                                                                    <span > Địa chỉ nhận hàng</span>
+                                                                                                    <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
+                                                                                                </div>
+                                                                                                
+                                                                                                <span style="font-weight: 500;"><i class="fa fa-user-o" aria-hidden="true"></i> <%=bill.name%>
                                                                                                         </span>
                                                                                                 <span>
-                                                                                                    <%=bill.address%>
+                                                                                                    <i class="fa fa-home" aria-hidden="true"></i> <%=bill.address%>
                                                                                                 </span>
                                                                                                 <span>
-                                                                                                    <%=bill.phone%>
+                                                                                                    <i class="fa fa-phone" aria-hidden="true"></i> <%=bill.phone%>
                                                                                                 </span>
                                                                                             </div>
                                                                                             <%bill.cart.forEach(function(c){
@@ -164,14 +170,41 @@
                                                                                                                 x
                                                                                                                 <%=c.quantity%>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Size M
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.ice==0) { %>
+                                                                                                                    Đá chung
+                                                                                                                    <% } else { %>
+                                                                                                                        Đá riêng
+                                                                                                                        <% } %>, <%=
+                                                                                                                                c.size.title
+                                                                                                                                %>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Trân châu
-                                                                                                                trắng
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.topping.length
+                                                                                                                    !=0){ %>
+                                                                                                                    <% for (var
+                                                                                                                        i=0;i<c.topping.length;i++)
+                                                                                                                        { %>
+                                                                                                                        <% if (i
+                                                                                                                            !=c.topping.length-1
+                                                                                                                            ){ %>
+                                                                                                                            <%= c.topping[i].title
+                                                                                                                                + ", " %>
+                                                                                                                                <% } else {
+                                                                                                                                    %>
+                                                                                                                                    <%= c.topping[i].title
+                                                                                                                                        %>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% sub1=sub1
+                                                                                                                                                +
+                                                                                                                                                c.topping[i].price
+                                                                                                                                                %>
+                                                                                                                                                <% }
+                                                                                                                                                    %>
+                    
+                                                                                                                                                    <% }
+                                                                                                                                                        %>
                                                                                                             </div>
                                                                                                         </div>
     
@@ -292,8 +325,9 @@
                                                                         bill.totalPrice %> VNĐ</div>
                                                                 <div class="footer-order">
                                                                     <div class="time-order">
-                                                                        <span>Đơn hàng được đặt vào lúc: <%= bill.dateVN
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
@@ -313,14 +347,19 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="address-order">Địa chỉ nhận hàng</span>
-                                                                                                <span style="font-weight: 500;"> <%=bill.name%>
+                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <div class="head-address">
+                                                                                                    <span > Địa chỉ nhận hàng</span>
+                                                                                                    <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
+                                                                                                </div>
+                                                                                                
+                                                                                                <span style="font-weight: 500;"><i class="fa fa-user-o" aria-hidden="true"></i> <%=bill.name%>
                                                                                                         </span>
                                                                                                 <span>
-                                                                                                    <%=bill.address%>
+                                                                                                    <i class="fa fa-home" aria-hidden="true"></i> <%=bill.address%>
                                                                                                 </span>
                                                                                                 <span>
-                                                                                                    <%=bill.phone%>
+                                                                                                    <i class="fa fa-phone" aria-hidden="true"></i> <%=bill.phone%>
                                                                                                 </span>
                                                                                             </div>
                                                                                             <%bill.cart.forEach(function(c){
@@ -345,14 +384,41 @@
                                                                                                                 x
                                                                                                                 <%=c.quantity%>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Size M
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.ice==0) { %>
+                                                                                                                    Đá chung
+                                                                                                                    <% } else { %>
+                                                                                                                        Đá riêng
+                                                                                                                        <% } %>, <%=
+                                                                                                                                c.size.title
+                                                                                                                                %>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Trân châu
-                                                                                                                trắng
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.topping.length
+                                                                                                                    !=0){ %>
+                                                                                                                    <% for (var
+                                                                                                                        i=0;i<c.topping.length;i++)
+                                                                                                                        { %>
+                                                                                                                        <% if (i
+                                                                                                                            !=c.topping.length-1
+                                                                                                                            ){ %>
+                                                                                                                            <%= c.topping[i].title
+                                                                                                                                + ", " %>
+                                                                                                                                <% } else {
+                                                                                                                                    %>
+                                                                                                                                    <%= c.topping[i].title
+                                                                                                                                        %>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% sub1=sub1
+                                                                                                                                                +
+                                                                                                                                                c.topping[i].price
+                                                                                                                                                %>
+                                                                                                                                                <% }
+                                                                                                                                                    %>
+                    
+                                                                                                                                                    <% }
+                                                                                                                                                        %>
                                                                                                             </div>
                                                                                                         </div>
     
@@ -405,6 +471,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+
 
                                                                     </div>
                                                                 </div>
@@ -473,8 +540,9 @@
                                                                         bill.totalPrice %> VNĐ</div>
                                                                 <div class="footer-order">
                                                                     <div class="time-order">
-                                                                        <span>Đơn hàng được đặt vào lúc: <%= bill.dateVN
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
@@ -494,14 +562,19 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="address-order">Địa chỉ nhận hàng</span>
-                                                                                                <span style="font-weight: 500;"> <%=bill.name%>
+                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <div class="head-address">
+                                                                                                    <span > Địa chỉ nhận hàng</span>
+                                                                                                    <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
+                                                                                                </div>
+                                                                                                
+                                                                                                <span style="font-weight: 500;"><i class="fa fa-user-o" aria-hidden="true"></i> <%=bill.name%>
                                                                                                         </span>
                                                                                                 <span>
-                                                                                                    <%=bill.address%>
+                                                                                                    <i class="fa fa-home" aria-hidden="true"></i> <%=bill.address%>
                                                                                                 </span>
                                                                                                 <span>
-                                                                                                    <%=bill.phone%>
+                                                                                                    <i class="fa fa-phone" aria-hidden="true"></i> <%=bill.phone%>
                                                                                                 </span>
                                                                                             </div>
                                                                                             <%bill.cart.forEach(function(c){
@@ -526,14 +599,41 @@
                                                                                                                 x
                                                                                                                 <%=c.quantity%>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Size M
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.ice==0) { %>
+                                                                                                                    Đá chung
+                                                                                                                    <% } else { %>
+                                                                                                                        Đá riêng
+                                                                                                                        <% } %>, <%=
+                                                                                                                                c.size.title
+                                                                                                                                %>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Trân châu
-                                                                                                                trắng
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.topping.length
+                                                                                                                    !=0){ %>
+                                                                                                                    <% for (var
+                                                                                                                        i=0;i<c.topping.length;i++)
+                                                                                                                        { %>
+                                                                                                                        <% if (i
+                                                                                                                            !=c.topping.length-1
+                                                                                                                            ){ %>
+                                                                                                                            <%= c.topping[i].title
+                                                                                                                                + ", " %>
+                                                                                                                                <% } else {
+                                                                                                                                    %>
+                                                                                                                                    <%= c.topping[i].title
+                                                                                                                                        %>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% sub1=sub1
+                                                                                                                                                +
+                                                                                                                                                c.topping[i].price
+                                                                                                                                                %>
+                                                                                                                                                <% }
+                                                                                                                                                    %>
+                    
+                                                                                                                                                    <% }
+                                                                                                                                                        %>
                                                                                                             </div>
                                                                                                         </div>
     
@@ -653,8 +753,9 @@
                                                                         bill.totalPrice %> VNĐ</div>
                                                                 <div class="footer-order">
                                                                     <div class="time-order">
-                                                                        <span>Đơn hàng được đặt vào lúc: <%= bill.dateVN
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
@@ -674,14 +775,19 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="address-order">Địa chỉ nhận hàng</span>
-                                                                                                <span style="font-weight: 500;"> <%=bill.name%>
+                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <div class="head-address">
+                                                                                                    <span > Địa chỉ nhận hàng</span>
+                                                                                                    <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
+                                                                                                </div>
+                                                                                                
+                                                                                                <span style="font-weight: 500;"><i class="fa fa-user-o" aria-hidden="true"></i> <%=bill.name%>
                                                                                                         </span>
                                                                                                 <span>
-                                                                                                    <%=bill.address%>
+                                                                                                    <i class="fa fa-home" aria-hidden="true"></i> <%=bill.address%>
                                                                                                 </span>
                                                                                                 <span>
-                                                                                                    <%=bill.phone%>
+                                                                                                    <i class="fa fa-phone" aria-hidden="true"></i> <%=bill.phone%>
                                                                                                 </span>
                                                                                             </div>
                                                                                             <%bill.cart.forEach(function(c){
@@ -706,14 +812,41 @@
                                                                                                                 x
                                                                                                                 <%=c.quantity%>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Size M
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.ice==0) { %>
+                                                                                                                    Đá chung
+                                                                                                                    <% } else { %>
+                                                                                                                        Đá riêng
+                                                                                                                        <% } %>, <%=
+                                                                                                                                c.size.title
+                                                                                                                                %>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Trân châu
-                                                                                                                trắng
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.topping.length
+                                                                                                                    !=0){ %>
+                                                                                                                    <% for (var
+                                                                                                                        i=0;i<c.topping.length;i++)
+                                                                                                                        { %>
+                                                                                                                        <% if (i
+                                                                                                                            !=c.topping.length-1
+                                                                                                                            ){ %>
+                                                                                                                            <%= c.topping[i].title
+                                                                                                                                + ", " %>
+                                                                                                                                <% } else {
+                                                                                                                                    %>
+                                                                                                                                    <%= c.topping[i].title
+                                                                                                                                        %>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% sub1=sub1
+                                                                                                                                                +
+                                                                                                                                                c.topping[i].price
+                                                                                                                                                %>
+                                                                                                                                                <% }
+                                                                                                                                                    %>
+                    
+                                                                                                                                                    <% }
+                                                                                                                                                        %>
                                                                                                             </div>
                                                                                                         </div>
     
@@ -766,6 +899,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+
 
                                                                     </div>
                                                                 </div>
@@ -833,8 +967,9 @@
                                                                         bill.totalPrice %> VNĐ</div>
                                                                 <div class="footer-order">
                                                                     <div class="time-order">
-                                                                        <span>Đơn hàng được đặt vào lúc: <%= bill.dateVN
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
@@ -854,14 +989,19 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="address-order">Địa chỉ nhận hàng</span>
-                                                                                                <span style="font-weight: 500;"> <%=bill.name%>
+                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <div class="head-address">
+                                                                                                    <span > Địa chỉ nhận hàng</span>
+                                                                                                    <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
+                                                                                                </div>
+                                                                                                
+                                                                                                <span style="font-weight: 500;"><i class="fa fa-user-o" aria-hidden="true"></i> <%=bill.name%>
                                                                                                         </span>
                                                                                                 <span>
-                                                                                                    <%=bill.address%>
+                                                                                                    <i class="fa fa-home" aria-hidden="true"></i> <%=bill.address%>
                                                                                                 </span>
                                                                                                 <span>
-                                                                                                    <%=bill.phone%>
+                                                                                                    <i class="fa fa-phone" aria-hidden="true"></i> <%=bill.phone%>
                                                                                                 </span>
                                                                                             </div>
                                                                                             <%bill.cart.forEach(function(c){
@@ -886,14 +1026,41 @@
                                                                                                                 x
                                                                                                                 <%=c.quantity%>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Size M
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.ice==0) { %>
+                                                                                                                    Đá chung
+                                                                                                                    <% } else { %>
+                                                                                                                        Đá riêng
+                                                                                                                        <% } %>, <%=
+                                                                                                                                c.size.title
+                                                                                                                                %>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Trân châu
-                                                                                                                trắng
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.topping.length
+                                                                                                                    !=0){ %>
+                                                                                                                    <% for (var
+                                                                                                                        i=0;i<c.topping.length;i++)
+                                                                                                                        { %>
+                                                                                                                        <% if (i
+                                                                                                                            !=c.topping.length-1
+                                                                                                                            ){ %>
+                                                                                                                            <%= c.topping[i].title
+                                                                                                                                + ", " %>
+                                                                                                                                <% } else {
+                                                                                                                                    %>
+                                                                                                                                    <%= c.topping[i].title
+                                                                                                                                        %>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% sub1=sub1
+                                                                                                                                                +
+                                                                                                                                                c.topping[i].price
+                                                                                                                                                %>
+                                                                                                                                                <% }
+                                                                                                                                                    %>
+                    
+                                                                                                                                                    <% }
+                                                                                                                                                        %>
                                                                                                             </div>
                                                                                                         </div>
     
@@ -946,6 +1113,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+
 
                                                                     </div>
                                                                 </div>
@@ -1013,8 +1181,9 @@
                                                                         bill.totalPrice %> VNĐ</div>
                                                                 <div class="footer-order">
                                                                     <div class="time-order">
-                                                                        <span>Đơn hàng được đặt vào lúc: <%= bill.dateVN
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
@@ -1034,14 +1203,19 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="address-order">Địa chỉ nhận hàng</span>
-                                                                                                <span style="font-weight: 500;"> <%=bill.name%>
+                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <div class="head-address">
+                                                                                                    <span > Địa chỉ nhận hàng</span>
+                                                                                                    <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
+                                                                                                </div>
+                                                                                                
+                                                                                                <span style="font-weight: 500;"><i class="fa fa-user-o" aria-hidden="true"></i> <%=bill.name%>
                                                                                                         </span>
                                                                                                 <span>
-                                                                                                    <%=bill.address%>
+                                                                                                    <i class="fa fa-home" aria-hidden="true"></i> <%=bill.address%>
                                                                                                 </span>
                                                                                                 <span>
-                                                                                                    <%=bill.phone%>
+                                                                                                    <i class="fa fa-phone" aria-hidden="true"></i> <%=bill.phone%>
                                                                                                 </span>
                                                                                             </div>
                                                                                             <%bill.cart.forEach(function(c){
@@ -1066,14 +1240,41 @@
                                                                                                                 x
                                                                                                                 <%=c.quantity%>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Size M
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.ice==0) { %>
+                                                                                                                    Đá chung
+                                                                                                                    <% } else { %>
+                                                                                                                        Đá riêng
+                                                                                                                        <% } %>, <%=
+                                                                                                                                c.size.title
+                                                                                                                                %>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="top-total">
-                                                                                                                Trân châu
-                                                                                                                trắng
+                                                                                                            <div class="top-total">
+                                                                                                                <% if (c.topping.length
+                                                                                                                    !=0){ %>
+                                                                                                                    <% for (var
+                                                                                                                        i=0;i<c.topping.length;i++)
+                                                                                                                        { %>
+                                                                                                                        <% if (i
+                                                                                                                            !=c.topping.length-1
+                                                                                                                            ){ %>
+                                                                                                                            <%= c.topping[i].title
+                                                                                                                                + ", " %>
+                                                                                                                                <% } else {
+                                                                                                                                    %>
+                                                                                                                                    <%= c.topping[i].title
+                                                                                                                                        %>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% sub1=sub1
+                                                                                                                                                +
+                                                                                                                                                c.topping[i].price
+                                                                                                                                                %>
+                                                                                                                                                <% }
+                                                                                                                                                    %>
+                    
+                                                                                                                                                    <% }
+                                                                                                                                                        %>
                                                                                                             </div>
                                                                                                         </div>
     

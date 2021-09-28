@@ -689,9 +689,18 @@ body {
   .order-list{
     margin-top: 20px;
   }
-  .address-order{
+  .head-address{
+    display: flex;
+    justify-content: space-between;
     font-weight: 500;
     font-size: 17px;
+    padding-right: 20px;
+
+  }
+  .type-order{
+    font-style: italic;
+     font-size: 17px;
+     color: indianred;
   }
   .menu-list-entry{
     font-size: 16px;
@@ -1211,8 +1220,8 @@ body {
     clear: both;
     display: table;
   }
-  .fa-search:before {
-    content: '\e802';
+  .fa{
+    color: indianred;
   }
   .admin-img-item{
     width: 50px;
