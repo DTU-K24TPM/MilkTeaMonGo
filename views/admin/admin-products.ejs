@@ -1,0 +1,249 @@
+<%- include('../layouts/adminHeader1') %>
+<section>
+        <div class="wrapper">
+            <div class="body-slide-profile-body">
+                <div class="main-container">
+                    <div class="col-9 wrap-profile user-admin">
+                        <div class="profile-frame-ad">
+                            <br />
+                            <div class="head-profile-frame-admin">
+                                <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TẤT CẢ SẢN
+                                    PHẨM
+                                </div>
+                                <div class="head-search-item">
+                                    <form class="search-dh search-item-admin">
+                                        <input type="text" placeholder="Tìm kiếm sản phẩm" name="search">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="add-item">
+                                <button id="btn-add-item"><i class="fa fa-plus" aria-hidden="true"></i> Thêm
+                                    mới</button>
+                                <button id="btn-print"><i class="fa fa-print" aria-hidden="true"></i> In</button>
+                            </div>
+
+                            <div id="modal-add-item" class="modal">
+                                <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Thêm mới sản phẩm</h5>
+                                        <button type="button" class="btn-close close-footer"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="/admin/products/add-product" method="POST">
+                                    <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-5 admin-img-edit-item">
+                                                    <img id="img-edit-item" class="imgPreview" src="/img/noimage.jpg">
+                                                                        <input type="file" class="form-control" name="image"
+                                                                            id="img" accept="image/png, image/jpeg, image/jpg"
+                                                                            style="display: none;">
+                                                                        <label  id="btn-edit-img-item" for="img">Chọn ảnh</label>
+                                                </div>
+                                                <div class="col-7">
+                                                    <div class="div-edit-item">
+                                                        <label>Tên sản phẩm</label>
+                                                        <input name="title" type="text" placeholder="Tên sản phẩm"
+                                                            id="name-edit-item">
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Loại hàng</label>
+                                                        <select name="category" class="type-eidt-item">
+                                                            <% categories.forEach(function(cat){ %>
+                                                                <option value=<%= cat.slug %>><%= cat.title %></option>
+                                                            <% }); %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Đơn vị tính</label>
+                                                        <input name="unit" type="text" placeholder="Đơn vị tính" id="dvt-edit-item">
+
+                                                    </div>
+
+                                                    <div class="div-edit-item">
+                                                        <label>Đơn giá</label>
+                                                        <input name="price" type="text" placeholder="Đơn giá" id="price-edit-item">
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Khuyến mãi</label>
+                                                        <input value="0" type="text" placeholder="Khuyến mãi" id="KM-edit-item">
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Số lượng tồn</label>
+                                                        <input name="quantity" type="text" placeholder="Số lượng tồn" id="SL-edit-item">
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Ghi chú</label>
+                                                        <textarea name="note" id="note-edit-item" rows="3" cols="23"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                        <button type="submit" class="btn-save-edit" id="btn-save-new-item">Xong</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+
+                            <table class="table table-ad">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Hình ảnh</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Loại hàng</th>
+                                        <th scope="col">Đơn vị tính</th>
+                                        <th scope="col">Đơn giá</th>
+                                        <th scope="col">Khuyến mãi</th>
+                                        <th scope="col">Số lượng tồn</th>
+                                        <th scope="col">Ghi chú</th>
+                                        <th scope="col">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% var i=1%>
+                                    <% products.forEach(function(product){ %>
+                                        <tr>
+                                            <th scope="row"><%=i%></th>
+                                            <% i++ %>
+                                            <td>
+                                                <%if (product.image != ""){ %>
+                                                    <img class="admin-img-item" src="/img/product_imgs/<%=product._id%>/<%=product.image%>" alt="anh SP01">
+                                                <% } else { %>
+                                                    <img class="admin-img-item" src="/img/noimage.jpg" alt="anh SP01">
+                                                <% } %>
+                                                
+                                            </td>
+                                            <td><%=product.title%></td>
+                                            <td><%=product.category%></td>
+                                            <td><%=product.unit%></td>
+                                            <td><%=product.price%></td>
+                                            <td>0</td>
+                                            <td><%=product.quantity%></td>
+                                            <td><%=product.note%></td>
+                                            <td>
+                                                <button class="edit-item"><i class="fa fa-edit "></i></button>
+                                                <a href="/admin/products/delete-product/<%=product._id%>" class="confirmDeletion"><button type="button" class="btn-close btn-xoa"
+                                                        aria-label="Close"></button></a>
+    
+                                                <div id="modal-edit" class="modal">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Chỉnh sửa sản phẩm</h5>
+                                                            <button type="button" class="btn-close close-footer"
+                                                                aria-label="Close"></button>
+                                                        </div> 
+                                                        <form action="/admin/products/edit-product/<%=product._id%>" method="post" enctype="multipart/form-data">
+                                                        <div class="modal-body">
+                                                            
+                                                                <div class="row">
+                                                                    <div class="col-5 admin-img-edit-item">
+                                                                        <img id="img-edit-item" src="/img/product_imgs/<%=product._id%>/<%=product.image%>">
+                                                                        <input type="file" class="form-control" name="image"
+                                                                            id="img" accept="image/png, image/jpeg, image/jpg"
+                                                                            style="display: none;">
+                                                                        <label  id="btn-edit-img-item" for="img">Chọn ảnh</label>
+                                                                    </div>
+                                                                    <div class="col-7">
+                                                                        <div class="div-edit-item">
+                                                                            <label>Tên sản phẩm</label>
+                                                                            <input type="text" id="name-edit-item" name="title" value="<%=product.title%>">
+                                                                        </div>
+                                                                        <div class="div-edit-item">
+                                                                            <label>Loại hàng</label>
+                                                                            <select name="category" class="type-eidt-item">
+                                                                                <% categories.forEach(function(cat){ %>
+                                                                                    <option value=<%= cat.slug %>
+                                                                                        <% if (cat.slug == product.category) { %>
+                                                                                            selected="selected"
+                                                                                        <% } %>
+                                                                                        ><%= cat.title %>
+                                                                                    </option>
+                                                                                <% }); %>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="div-edit-item">
+                                                                            <label>Đơn vị tính</label>
+                                                                            <input id="dvt-edit-item" type="text" name="unit" value=<%=product.unit%>>
+        
+                                                                        </div>
+        
+                                                                        <div class="div-edit-item">
+                                                                            <label>Đơn giá</label>
+                                                                            <input type="text" id="price-edit-item" name="price" value=<%=product.price%>>
+                                                                        </div>
+                                                                        <div class="div-edit-item">
+                                                                            <label>Khuyến mãi</label>
+                                                                            <input type="text" value="0"
+                                                                                id="KM-edit-item">
+                                                                        </div>
+                                                                        <div class="div-edit-item">
+                                                                            <label>Số lượng tồn</label>
+                                                                            <input type="text" id="SL-edit-item" name="quantity" value=<%=product.quantity%>>
+                                                                        </div>
+                                                                        <div class="div-edit-item">
+                                                                            <label>Ghi chú</label>
+                                                                            <textarea name="note" id="note-edit-item" rows="3"
+                                                                                cols="23"><%=product.note%></textarea>
+                                                                        </div>
+                                                                        <input type="hidden" name="pimage" value="<%=product.image%>">
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                            
+                                                        </div>
+    
+                                                        <div class="modal-footer">
+                                                            <button type="button"
+                                                                class="btn btn-secondary close-footer">Đóng</button>
+                                                            <button type="submit" class="btn-save-edit"
+                                                                id="btn-save-change-item">Xong</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+    
+                                            </td>
+                                        </tr>
+                                    <%}) %>
+                                    
+                                </tbody>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </body>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/admin-quanly.js"></script>
+    <script>
+         $('a.confirmDeletion').on('click',function(){
+        if (!confirm('Confirm Deletion ? '))
+        return false;
+            })
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#img-edit-item").attr('src', e.target.result).width(100).height(100);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#img").change(function () {
+            readURL(this);
+        })
+    </script>
+    <%- include('../layouts/footer') %>

@@ -10,16 +10,16 @@ var Product= require('../models/product');
 var Category= require('../models/category');
 
 router.get('/',function(req,res){
-    Product.count(function(err,c){
         Product.find(function(err,products){
-            res.render('admin/products',{
+            if (err) return console.log(err);
+            Category.find(function(err,cat){
+            if (err) return console.log(err);
+            res.render('admin/admin-products',{
                 products: products,
-                count: c
+                categories: cat
             })
         })
     })
-
-    
 })
 
 router.get('/add-product',function(req,res){
@@ -44,6 +44,9 @@ router.post('/add-product',function(req , res){
     var slug = title.replace(/\s+/g,'-').toLowerCase();
     var price=req.body.price;
     var category = req.body.category;
+    var unit = req.body.unit;
+    var quantity = req.body.quantity;
+    var note = req.body.note;
     
     Product.findOne({slug: slug},function(err,product){
         if (product){
@@ -63,7 +66,10 @@ router.post('/add-product',function(req , res){
                 slug:slug,
                 price: price2,
                 category: category,
-                image: imageFile
+                image: imageFile,
+                unit: unit,
+                quantity: quantity,
+                note: note,
             });
             product.save(function(err){
                 if (err) return console.log(err);
@@ -90,32 +96,32 @@ router.post('/add-product',function(req , res){
 
 //get edit product
 
-router.get('/edit-product/:id',function(req,res){
+// router.get('/edit-product/:id',function(req,res){
 
-    var errors;
-    if (req.session.errors) errors =req.session.errors;
-    req.session.errors = null;
+//     var errors;
+//     if (req.session.errors) errors =req.session.errors;
+//     req.session.errors = null;
    
-    Category.find(function(err,cat){
-        Product.findById(req.params.id, function(err,p){
-            if (err) {
-                console.log(err);
-                res.redirect('admin/products');
-            } else {
-                res.render('admin/edit-product',{
-                    id: p._id,
-                    title: p.title,
-                    categories: cat,
-                    price: p.price,
-                    category: p.category.replace(/\s+/g,'-').toLowerCase(),
-                    image:p.image
-                });
-            }
-        })
+//     Category.find(function(err,cat){
+//         Product.findById(req.params.id, function(err,p){
+//             if (err) {
+//                 console.log(err);
+//                 res.redirect('admin/products');
+//             } else {
+//                 res.render('admin/edit-product',{
+//                     id: p._id,
+//                     title: p.title,
+//                     categories: cat,
+//                     price: p.price,
+//                     category: p.category.replace(/\s+/g,'-').toLowerCase(),
+//                     image:p.image
+//                 });
+//             }
+//         })
         
-    })
+//     })
 
-})
+// })
 
 //post edit page
 router.post('/edit-product/:id',function(req,res){
@@ -126,6 +132,9 @@ router.post('/edit-product/:id',function(req,res){
     var category = req.body.category;
     var pimage = req.body.pimage;
     var id = req.params.id;
+    var unit = req.body.unit;
+    var quantity = req.body.quantity;
+    var note = req.body.note;
     Product.findOne({slug: slug,_id : {'$ne':id}},function(err,p){
         if (err) console.log(err);
         if (p){
@@ -138,6 +147,9 @@ router.post('/edit-product/:id',function(req,res){
                 p.slug = slug;
                 p.price=price;
                 p.category = category;
+                p.quantity = quantity;
+                p.note = note;
+                p.unit = unit;
                 if (imageFile != ""){
                     p.image= imageFile;
                 }
