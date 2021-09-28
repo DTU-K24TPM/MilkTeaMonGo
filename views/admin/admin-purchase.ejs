@@ -288,17 +288,19 @@
         $('.select-status').each(function () {
             var $this = $(this);
             var id = $this.attr('id');
-            var value1 = $this.val();
             $this.change(function (e) {
                 var value = $this.val();
                 if (value == "cancelled") {
                     if (!confirm('Đơn đã hủy sẽ không thay đổi được trạng thái nữa, bạn chắc chắn hủy ?')) {
-                        // Set the URL to whatever it was plus "#".
-                        url = document.URL + "#";
-                        location = "#";
-
-                        //Reload the page
-                        location.reload(true);
+                        $.ajax({
+                        url: "/admin/purchase/cancelConfirm",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ id: id }),
+                        success: function (result) {
+                            $this.html(result.code)
+                        }
+                })
                         return;
                     }
                     else $this.attr('disabled', 'disabled');

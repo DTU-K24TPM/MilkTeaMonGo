@@ -103,6 +103,24 @@ router.get('/delete/:id',function(req,res){
     })
 })
 
+router.post('/cancelConfirm',function(req,res){
+    var id = req.body.id;
+    Bill.findById(id,function(err,b){
+        if (err) return console.log(err);
+         var htmlCode = `<option value="wait-confirm" `;
+          if (b.type=="wait-confirm") htmlCode=htmlCode+` selected="selected" `;
+          htmlCode=htmlCode+ `>Chờ xác nhận</option> <option value="wait-rev" `;
+          if (b.type=="wait-rev") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ ` >Chờ lấy hàng </option> <option value="delivering" `;
+         if (b.type=="delivering") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ ` >Đang giao</option> <option value="delivered" `;
+         if (b.type=="delivered") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ ` >Đã giao</option> <option value="cancelled" `;
+         if (b.type=="cancelled") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ `>Đã hủy</option>`;
+        res.send({code : htmlCode})
+    })
+})
 
 
 
