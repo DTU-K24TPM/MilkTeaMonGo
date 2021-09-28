@@ -18,8 +18,16 @@ var ProductSchema = mongoose.Schema({
     },
     image:{
         type: String
-    }
-    
+    },
+    unit:{
+        type:String
+    },
+    quantity:{
+        type:Number,
+    },
+    note:{
+        type:String
+    },
 })
 
 var Product = module.exports = mongoose.model('Product',ProductSchema);

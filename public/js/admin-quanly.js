@@ -7,29 +7,21 @@ $('#btn-add-item').on('click', function(){
 });
 $('#btn-save-new-item').on('click',function(){
   modalAdd.style.display = "none";
-  alert('Thêm mới hoàn tất!');
 });
-$('.edit-item').on('click',function(){
-    modalEdit.style.display = "block";
-});
+
 $('.close-footer').on('click',function(){
-    modalEdit.style.display = "none";
-    modalAdd.style.display = "none";
-    
+  modalAdd.style.display = "none";
+  $('.imgPreview').attr('src','/img/noimage.jpg');
 });
 
 $('#btn-save-change-item').on('click',function(){
-    
-    modalEdit.style.display = "none"; 
-    alert('Chỉnh sửa hoàn tất!');
+    modalEdit.style.display = "none";
 });
 
 $('#btn-print').on('click',function(){
   window.print();
 });
-$('.btn-xoa').on('click',function(){
-  alert('Đã xóa!');
-});
+
 
 $('.info-order').each(function () {
   var $this = $(this);
@@ -43,4 +35,20 @@ $('.info-order').each(function () {
     modalInfo1.css("display","none"); 
   })
 })
+
+
+$('.edit-item').each(function () {
+  var $this = $(this);
+  var modalEdit1 = $this.parent().find('#modal-edit');
+  var CloseModal = $this.parent().find('.close-footer');
+  $this.on('click',function(){
+    modalEdit1.css("display","block"); 
+  })
+  CloseModal.on('click',function(){
+    modalEdit1.css("display","none"); 
+  })
+  
+})
+
+
   

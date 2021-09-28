@@ -67,20 +67,20 @@ router.post('/change-type',function(req,res){
 })
 
 router.post('/search-time',function(req,res){
-    var datefrom = new Date(req.body.datefrom);
-    var dateto= new Date(req.body.dateto);
-    if (datefrom>dateto) {
+    var datefrom = req.body.datefrom;
+    var dateto= req.body.dateto;
+    if (new Date(req.body.datefrom)>new Date(req.body.dateto)) {
         Bill.find(function(err,b){
         res.render('admin/admin-purchase',{
-            datefrom: datefrom,
-            dateto:dateto,
+            datefrom: datefrom.toString(),
+            dateto:dateto.toString(),
             mes: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc",
             bills: [],
             })
         })
     }
     else {
-    Bill.find({createAt:{$gte:datefrom,$lt:dateto}},function(err,b){
+    Bill.find({createAt:{$gte:new Date(req.body.datefrom),$lt:new Date(req.body.dateto)}},function(err,b){
         if (err) return console.log(err);
         var newDate=b.map(function(rs){
             return rs.createAt.getDate()+'/'+(rs.createAt.getMonth()+1)+'/'+rs.createAt.getFullYear()+' '+
@@ -103,6 +103,24 @@ router.get('/delete/:id',function(req,res){
     })
 })
 
+router.post('/cancelConfirm',function(req,res){
+    var id = req.body.id;
+    Bill.findById(id,function(err,b){
+        if (err) return console.log(err);
+         var htmlCode = `<option value="wait-confirm" `;
+          if (b.type=="wait-confirm") htmlCode=htmlCode+` selected="selected" `;
+          htmlCode=htmlCode+ `>Chờ xác nhận</option> <option value="wait-rev" `;
+          if (b.type=="wait-rev") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ ` >Chờ lấy hàng </option> <option value="delivering" `;
+         if (b.type=="delivering") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ ` >Đang giao</option> <option value="delivered" `;
+         if (b.type=="delivered") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ ` >Đã giao</option> <option value="cancelled" `;
+         if (b.type=="cancelled") htmlCode=htmlCode+` selected="selected" `;
+         htmlCode=htmlCode+ `>Đã hủy</option>`;
+        res.send({code : htmlCode})
+    })
+})
 
 
 
