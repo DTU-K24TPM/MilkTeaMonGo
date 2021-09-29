@@ -1224,7 +1224,7 @@ body {
     color: indianred;
   }
   .admin-img-item{
-    width: 50px;
+    width: 100px;
   }
   .edit-item{
     border: none;
@@ -1288,6 +1288,7 @@ body {
   }
   .div-edit-item{
     padding: 10px;
+    display: flex;
   }
   #img-edit-item{
   width: 200px;
