@@ -5,7 +5,7 @@ var Product= require('../models/product');
 var Category= require('../models/category');
 router.get('/',function(req,res){
     Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
-        Product.find({$and:[{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
+        Product.find({$and:[{block:0},{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
             res.render('products/show',{
                 products: products,
                 categories: cats
@@ -17,7 +17,7 @@ router.get('/',function(req,res){
 router.get('/category/:slug',function(req,res){
     var slug= req.params.slug;
     Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
-        Product.find({$and :[{category:slug},{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
+        Product.find({$and :[{block:0},{category:slug},{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
             res.render('products/show',{
                 products: products,
                 categories: cats
@@ -29,9 +29,9 @@ router.get('/category/:slug',function(req,res){
 router.get('/:slug',function(req,res){
     var slug = req.params.slug;
     Product.findOne({slug: slug},function(err,product){
-        Product.find({category: 'topping'},function(err,toppings){
+        Product.find({$and:[{category: 'topping'},{block:0}]},function(err,toppings){
             Product.find({category: 'size'},function(err,sizes){
-                Product.aggregate([{ $match: { $and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}},
+                Product.aggregate([{ $match: { $and:[{block:0},{category: {'$ne': 'topping'}},{category: {'$ne':'size'}},
                 {category: {'$ne':'ăn-vặt'}}]}},{ $sample: { size: 8 } }],function(err,slides){
                     if (product.category =='ăn-vặt'){
                         res.render('products/detail',{
