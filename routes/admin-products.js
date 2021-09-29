@@ -10,9 +10,9 @@ var Product= require('../models/product');
 var Category= require('../models/category');
 
 router.get('/',function(req,res){
-        Product.find(function(err,products){
+        Product.find({category:{'$ne':'size'}},function(err,products){
             if (err) return console.log(err);
-            Category.find(function(err,cat){
+            Category.find({slug:{'$ne':'size'} },function(err,cat){
             if (err) return console.log(err);
             res.render('admin/admin-products',{
                 products: products,
@@ -22,18 +22,18 @@ router.get('/',function(req,res){
     })
 })
 
-router.get('/add-product',function(req,res){
-    var title="";
-    var price="";
+// router.get('/add-product',function(req,res){
+//     var title="";
+//     var price="";
 
-    Category.find(function(err,cat){
-        res.render('admin/add-product',{
-            title: title,
-            categories: cat,
-            price: price
-        });
-    })
-    })
+//     Category.find(function(err,cat){
+//         res.render('admin/add-product',{
+//             title: title,
+//             categories: cat,
+//             price: price
+//         });
+//     })
+//     })
 
     
 
@@ -51,13 +51,8 @@ router.post('/add-product',function(req , res){
     Product.findOne({slug: slug},function(err,product){
         if (product){
             req.flash('danger','Product title exists, choose another');
-            Category.find(function(err,cat){
-                res.render('admin/add-product',{
-                    title: title,
-                    categories: cat,
-                    price: price
-                });
-            })
+            var noti='Sản phẩm này đã tồn tại' ;
+            res.send({noti: noti});
         }
         else {
             var price2=parseFloat(price).toFixed(2);
@@ -86,8 +81,8 @@ router.post('/add-product',function(req , res){
                         if (err)return console.log(err)
                     });
                 }
-                req.flash('succsess','Product added');
-                res.redirect('/admin/products')
+                var noti="";
+                res.send({noti:noti})
             })
         }
     })
@@ -123,6 +118,24 @@ router.post('/add-product',function(req , res){
 
 // })
 
+router.post('/editBtn',function(req,res){
+    var id = req.body.id;
+    Category.find({slug:{'$ne':'size'}},function(err,cats){
+    Product.findById(id,function(err,p){
+        if (err) return console.log(err);
+        var htmlSelect ;
+        cats.forEach(function(cat){ 
+            htmlSelect=htmlSelect+`<option value="`+ cat.slug+ (cat.slug == p.category?`" selected="selected" >`:`"> `)+  cat.title+
+            `</option>
+         }); `
+        })
+        res.send({
+            product : p,
+            htmlSelect: htmlSelect
+            })
+        })
+    })
+})
 //post edit page
 router.post('/edit-product/:id',function(req,res){
     var imageFile =  (req.files != null)? req.files.image.name:""; 
@@ -138,8 +151,8 @@ router.post('/edit-product/:id',function(req,res){
     Product.findOne({slug: slug,_id : {'$ne':id}},function(err,p){
         if (err) console.log(err);
         if (p){
-            req.flash('danger','Product title exists, choose another');
-            res.redirect('admin/products/edit-product/'+ id);
+            var noti='Sản phẩm này đã tồn tại' ;
+            res.send({noti: noti});
         } else {
             Product.findById(id,function(err,p){
                 if (err) console.log(err);
@@ -171,13 +184,44 @@ router.post('/edit-product/:id',function(req,res){
                             if (err)return console.log(err)
                         });
                         }
+                        var imageAjax;
+                        if (imageFile==""){
+                            if (pimage != ""){
+                                 imageAjax= "/img/product_imgs/"+id+"/"+pimage;
+                            }
+                            else imageAjax="/img/noimage.jpg"
+                        }
+                        else {
+                            imageAjax= "/img/product_imgs/"+id+"/"+imageFile;
+                        }
+                            
+                        res.send({
+                            noti : "",
+                            imageAjax:imageAjax,
+                    })
                         req.flash('succsess','Product editted');
-                        res.redirect('/admin/products')
                 })
             })
         }
     })
 
+})
+
+router.get('/search-product',function(req,res){
+    var name=req.query.search;
+    Product.find({category:{'$ne':'size'}},function(err,products){
+        if (err) return console.log(err);
+        var newPd= products.filter(function(result){
+            return result.title.toLowerCase().indexOf(name.toLowerCase()) !== -1;
+        })
+        Category.find({slug:{'$ne':'size'} },function(err,cat){
+        if (err) return console.log(err);
+        res.render('admin/admin-products',{
+            products: newPd,
+            categories: cat
+        })
+    })
+  })
 })
 
 router.get('/delete-product/:id',function(req,res){

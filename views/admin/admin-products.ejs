@@ -11,7 +11,7 @@
                                     PHẨM
                                 </div>
                                 <div class="head-search-item">
-                                    <form class="search-dh search-item-admin">
+                                    <form action="/admin/products/search-product" class="search-dh search-item-admin" method="GET">
                                         <input type="text" placeholder="Tìm kiếm sản phẩm" name="search">
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
@@ -28,23 +28,23 @@
                                     
                                     <div class="modal-header">
                                         <h5 class="modal-title">Thêm mới sản phẩm</h5>
-                                        <button type="button" class="btn-close close-footer"
+                                        <button type="button" class="closeAdd btn-close close-footer"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form action="/admin/products/add-product" method="POST">
+                                    <form class="formAdd" action="/admin/products/add-product" method="POST">
                                     <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-5 admin-img-edit-item">
-                                                    <img id="img-edit-item" class="imgPreview" src="/img/noimage.jpg">
-                                                                        <input type="file" class="form-control" name="image"
-                                                                            id="img" accept="image/png, image/jpeg, image/jpg"
+                                                    <img id="img-edit-item" class="imgAddPreview" src="/img/noimage.jpg">
+                                                                        <input type="file" class="form-control imgChangeAdd" name="image"
+                                                                            id="img1" accept="image/png, image/jpeg, image/jpg"
                                                                             style="display: none;">
-                                                                        <label  id="btn-edit-img-item" for="img">Chọn ảnh</label>
+                                                                        <label  id="btn-edit-img-item" for="img1">Chọn ảnh</label>
                                                 </div>
                                                 <div class="col-7">
                                                     <div class="div-edit-item">
                                                         <label>Tên sản phẩm</label>
-                                                        <input name="title" type="text" placeholder="Tên sản phẩm"
+                                                        <input name="title" type="text" class="nameAdd" placeholder="Tên sản phẩm"
                                                             id="name-edit-item">
                                                     </div>
                                                     <div class="div-edit-item">
@@ -57,13 +57,13 @@
                                                     </div>
                                                     <div class="div-edit-item">
                                                         <label>Đơn vị tính</label>
-                                                        <input name="unit" type="text" placeholder="Đơn vị tính" id="dvt-edit-item">
+                                                        <input name="unit" type="text" class="unitAdd" placeholder="Đơn vị tính" id="dvt-edit-item">
 
                                                     </div>
 
                                                     <div class="div-edit-item">
                                                         <label>Đơn giá</label>
-                                                        <input name="price" type="text" placeholder="Đơn giá" id="price-edit-item">
+                                                        <input name="price" class="priceAdd" type="text" placeholder="Đơn giá" id="price-edit-item">
                                                     </div>
                                                     <div class="div-edit-item">
                                                         <label>Khuyến mãi</label>
@@ -71,24 +71,25 @@
                                                     </div>
                                                     <div class="div-edit-item">
                                                         <label>Số lượng tồn</label>
-                                                        <input name="quantity" type="text" placeholder="Số lượng tồn" id="SL-edit-item">
+                                                        <input name="quantity" class="quantityAdd" type="text" placeholder="Số lượng tồn" id="SL-edit-item">
                                                     </div>
                                                     <div class="div-edit-item">
                                                         <label>Ghi chú</label>
-                                                        <textarea name="note" id="note-edit-item" rows="3" cols="23"></textarea>
+                                                        <textarea name="note" id="note-edit-item" class="noteAdd" rows="3" cols="23"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                        <p class="validateAdd" style="color: red;"></p>
+                                        <button type="button" class="exitAdd btn btn-secondary close-footer">Đóng</button>
                                         <button type="submit" class="btn-save-edit" id="btn-save-new-item">Xong</button>
                                     </div>
                                 </form>
                                 </div>
                             </div>
-
+<% if (products.length != 0){ %>
                             <table class="table table-ad">
                                 <thead>
                                     <tr>
@@ -107,10 +108,10 @@
                                 <tbody>
                                     <% var i=1%>
                                     <% products.forEach(function(product){ %>
-                                        <tr>
+                                        <tr class="trClosest">
                                             <th scope="row"><%=i%></th>
                                             <% i++ %>
-                                            <td>
+                                            <td class="tdImage">
                                                 <%if (product.image != ""){ %>
                                                     <img class="admin-img-item" src="/img/product_imgs/<%=product._id%>/<%=product.image%>" alt="anh SP01">
                                                 <% } else { %>
@@ -118,95 +119,17 @@
                                                 <% } %>
                                                 
                                             </td>
-                                            <td><%=product.title%></td>
-                                            <td><%=product.category%></td>
-                                            <td><%=product.unit%></td>
-                                            <td><%=product.price%></td>
+                                            <td class="tdTitle"><%=product.title%></td>
+                                            <td class="tdCategory"><%=product.category%></td>
+                                            <td class="tdUnit"><%=product.unit%></td>
+                                            <td class="tdPrice"><%=product.price%></td>
                                             <td>0</td>
-                                            <td><%=product.quantity%></td>
-                                            <td><%=product.note%></td>
+                                            <td class="tdQuantity"><%=product.quantity%></td>
+                                            <td class="tdNote"><%=product.note%></td>
                                             <td>
-                                                <button class="edit-item"><i class="fa fa-edit "></i></button>
+                                                <button id=<%=product._id%> class="edit-item"><i class="fa fa-edit "></i></button>
                                                 <a href="/admin/products/delete-product/<%=product._id%>" class="confirmDeletion"><button type="button" class="btn-close btn-xoa"
                                                         aria-label="Close"></button></a>
-    
-                                                <div id="modal-edit" class="modal">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Chỉnh sửa sản phẩm</h5>
-                                                            <button type="button" class="btn-close close-footer"
-                                                                aria-label="Close"></button>
-                                                        </div> 
-                                                        <form action="/admin/products/edit-product/<%=product._id%>" method="post" enctype="multipart/form-data">
-                                                        <div class="modal-body">
-                                                            
-                                                                <div class="row">
-                                                                    <div class="col-5 admin-img-edit-item">
-                                                                        <img id="img-edit-item" src="/img/product_imgs/<%=product._id%>/<%=product.image%>">
-                                                                        <input type="file" class="form-control" name="image"
-                                                                            id="img" accept="image/png, image/jpeg, image/jpg"
-                                                                            style="display: none;">
-                                                                        <label  id="btn-edit-img-item" for="img">Chọn ảnh</label>
-                                                                    </div>
-                                                                    <div class="col-7">
-                                                                        <div class="div-edit-item">
-                                                                            <label>Tên sản phẩm</label>
-                                                                            <input type="text" id="name-edit-item" name="title" value="<%=product.title%>">
-                                                                        </div>
-                                                                        <div class="div-edit-item">
-                                                                            <label>Loại hàng</label>
-                                                                            <select name="category" class="type-eidt-item">
-                                                                                <% categories.forEach(function(cat){ %>
-                                                                                    <option value=<%= cat.slug %>
-                                                                                        <% if (cat.slug == product.category) { %>
-                                                                                            selected="selected"
-                                                                                        <% } %>
-                                                                                        ><%= cat.title %>
-                                                                                    </option>
-                                                                                <% }); %>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="div-edit-item">
-                                                                            <label>Đơn vị tính</label>
-                                                                            <input id="dvt-edit-item" type="text" name="unit" value=<%=product.unit%>>
-        
-                                                                        </div>
-        
-                                                                        <div class="div-edit-item">
-                                                                            <label>Đơn giá</label>
-                                                                            <input type="text" id="price-edit-item" name="price" value=<%=product.price%>>
-                                                                        </div>
-                                                                        <div class="div-edit-item">
-                                                                            <label>Khuyến mãi</label>
-                                                                            <input type="text" value="0"
-                                                                                id="KM-edit-item">
-                                                                        </div>
-                                                                        <div class="div-edit-item">
-                                                                            <label>Số lượng tồn</label>
-                                                                            <input type="text" id="SL-edit-item" name="quantity" value=<%=product.quantity%>>
-                                                                        </div>
-                                                                        <div class="div-edit-item">
-                                                                            <label>Ghi chú</label>
-                                                                            <textarea name="note" id="note-edit-item" rows="3"
-                                                                                cols="23"><%=product.note%></textarea>
-                                                                        </div>
-                                                                        <input type="hidden" name="pimage" value="<%=product.image%>">
-                                                                    </div>
-                                                                </div>
-                                                            
-                                                            
-                                                        </div>
-    
-                                                        <div class="modal-footer">
-                                                            <button type="button"
-                                                                class="btn btn-secondary close-footer">Đóng</button>
-                                                            <button type="submit" class="btn-save-edit"
-                                                                id="btn-save-change-item">Xong</button>
-                                                        </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-    
                                             </td>
                                         </tr>
                                     <%}) %>
@@ -216,6 +139,79 @@
 
 
                             </table>
+                            <div id="modal-edit" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Chỉnh sửa sản phẩm</h5>
+                                        <button type="button" class="closeEdit btn-close close-footer"
+                                            aria-label="Close"></button>
+                                    </div> 
+                                    <form class="formEdit" action="" method="POST" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        
+                                            <div class="row">
+                                                <div class="col-5 admin-img-edit-item">
+                                                    <img id="img-edit-item" class="imgEditPreview" src="">
+                                                    <input type="file" class="form-control imgChangeEdit" name="image"
+                                                        id="img2" accept="image/png, image/jpeg, image/jpg"
+                                                        style="display: none;">
+                                                    <label  id="btn-edit-img-item" for="img2">Chọn ảnh</label>
+                                                </div>
+                                                <div class="col-7">
+                                                    <div class="div-edit-item">
+                                                        <label>Tên sản phẩm</label>
+                                                        <input type="text" id="name-edit-item" class="nameEdit" name="title" >
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Loại hàng</label>
+                                                        <select name="category" class="type-eidt-item select-edit-item">
+                                                            <option value="">a</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Đơn vị tính</label>
+                                                        <input id="dvt-edit-item" class="unitEdit" type="text" name="unit" >
+
+                                                    </div>
+
+                                                    <div class="div-edit-item">
+                                                        <label>Đơn giá</label>
+                                                        <input type="text" class="priceEdit" id="price-edit-item" name="price" >
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Khuyến mãi</label>
+                                                        <input type="text" value="0"
+                                                            id="KM-edit-item">
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Số lượng tồn</label>
+                                                        <input type="text" class="quantityEdit" id="SL-edit-item" name="quantity" >
+                                                    </div>
+                                                    <div class="div-edit-item">
+                                                        <label>Ghi chú</label>
+                                                        <textarea name="note" id="note-edit-item" class="noteEdit" rows="3"
+                                                            cols="23"></textarea>
+                                                    </div>
+                                                    <input type="hidden" class="hiddenImage" name="pimage" >
+                                                </div>
+                                            </div>
+                                        
+                                        
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <p style="color: red;" class="validateEdit"></p>
+                                        <button type="button"
+                                            class="exitEdit btn btn-secondary close-footer">Đóng</button>
+                                        <button type="submit" class="btn-save-edit"
+                                            id="btn-save-change-item">Xong</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        <%}else{ %>
+                            <h3 class="text-center">Không có sản phẩm nào</h3>
+                        <%} %>
                         </div>
                     </div>
                 </div>
@@ -236,14 +232,25 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $("#img-edit-item").attr('src', e.target.result).width(100).height(100);
+                    $(".imgAddPreview").attr('src', e.target.result);
+                    $(".imgEditPreview").attr('src', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        $("#img").change(function () {
+        
+
+        $(".imgChangeAdd").change(function () {
             readURL(this);
         })
+
+        $(".imgChangeEdit").change(function () {
+            readURL(this);
+        })
+
+        
+
+       
     </script>
     <%- include('../layouts/footer') %>
