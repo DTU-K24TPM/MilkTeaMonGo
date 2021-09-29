@@ -11,53 +11,47 @@ $('#btn-add-item').on('click', function(){
 
 $('.closeAdd').on('click',function(){
   var imgAdd = $('.imgChangeAdd');
-  var imgEdit = $('imgEditAdd');
   var nameAdd = $('.nameAdd');
-  var unitAdd = $('.unitAdd');
   var priceAdd = $('.priceAdd');
   var quantityAdd = $('.quantityAdd');
-  var noteAdd = $('.noteAdd');
   modalAdd.style.display = "none";
   imgAdd.val(null);
-  imgEdit.val(null);
   nameAdd.val(null);
-  unitAdd.val(null);
   priceAdd.val(null);
   quantityAdd.val(null);
-  noteAdd.val(null);
   $('.imgAddPreview').attr('src','/img/noimage.jpg');
   $('.validateAdd').html('');
 })
 
 $('.exitAdd').on('click',function(){
   var imgAdd = $('.imgChangeAdd');
-  var imgEdit = $('imgEditAdd');
+  var imgEdit = $('.imgEditAdd');
   var nameAdd = $('.nameAdd');
-  var unitAdd = $('.unitAdd');
   var priceAdd = $('.priceAdd');
   var quantityAdd = $('.quantityAdd');
-  var noteAdd = $('.noteAdd');
   modalAdd.style.display = "none";
   imgAdd.val(null);
   imgEdit.val(null);
   nameAdd.val(null);
-  unitAdd.val(null);
   priceAdd.val(null);
   quantityAdd.val(null);
-  noteAdd.val(null);
   $('.imgAddPreview').attr('src','/img/noimage.jpg');
   $('.validateAdd').html('');
 })
 
 $('.closeEdit').on('click',function(){
   modalEdit.style.display = "none";
-  
+  var imgEdit = $('.imgChangeEdit');
+  imgEdit.val(null);
+  $('.imgAddPreview').attr('src','/img/noimage.jpg');
   $('.validateEdit').html('');
 })
 
 $('.exitEdit').on('click',function(){
   modalEdit.style.display = "none";
-  
+  var imgEdit = $('.imgChangeEdit');
+  imgEdit.val(null);
+  $('.imgAddPreview').attr('src','/img/noimage.jpg');
   $('.validateEdit').html('');
 })
 
@@ -101,19 +95,15 @@ $('.info-order').each(function () {
   var namee= $('.nameEdit');
   var imageF = $('.imgChangeEdit');
   var image = $('.imgEditPreview');
-  var unit = $('.unitEdit');
   var price = $('.priceEdit');
   var quantity = $('.quantityEdit');
-  var note = $('.noteEdit');
   var pImage = $('.hiddenImage');
   var form = $('.formEdit');
   var select = $('.select-edit-item');
   var tdTitle;
-  var tdUnit;
   var tdCategory;
   var tdPrice;
   var tdQuantity;
-  var tdNote;
   var tdImage;
 $('.edit-item').each(function () {
   var $this = $(this);
@@ -121,11 +111,9 @@ $('.edit-item').each(function () {
 
   $this.on('click',function(){
     tdTitle = $this.closest('.trClosest').find('.tdTitle');
-    tdUnit = $this.closest('.trClosest').find('.tdUnit');
     tdCategory = $this.closest('.trClosest').find('.tdCategory');
     tdPrice = $this.closest('.trClosest').find('.tdPrice');
     tdQuantity = $this.closest('.trClosest').find('.tdQuantity');
-    tdNote = $this.closest('.trClosest').find('.tdNote');
     tdImage= $this.closest('.trClosest').find('.tdImage');
     $.ajax({
       url: "/admin/products/editBtn",
@@ -137,10 +125,8 @@ $('.edit-item').each(function () {
           image.attr('src','/img/product_imgs/'+result.product._id+'/'+result.product.image);
           else image.attr('src','/img/noimage.jpg');
           namee.val(result.product.title);
-          unit.val(result.product.unit);
           price.val(result.product.price);
           quantity.val(result.product.quantity);
-          note.val(result.product.note);
           pImage.val(result.product.image);
           select.html(result.htmlSelect);
           form.attr('action','/admin/products/edit-product/'+id);
@@ -172,11 +158,9 @@ $('#btn-save-change-item').on('click',function(e){
            tdImage.html('<img class="admin-img-item" src="'+ result.imageAjax+'">')
            modalEdit.style.display = "none";
            tdTitle.html(namee.val());
-           tdUnit.html(unit.val());
            tdCategory.html(select.val()); 
            tdPrice.html(price.val());
            tdQuantity.html(quantity.val()); 
-           tdNote.html(note.val()); 
            modalEdit.style.display = "none";
            $('.imgAddPreview').attr('src','/img/noimage.jpg');
           }
@@ -213,7 +197,25 @@ $('#btn-save-new-item').on('click',function(e){
   e.preventDefault();
 })
 
-
+$('.blockCbx').each(function () {
+  var $this = $(this);
+  var id = $this.attr('id');
+  var i ;
+  $this.change(function(){
+    if ($this[0].checked) i=0;
+    else i=1;
+    $.ajax({
+      url: "/admin/products/editBlock",
+      method: "POST",
+      contentType: "application/json",
+      timeout: 10000,
+      data: JSON.stringify({ id: id, block : i }),
+      success: function (result) {}
+    })
+  })
+  
+  
+})
 
 
   

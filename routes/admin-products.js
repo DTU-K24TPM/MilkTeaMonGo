@@ -44,9 +44,7 @@ router.post('/add-product',function(req , res){
     var slug = title.replace(/\s+/g,'-').toLowerCase();
     var price=req.body.price;
     var category = req.body.category;
-    var unit = req.body.unit;
     var quantity = req.body.quantity;
-    var note = req.body.note;
     
     Product.findOne({slug: slug},function(err,product){
         if (product){
@@ -62,9 +60,7 @@ router.post('/add-product',function(req , res){
                 price: price2,
                 category: category,
                 image: imageFile,
-                unit: unit,
                 quantity: quantity,
-                note: note,
             });
             product.save(function(err){
                 if (err) return console.log(err);
@@ -117,6 +113,17 @@ router.post('/add-product',function(req , res){
 //     })
 
 // })
+router.post('/editBlock',function(req,res){
+    var id = req.body.id;
+    var block = req.body.block;
+    Product.findById(id,function(err,p){
+        if (err) return console.log(err);
+        p.block=block;
+        p.save(function(err){
+            if (err) return console.log(err);
+        })
+    })
+})
 
 router.post('/editBtn',function(req,res){
     var id = req.body.id;
@@ -145,9 +152,7 @@ router.post('/edit-product/:id',function(req,res){
     var category = req.body.category;
     var pimage = req.body.pimage;
     var id = req.params.id;
-    var unit = req.body.unit;
     var quantity = req.body.quantity;
-    var note = req.body.note;
     Product.findOne({slug: slug,_id : {'$ne':id}},function(err,p){
         if (err) console.log(err);
         if (p){
@@ -161,8 +166,6 @@ router.post('/edit-product/:id',function(req,res){
                 p.price=price;
                 p.category = category;
                 p.quantity = quantity;
-                p.note = note;
-                p.unit = unit;
                 if (imageFile != ""){
                     p.image= imageFile;
                 }

@@ -19,14 +19,13 @@ var ProductSchema = mongoose.Schema({
     image:{
         type: String
     },
-    unit:{
-        type:String
+    block:{
+        type: Number,
+        default: 1,
     },
     quantity:{
         type:Number,
-    },
-    note:{
-        type:String
+        require: true
     },
 })
 

@@ -88,7 +88,7 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            
+                                            <p style="color: red;" class="validateAdd"></p>
                                             <button type="submit" class="btn btn-danger"
                                                 id="btn-save-new-item">Xong</button>
                                             <button type="button"
@@ -145,7 +145,8 @@
                                                         </td>
                                                         <td class="tdNote">
                                                             <label class="switch">
-                                                                <input type="checkbox" checked>
+                                                                <input type="checkbox" class="blockCbx" value=<%=product.block%> id=<%=product._id%>  
+                                                                <%if (product.block==0) { %>checked <% } %> >
                                                                 <span class="slider round"></span>
                                                             </label>
                                                         </td>
@@ -261,8 +262,9 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $(".imgAddPreview").attr('src', e.target.result);
                     $(".imgEditPreview").attr('src', e.target.result);
+                    $(".imgAddPreview").attr('src', e.target.result);
+                    
                 }
                 reader.readAsDataURL(input.files[0]);
             }
