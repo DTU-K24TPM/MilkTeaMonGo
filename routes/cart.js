@@ -137,10 +137,12 @@ router.get('/clear/:idcart',function(req,res){
     }
     User.findOne({email: req.session.user},function(err,us){
         if (err) return console.log(err);
-        us.cart=req.session.cart;
-        us.save(function(err){
-            if (err) console.log(err);
-        })
+        if(us){
+            us.cart=req.session.cart;
+            us.save(function(err){
+                if (err) console.log(err);
+            })
+        }
     })
     res.redirect('back');
 })
@@ -164,10 +166,12 @@ router.post('/update/:idcart',function(req,res){
     if (req.session.user){
         User.findOne({email: req.session.user},function(err,us){
             if (err) return console.log(err);
-            us.cart=req.session.cart;
-            us.save(function(err){
-                if (err) console.log(err);
-            })
+            if(us){
+                us.cart=req.session.cart;
+                us.save(function(err){
+                    if (err) console.log(err);
+                })
+            }
         })
     }
     var cartNone = `<div class="dh-frame dh-empty">

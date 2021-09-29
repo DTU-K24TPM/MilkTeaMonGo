@@ -37,13 +37,13 @@
                                             <div class="form-check form-check-inline">
                                                 <% if (size.title=="Size M" ) { %>
                                                     <input class="form-check-input" type="radio" name="size"
-                                                        id="inlineRadio1" value="<%= size.title %>"" checked>
+                                                        id="<%= size._id %>" value="<%= size.title %>"" checked>
                                         <% } else { %>
-                                            <input class=" form-check-input" type="radio" name="size" id="inlineRadio1"
+                                            <input class=" form-check-input" type="radio" name="size" id="<%= size._id %>"
                                                         value="<%= size.title %>"" >
                                         <% } %>
                                         
-                                        <label class=" form-check-label" for="inlineRadio1">
+                                        <label class=" form-check-label" for="<%= size._id %>">
                                                     <%= size.title %>(<%= size.price %>đ)</label>
                                             </div>
                                         </td>
@@ -66,15 +66,15 @@
                                             <td>
                                                 <div class="form-check form-check-inline">
                                                     <input name="ice" class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions1" id="inlineRadio2" value="0" checked>
-                                                    <label class="form-check-label" for="inlineRadio2">Đá chung</label>
+                                                        name="inlineRadioOptions1" id="inlineRadio3" value="0" checked>
+                                                    <label class="form-check-label" for="inlineRadio3">Đá chung</label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check form-check-inline">
                                                     <input name="ice" class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions1" id="inlineRadio1" value="1">
-                                                    <label class="form-check-label" for="inlineRadio1">Đá riêng</label>
+                                                        name="inlineRadioOptions1" id="inlineRadio4" value="1">
+                                                    <label class="form-check-label" for="inlineRadio4">Đá riêng</label>
                                                 </div>
                                             </td>
                                         </tr>
@@ -91,8 +91,8 @@
                                                 <td>
                                                     <div class="form-check form-check-inline">
                                                         <input name="topping" class="form-check-input" type="checkbox"
-                                                            id="inlineCheckbox1" value=<%=topping.slug %>>
-                                                        <label class="form-check-label" for="inlineCheckbox1">
+                                                            id="<%=topping._id %>" value=<%=topping.slug %>>
+                                                        <label class="form-check-label" for="<%=topping._id %>">
                                                             <%= topping.title %>: <%= topping.price %>đ
                                                         </label>
                                                     </div>
