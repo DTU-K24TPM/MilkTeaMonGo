@@ -1,0 +1,106 @@
+<%- include ('../layouts/adminHeader1') -%>
+<div class="main-container">
+    <div class="container profile-user">
+        <div class="row">
+            <div class="col-3">
+                <div class="order-user">
+                    <% if (typeof us.photo=="undefined" ){ %>
+                        <img class="icon_user user-avatar" src="/img/avatar.png"> 
+                    <% }else{ %>
+                        <img class="icon_user user-avatar" src="/img/users/<%=us.email%>/<%=us.photo%>">
+                    <% } %>  
+                    <a class="user-name" href="/user">
+                        <%= us.fullname%>
+                    </a>
+                </div>
+                <div class="order-list">
+                    <div class="menu-list-entry">
+                        <a class="menu-item-list" href="#">
+                            <span><img class="icon_user icon-account" src="/img/icon-account.png"></span>
+                            <span class="name-list">Tài khoản của tôi</span>
+                        </a>
+                    </div>
+                    <div class="menu-list-body">
+                        <div><a class="menu-list-detail" href="/user/admin">Hồ Sơ</a></div>
+                        <div><a class="menu-list-detail" href="/user/admin/change-info">Thay đổi thông tin</a></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-9 wrap-profile">
+                <div class="profile-frame">
+                    <div class="head-profile-frame">
+                        <div class="head1" style="font-weight: 500; font-size: 17px;">Hồ Sơ Cá Nhân</div>
+                        <div class="sub">Thông tin cá nhân hiện tại của bạn</div>
+                    </div>
+                    <div class="body-profile-frame">
+    
+                        <div class="row col-12">
+    
+    
+                            <form class="profile-form">
+                                <div class="col-6" style="display: flex;
+                                flex-direction: column;">
+                                    <div class="profile-input">
+                                        <label>Họ và tên</label>
+                                        <div class="name-input">
+                                            <%= us.fullname %>
+                                        </div>
+    
+                                    </div>
+                                    <div class="profile-input">
+                                        <label>Email</label>
+                                        <div class="email-input">
+                                            <%=us.email %>
+    
+                                        </div>
+                                    </div>
+                                    <div class="profile-input">
+                                        <label>Số điện thoại</label>
+                                        <div class="phone-input">
+                                            <%=us.phone %>
+    
+                                        </div>
+                                    </div>
+                                    <div class="profile-input">
+                                        <label>Giới Tính</label>
+                                        <div class="gender-input">
+                                            <% if (us.gender==0){ %>
+                                                Nam
+                                                <%} else { %>
+                                                    Nữ
+                                                    <%} %>
+                                        </div>
+    
+                                    </div>
+                                    <div class="profile-input">
+                                        <label>Ngày Sinh</label>
+                                        <div class="bith-input">
+                                            <%= us.birthday%>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                                <div class="col-6 change-avatar">
+                                    <% if (typeof us.photo=="undefined" ){ %>
+                                        <img src="/img/avatar.png" class="profile-avatar">
+                                        <% } else { %>
+                                            <img src="/img/users/<%= us.email%>/<%=us.photo %>" alt="Ảnh đại diện" class="profile-avatar">
+                                            <%} %>
+                                               
+                                </div>
+                            </form>
+    
+                        </div>
+    
+    
+                    </div>
+                </div>
+            </div>
+    
+            </div>
+            </div>
+            </div>
+    
+    
+            <%- include ('../layouts/footer') -%>

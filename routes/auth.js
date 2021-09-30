@@ -90,8 +90,15 @@ router.post('/login',function(req,res){
     User.findOne({email: email},function(err,user){
         if (err) return console.log(err);
         if (user){
-            if (user.password== password){
+            if (user.block==1) {
+                res.render('auth/login',{
+                    value: email,
+                    mes: 'Tài khoản của bạn đã bị chặn vì vi phạm chính sách, liên hệ Bông để được hỗ trợ'
+                })
+            }
+            else if (user.password== password){
                 req.session.user = email;
+                req.session.admin = user.admin;
                 var newItem=true
                 if(req.session.cart) {                
                     for(let i=0;i<user.cart.length;i++) {                                                
@@ -112,8 +119,9 @@ router.post('/login',function(req,res){
                         if (err) console.log(err);
                     })
                 }
-                else req.session.cart=user.cart
-                res.redirect('/')
+                else req.session.cart=user.cart;
+                if(user.admin == 1) res.redirect('/admin/products')
+                else res.redirect('/')
             }
             else {
                 res.render('auth/login',{

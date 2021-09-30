@@ -19,6 +19,16 @@ router.get('/',function(req,res){
    
 })
 
+router.get('/admin',function(req,res){
+    User.findOne({email: req.session.user},function(err,us){
+        if (err) return console.log(err);
+        res.render('admin/admin-userShow',{
+            us : us
+        });
+    })
+   
+})
+
 router.get('/change-info',function(req,res){
     var io=req.app.get('socketio')
     io.on('connection', (socket) =>{  
@@ -45,6 +55,37 @@ router.get('/change-info',function(req,res){
     User.findOne({email: req.session.user},function(err,us){
         if (err) return console.log(err);
         res.render('users/userChange',{
+            us : us
+        });
+    })
+})
+
+router.get('/admin/change-info',function(req,res){
+    var io=req.app.get('socketio')
+    io.on('connection', (socket) =>{  
+        socket.on('change-pass',data =>{
+            var message
+            User.findOne({email: req.session.user},function(err,us){
+                if (err) return console.log(err);
+                if (us.password != data.oldpass) {
+                    message="Mật khẩu không chính xác."
+                }
+                else {
+                    us.password=data.newpass;
+                    us.save(function(err){
+                        if (err) return console.log(err);                        
+                    })
+                    message="Thay đổi mật khẩu thành công."
+                }
+                io.emit('message',{ 
+                    message: message
+                })
+            })
+        })
+    })
+    User.findOne({email: req.session.user},function(err,us){
+        if (err) return console.log(err);
+        res.render('admin/admin-userChange',{
             us : us
         });
     })
@@ -83,7 +124,7 @@ router.post('/change-info',function(req,res){
                     if (err)return console.log(err)
                 });
                 }
-                res.redirect('/user')
+                res.redirect('back')
         })
     })
 })
@@ -101,7 +142,7 @@ router.post('/change-pass',function(req,res){
             us.password=newpass;
             us.save(function(err){
                 if (err) return console.log(err);
-                res.redirect('/user');
+                res.redirect('back');
             })
         }
     })

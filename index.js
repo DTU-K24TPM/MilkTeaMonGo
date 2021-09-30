@@ -87,19 +87,21 @@ var user = require('./routes/user')
 var order = require('./routes/order')
 var checkLogin = require('./middleware/checkLogin.middleware')
 var checkUser = require('./middleware/checkUser.middleware');
+var checkAdmin = require('./middleware/checkAdmin.middleware');
+var checkCustomer = require('./middleware/checkCustomer.middleware')
 var purchase = require('./routes/purchase');
 
-app.use('/admin/pages',checkUser,adminPages);
-app.use('/admin/categories',checkUser,adminCategories);
-app.use('/admin/products',checkUser,adminProducts);
-app.use('/admin/purchase',checkUser,adminPurchase);
-app.use('/',checkUser,sites);
-app.use('/product',checkUser,product);
-app.use('/cart',checkUser,cart);
+app.use('/admin/pages',checkAdmin,checkUser,adminPages);
+app.use('/admin/categories',checkAdmin,checkUser,adminCategories);
+app.use('/admin/products',checkAdmin,checkUser,adminProducts);
+app.use('/admin/purchase',checkAdmin,checkUser,adminPurchase);
+app.use('/',sites);
+app.use('/product',checkCustomer,checkUser,product);
+app.use('/cart',checkCustomer,checkUser,cart);
 app.use('/auth',auth);
 app.use('/user',checkLogin,checkUser,user);
-app.use('/order',checkLogin,order);
-app.use('/purchase',checkLogin,purchase);
+app.use('/order',checkLogin,checkCustomer,order);
+app.use('/purchase',checkLogin,checkCustomer,purchase);
 
 app.set('socketio',io)
 

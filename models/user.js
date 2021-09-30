@@ -30,6 +30,10 @@ var UserSchema = mongoose.Schema({
     },
     photo:{
         type:String
+    },
+    block:{
+        type: Number,
+        default: 0,
     }
 })
 

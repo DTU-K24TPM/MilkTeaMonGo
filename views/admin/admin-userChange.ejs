@@ -1,0 +1,258 @@
+<%- include ('../layouts/adminHeader1') -%>
+<div class="main-container">
+    <div class="container profile-user">
+        <div class="row">
+            <div class="col-3">
+                <div class="order-user">
+                    <% if (typeof us.photo=="undefined" ){ %>
+                        <img class="icon_user user-avatar" src="/img/avatar.png"> 
+                    <% }else{ %>
+                        <img class="icon_user user-avatar" src="/img/users/<%=us.email%>/<%=us.photo%>">
+                    <% } %>  
+                    <a class="user-name" href="/user">
+                        <%= us.fullname%>
+                    </a>
+                </div>
+                <div class="order-list">
+                    <div class="menu-list-entry">
+                        <a class="menu-item-list" href="#">
+                            <span><img class="icon_user icon-account" src="/img/icon-account.png"></span>
+                            <span class="name-list">Tài khoản của tôi</span>
+                        </a>
+                    </div>
+                    <div class="menu-list-body">
+                        <div><a class="menu-list-detail" href="/user/admin">Hồ Sơ</a></div>
+                        <div><a class="menu-list-detail" href="/user/admin/change-info">Thay đổi thông tin</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9 wrap-profile">
+                <div class="profile-frame">
+                    <div class="head-profile-frame">
+                        <div class="head1" style="font-weight: 500; font-size: 17px;">Thay đổi thông tin
+                            cá nhân</div>
+                        <div class="sub">Quản lý thông tin hồ sơ để bảo mật và dễ dàng đặt hàng</div>
+                    </div>
+                    <div class="body-profile-frame-change">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs menu-status ">
+                                <li class="stt-list nav-item">
+                                    <a class="nav-link link1 active" href="#change1" data-bs-toggle="tab"
+                                        data-bs-target="#change1" role="tab" aria-controls="status"
+                                        aria-selected="true">Thay đổi thông
+                                        tin</a>
+                                </li>
+                                <li class="stt-list nav-item">
+                                    <a class="nav-link link1" href="#change2" data-bs-toggle="tab" data-bs-target="#change2"
+                                        role="tab" aria-controls="status" aria-selected="true">Thay đổi mật khẩu</a>
+    
+                                </li>
+                            </ul>
+    
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="change1" role="tabpanel">
+                                    <div class="row">
+                                        <form class="change-profile-form" id="changeinfo" action="/user/change-info" method="POST"
+                                            enctype="multipart/form-data">
+                                            <div class="col-6">
+                                                <div class="profile-left">
+                                                    <div class="profile-input">
+                                                        <label>Họ và tên</label>
+                                                        <input class="cls-input" id="name" name="fullname" type="text"
+                                                            value="<%=us.fullname%>">
+                                                        <span class="span-error" id="name_error"></span>
+                                                    </div>
+                                                    <div class="profile-input">
+                                                        <label>Email</label>
+                                                        <div class="email-input">
+                                                            <input class="cls-input" type="text" value="<%=us.email%>"
+                                                                disabled>
+    
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-input">
+                                                        <label>Số điện thoại</label>                                                    
+                                                        <input id="phone" name="phone" class="cls-input phone-input" type="tel" value="<%=us.phone%>">
+                                                        <span class="span-error" id="phone_error"></span>
+                                                    </div>
+                                                    <div class="profile-input">
+                                                        <label>Giới Tính</label>
+                                                        <select name="gender" class="select-gender cls-input">
+                                                            <option value="0" <% if (us.gender==0){ %> selected="selected"
+                                                                <%} %>>Nam
+                                                            </option>
+                                                            <option value="1" <% if (us.gender==1) { %> selected="selected"
+                                                                <%} %>>Nữ
+                                                            </option>
+                                                        </select>
+    
+                                                    </div>
+                                                    <div class="profile-input">
+                                                        <label>Ngày Sinh</label>
+                                                        <input class="cls-input" name="birthday" type="date"
+                                                            id="birthdaytime" name="birthdaytime" value="<%= us.birthday%>">
+                                                        <span class="span-error" id="birth_error"></span>
+                                                    </div>
+                                                    <div class="profile-input cls-change-info">
+                                                        <label></label>
+                                                        <button class="btn-save-change" id="change-info">Lưu Thay Đổi</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 change-avatar">
+                                                <div class="profile-right">
+    
+                                                    <div class="wrap-img">
+                                                        <% if (typeof us.photo=="undefined" ){ %>
+                                                            <img src="/img/avatar.png" id="imgPreview"
+                                                                class="profile-avatar">
+                                                            <% } else { %>
+                                                                <img src="/img/users/<%=us.email%>/<%=us.photo%>"
+                                                                    id="imgPreview" class="profile-avatar">
+                                                                <%} %>
+                                                                    <label  id="btn-change-avt" for="img">Chọn ảnh</label>
+                                                                    <input type="file" class="form-control" name="image"
+                                                                        id="img" accept="image/png, image/jpeg, image/jpg"
+                                                                        style="display: none;">
+                                                                    <label id="anh-sub"><i>Cá nhân hóa hồ sơ bằng cách thêm
+                                                                            hình
+                                                                            ảnh của
+                                                                            bạn</i></label>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="pimage" value="<%=us.photo%>">
+    
+                                            </div>
+    
+                                        </form>
+    
+    
+    
+    
+                                    </div>
+    
+                                </div>
+                                <div class="tab-pane" id="change2" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <form id="changepass" class="profile-form1" method="POST"
+                                                action="/user/change-pass">
+                                                <div class="alert alert-danger tb-change" id="alert" style="display:none">
+                                                </div>
+                                                <table class="table table-borderless table-change">
+    
+                                                    <tr>
+                                                        <td><label>Mật khẩu hiện tại</label></td>
+                                                        <td class="td-change">
+                                                            <input class="cls-input" id="oldpass" name="oldpass"
+                                                                type="password">
+                                                            <span class="span-error" id="passlogin_error"></span>
+                                                        </td>
+                                                        <td><a href="/auth/forgot" id="fogot-pass"> Quên mật khẩu?</a></td>
+                                                    </tr>
+    
+                                                    <tr>
+                                                        <td><label>Mật khẩu mới</label></td>
+                                                        <td class="td-change">
+                                                            <input class="cls-input" id="newpass" name="newpass"
+                                                                type="password">
+                                                            <span class="span-error" id="passlogin_error"></span>
+                                                        </td>
+                                                    </tr>
+    
+                                                    <tr>
+                                                        <td><label>Xác nhận mật khẩu</label></td>
+                                                        <td class="td-change">
+                                                            <input class="cls-input" id="repass" name="repass"
+                                                                type="password">
+                                                            <span class="span-error" id="passlogin_error"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label></label></td>
+                                                       <td><button class="btn-save-change" type="submit" id="change-pass">Lưu Thay Đổi</button></td>                                                        
+                                                            
+                                                      
+                                                    </tr>
+    
+                                                </table>
+                                                
+    
+    
+                                            </form>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+    
+                        reader.onload = function (e) {
+                            $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+    
+                $("#img").change(function () {
+                    readURL(this);
+                })
+            </script>
+            </div>
+            </div>
+            </div>
+            <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+            <script src="../js/validate.js"></script>
+            <script>
+                Validator({
+                    form: '#changeinfo',
+                    errorSelect: '.span-error',
+                    rules: [
+                        Validator.isRequired('#name'),
+                        Validator.isName('#name'),                    
+                        Validator.isRequired('#phone'),
+                        Validator.isPhone('#phone'),
+                        Validator.isRequired('#birthdaytime')                    
+                    ]
+                });
+                Validator({
+                    form: '#changepass',
+                    errorSelect: '.span-error',
+                    rules: [
+                        Validator.isRequired('#oldpass'),
+                        Validator.isRequired('#newpass'),
+                        Validator.minLength('#newpass'),
+                        Validator.isRequired('#repass'),
+                        Validator.isConfirm('#repass', function () {
+                            return document.querySelector('#changepass #newpass').value;
+                        }),
+                        Validator.isNotConfirm('#newpass', function () {
+                            return document.querySelector('#changepass #oldpass').value;
+                        })
+    
+                    ],
+                    onSubmit: function (data) {
+                        var socket = io()
+                        socket.emit('change-pass', {
+                            oldpass: data.oldpass,
+                            newpass: data.newpass
+                        })
+                        socket.on('message', (message) => {
+                            var alert = document.querySelector('#alert')
+                            alert.textContent = null
+                            alert.style.display = "block"
+                            alert.textContent = message.message
+                        })
+                    }
+                });
+    
+            </script>
+            <%- include ('../layouts/footer') -%>

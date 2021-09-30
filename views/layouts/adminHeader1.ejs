@@ -16,15 +16,21 @@
     <div class="wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light nav1">
             <div class="collapse navbar-collapse navnav" id="Mainnav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link " href="#">Đăng ký</a>
-                    </li>
-                    <div class="nav-cach"></div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng nhập</a>
-                    </li>
-                </ul>
+
+                            <ul class="profile-menu-user">
+                                <li class="profile-menu-list" data-trigger="dropdown">
+                                    <% if (typeof user.photo=="undefined" ){ %>
+                                        <img class="img-ava" src="/img/avatar.png">
+                                    <% }else{ %>
+                                        <img class="img-ava" src="/img/users/<%=user.email%>/<%=user.photo%>">
+                                    <% } %>  
+                                    <button class="btn-hello">Chào <%= user.fullname %> </button>
+                                </li>
+                                <ul class="profile-submenu submenu">
+                                    <li><a href="/user/admin" class="#">Hồ sơ của tôi</a></li>
+                                    <li><a href="/auth/logout">Đăng xuất</a></li>
+                                </ul>
+                            </ul>
             </div>
         </nav>
     </div>
@@ -32,7 +38,7 @@
         <div id="menu">
             <ul class="menu-ul-ad">
                 <li>
-                    <a href="index.html"><img class="img-logo" src="/img/logo.png" /></a>
+                    <a href="/admin/products"><img class="img-logo" src="/img/logo.png" /></a>
                 </li>
                 <li class="li1"><a class="menu-a" href="admin-thongke.html">THỐNG KÊ</a></li>
                 <li><a class="menu-a" href="admin-taikhoan.html">TÀI KHOẢN</a></li>
