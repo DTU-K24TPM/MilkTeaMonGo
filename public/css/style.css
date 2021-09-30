@@ -1192,15 +1192,18 @@ body {
     font-size: 14px;
     line-height: 30px;
     height: 30px;
-    border: 1px solid grey;
+    border: 1px solid #ced4da;
     float: left;
-    width: 95%;
-    background: #f1f1f1;
+    width: 83%;
+    padding: 5px;
+    margin-right: 10px;
   }
-  
+  .search-dh input[type=text]:focus{
+    border: 1px solid white;
+  }
   .search-dh button {
     float: left;
-    width: 5%;
+    width: 15%;
     background: rgb(224, 111, 111);
     color: white;
     line-height: 30px;
@@ -1295,7 +1298,7 @@ body {
   text-align: center;
   }
   .div-edit-item label{
-    width: 100px;
+    width: 120px;
   }
   .admin-img-edit-item{
     display: flex;
@@ -1304,15 +1307,20 @@ body {
     align-items: center;
   }
   #btn-edit-img-item{
-    margin-top: 8px;
-      padding: 3px;
-      border-radius: 3px;
-      border: 1px solid rgb(164, 158, 158);
-  background: rgb(255, 251, 251);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    padding: 7px;
+    background: rgb(224, 111, 111);
+    cursor: pointer;
+    border-radius: 3px;
+    width: fit-content;
+    color: white;
   }
+ 
   
   #btn-edit-img-item:hover{
-  background: #f5efef;
+  background: indianred
   }
   .btn-save-edit{
     background: rgb(224, 111, 111);
@@ -1546,4 +1554,13 @@ body {
 }
 .inputtime{
   margin-right: 10px;
+}
+.nothing{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  filter: grayscale(1);
+  opacity: 0.5;
+  color: darkgreen;
 }

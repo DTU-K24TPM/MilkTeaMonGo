@@ -6,13 +6,22 @@
                 <div class="col-9 wrap-profile user-admin">
                     <div class="profile-frame-ad">
                         <br/>
-                        <div class="head-profile-frame">
-                            <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TÀI KHOẢN
-                                NGƯỜI DÙNG
+                        <div class="head-profile-frame-admin">
+                            <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TẤT CẢ USER
+                            </div>
+                            <div class="head-search-item">
+                                <form method="GET" action="/admin/purchase/search"
+                                    class="search-dh search-item-admin">
+                                    <input type="text" placeholder="Tìm kiếm theo id user" name="search">
+                                    <button type="submit"><i class="fa fa-search" style="color: white"></i></button>
+                                </form>
                             </div>
                         </div>
+                        <div class="add-item">
+                            <button id="btn-print"><i class="fa fa-print" aria-hidden="true"></i> In</button>
+                        </div>
                         <% if (users.length != 0){ %>
-                            <table class="table table-ad">
+                            <table class="table-admin">
                                 <thead>
                                     <tr>
                                       <th scope="col">ID</th>
@@ -21,7 +30,6 @@
                                       <th scope="col">Ngày sinh</th>
                                       <th scope="col">Giới tính</th>
                                       <th scope="col">Hoạt động</th>
-                                      <th scope="col"></th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -40,9 +48,7 @@
                                                   <span class="slider round"></span>
                                                 </label>
                                             </td>
-                                            <td>
-                                              <a class="confirmDeletion" href="/admin/users/delete-user/<%=user._id%>"><button type="button" class="btn-close btn-xoa" aria-label="Close"></button></a>
-                                          </td>
+                                            
                                           </tr>
                                           
                                       <% }) %>
@@ -50,7 +56,8 @@
                                   </tbody>
                             </table>
                         <% } else { %>
-                            <h3>Chưa có tài khoản người dùng nào</h3>
+                            <img class="img-empty" src="/img/not2.gif">
+                            <h3 class="text-center">KHÔNG CÓ TÀI KHOẢN NÀO</h3>
                         <% } %>
 
                     </div>
