@@ -137,7 +137,6 @@ router.post('/change-pass',function(req,res){
     User.findOne({email: req.session.user},function(err,us){
         if (err) return console.log(err);
         if (us.password != oldpass) {
-            res.redirect('/');
             return;
         }
         else {

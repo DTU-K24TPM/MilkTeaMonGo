@@ -59,8 +59,8 @@
                               <li><a class="menu-a" href="/product">MENU</a></li>
                               <li>
                                   <a class="menu-a cartNumber" href="/cart">GIỎ HÀNG 
-                                      <% if (user!= "") { %>
-                                            (<%= user.cart.length %>)
+                                      <% if (typeof cart != "undefined") { %>
+                                            (<%= cart.length %>)
                                       <% }   %> 
                                   </a>
                                 </li>
