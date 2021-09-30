@@ -3,13 +3,15 @@ var router = express.Router();
 
 var mkdir = require('mkdirp');
 var fs = require('fs-extra');
-var resizeImg = require('resize-img')
+var resizeImg = require('resize-img');
 
+var checkCustomer = require('../middleware/checkCustomer.middleware');
+var checkAdmin = require('../middleware/checkAdmin.middleware');
 var User = require('../models/user');
 
 
 
-router.get('/',function(req,res){
+router.get('/',checkCustomer,function(req,res){
     User.findOne({email: req.session.user},function(err,us){
         if (err) return console.log(err);
         res.render('users/userShow',{
@@ -19,7 +21,7 @@ router.get('/',function(req,res){
    
 })
 
-router.get('/admin',function(req,res){
+router.get('/admin',checkAdmin,function(req,res){
     User.findOne({email: req.session.user},function(err,us){
         if (err) return console.log(err);
         res.render('admin/admin-userShow',{
@@ -29,7 +31,7 @@ router.get('/admin',function(req,res){
    
 })
 
-router.get('/change-info',function(req,res){
+router.get('/change-info',checkCustomer,function(req,res){
     var io=req.app.get('socketio')
     io.on('connection', (socket) =>{  
         socket.on('change-pass',data =>{
@@ -60,7 +62,7 @@ router.get('/change-info',function(req,res){
     })
 })
 
-router.get('/admin/change-info',function(req,res){
+router.get('/admin/change-info',checkAdmin,function(req,res){
     var io=req.app.get('socketio')
     io.on('connection', (socket) =>{  
         socket.on('change-pass',data =>{

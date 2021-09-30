@@ -1,0 +1,92 @@
+<%- include('../layouts/adminHeader1') %>
+<section>
+    <div class="wrapper">
+        <div class="body-slide-profile-body">
+            <div class="main-container">
+                <div class="col-9 wrap-profile user-admin">
+                    <div class="profile-frame-ad">
+                        <br/>
+                        <div class="head-profile-frame">
+                            <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TÀI KHOẢN
+                                NGƯỜI DÙNG
+                            </div>
+                        </div>
+                        <% if (users.length != 0){ %>
+                            <table class="table table-ad">
+                                <thead>
+                                    <tr>
+                                      <th scope="col">ID</th>
+                                      <th scope="col">Họ tên</th>
+                                      <th scope="col">Email</th>
+                                      <th scope="col">Ngày sinh</th>
+                                      <th scope="col">Giới tính</th>
+                                      <th scope="col">Hoạt động</th>
+                                      <th scope="col"></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% users.forEach(function(user){ %>
+                                        <tr>
+                                            <th scope="row"><%= user._id %></th>
+                                            <td><%= user.fullname %></td>
+                                            <td><%= user.email %></td>
+                                            <td><%= user.birthday %></td>
+                                            <td>
+                                                <% if (user.gender == 0) { %> Nam <% }else { %> Nữ <%}%>
+                                            </td>
+                                            <td>
+                                              <label class="switch">
+                                                  <input type="checkbox" class="blockUser" id=<%=user._id%> <%if (user.block == 0){%> checked <%}%> >
+                                                  <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                              <a class="confirmDeletion" href="/admin/users/delete-user/<%=user._id%>"><button type="button" class="btn-close btn-xoa" aria-label="Close"></button></a>
+                                          </td>
+                                          </tr>
+                                          
+                                      <% }) %>
+                                    
+                                  </tbody>
+                            </table>
+                        <% } else { %>
+                            <h3>Chưa có tài khoản người dùng nào</h3>
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </body>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script>
+        $('.blockUser').each(function () {
+        var $this = $(this);
+        var id = $this.attr('id');
+        var i ;
+        $this.change(function(){
+            if ($this[0].checked) i=0;
+            else i=1;
+            $.ajax({
+            url: "/admin/users/editBlock",
+            method: "POST",
+            contentType: "application/json",
+            timeout: 10000,
+            data: JSON.stringify({ id: id, block : i }),
+            success: function (result) {}
+            })
+        })
+})
+        $('a.confirmDeletion').on('click', function () {
+            if (!confirm('Confirm Deletion ? '))
+                return false;
+        })
+
+    </script>
+    
+    <%- include('../layouts/footer') %>

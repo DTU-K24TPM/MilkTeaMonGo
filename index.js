@@ -80,6 +80,7 @@ var adminPages = require('./routes/admin-pages')
 var adminCategories = require('./routes/admin-category')
 var adminProducts = require('./routes/admin-products')
 var adminPurchase = require('./routes/admin-purchase')
+var adminUsers = require('./routes/admin-users');
 var product = require('./routes/product')
 var cart = require('./routes/cart')
 var auth = require('./routes/auth')
@@ -91,10 +92,13 @@ var checkAdmin = require('./middleware/checkAdmin.middleware');
 var checkCustomer = require('./middleware/checkCustomer.middleware')
 var purchase = require('./routes/purchase');
 
-app.use('/admin/pages',checkAdmin,checkUser,adminPages);
-app.use('/admin/categories',checkAdmin,checkUser,adminCategories);
-app.use('/admin/products',checkAdmin,checkUser,adminProducts);
-app.use('/admin/purchase',checkAdmin,checkUser,adminPurchase);
+app.use('/admin/pages',checkLogin,checkAdmin,checkUser,adminPages);
+app.use('/admin/categories',checkLogin,checkAdmin,checkUser,adminCategories);
+app.use('/admin/products',checkLogin,checkAdmin,checkUser,adminProducts);
+app.use('/admin/purchase',checkLogin,checkAdmin,checkUser,adminPurchase);
+app.use('/admin/users',checkLogin,checkAdmin,checkUser,adminUsers);
+
+
 app.use('/',sites);
 app.use('/product',checkCustomer,checkUser,product);
 app.use('/cart',checkCustomer,checkUser,cart);
