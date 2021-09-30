@@ -114,9 +114,16 @@
                             </div>
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-secondary btn-detail">
-                                Thêm vào giỏ hàng
-                            </button>
+                            <%if (product.block == 0){ %>
+                                <button type="submit" class="btn btn-secondary btn-detail">
+                                    Thêm vào giỏ hàng
+                                </button>
+                            <%} else {%>
+                                <button type="submit" class="btn btn-secondary btn-detail" disabled>
+                                    Tạm thời hết hàng
+                                </button>
+                            <%} %>
+                            
                         </td>
                         </tr>
                         </table>
