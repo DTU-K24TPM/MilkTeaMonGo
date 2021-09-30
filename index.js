@@ -100,8 +100,8 @@ app.use('/product',checkCustomer,checkUser,product);
 app.use('/cart',checkCustomer,checkUser,cart);
 app.use('/auth',auth);
 app.use('/user',checkLogin,checkUser,user);
-app.use('/order',checkLogin,checkCustomer,order);
-app.use('/purchase',checkLogin,checkCustomer,purchase);
+app.use('/order',checkLogin,checkCustomer,checkUser,order);
+app.use('/purchase',checkLogin,checkCustomer,checkUser,purchase);
 
 app.set('socketio',io)
 
