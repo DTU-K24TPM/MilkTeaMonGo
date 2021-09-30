@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "614813d071d3b53e386a96ee"
+  },
+  "email": "holipenta@gmail.com",
+  "password": "1234",
+  "fullname": "Thi Trần",
+  "birthday": "2000-02-06",
+  "admin": 0,
+  "gender": 0,
+  "phone": "0854830109",
+  "__v": 1706,
+  "photo": "av.jpg",
+  "cart": [
+    {
+      "title": "Trà sữa rainbow",
+      "slug": "trà-sữa-rainbow",
+      "topping": [],
+      "ice": "0",
+      "size": {
+        "_id": "61402a29e21b596165b5a979",
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0
+      },
+      "quantity": 3,
+      "price": 29000,
+      "image": "/img/product_imgs/613f704dc6760a3cad79edba/MT-10.jpeg",
+      "idCart": "cq4a66C4j"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61471cb720374bcedbbabd99"
+  },
+  "email": "dieuny2603@gmail.com",
+  "password": "dieuny2603",
+  "fullname": "Diệu Ny",
+  "birthday": "2000-03-26",
+  "admin": 0,
+  "gender": 1,
+  "__v": 95,
+  "cart": [],
+  "photo": "ava.jpg",
+  "phone": "0776738186"
+},{
+  "_id": {
+    "$oid": "6155b5ad77e9a4d7983e0759"
+  },
+  "email": "hoanghai1910@gmail.com",
+  "password": "hoanghai1910",
+  "fullname": "Hoàng Hải",
+  "birthday": "2021-09-11",
+  "admin": 0,
+  "gender": 0,
+  "phone": "0905765838",
+  "block": 0,
+  "__v": 14
+},{
+  "_id": {
+    "$oid": "6155cd4e31460c3ef088a543"
+  },
+  "email": "testdoan124@gmail.com",
+  "password": "testdoan124",
+  "fullname": "Admin",
+  "birthday": "2021-09-02",
+  "admin": 1,
+  "gender": 0,
+  "cart": [],
+  "phone": "0983748274",
+  "block": 0,
+  "__v": 0
+}]
