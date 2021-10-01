@@ -185,11 +185,26 @@ router.post('/update/:idcart',function(req,res){
         
     </div>
 </div>`
-    res.send({
-        quantity: qty,
-        lengthh: lengthh,
-        cartNone:cartNone
-    });
+
+var check = false;
+if (req.session.cart){   
+    for(var i=0;i<req.session.cart.length;i++)
+    {
+       Product.findOne({slug: req.session.cart[i].slug},function(err,pd){
+           if (err) return console.log(err);
+          if (pd.block==1) {check = true;  }
+       })
+    }
+}
+    setTimeout(function(){
+        res.send({
+            quantity: qty,
+            lengthh: lengthh,
+            cartNone:cartNone,
+            check: check
+        });
+        },50) 
+    
 })
 
 //get cart
@@ -213,7 +228,7 @@ router.get('/',function(req,res){
         res.render('cart/show',{
         cart: req.session.cart,
         block: block
-    });},100) 
+    });},50) 
     
 
 })
