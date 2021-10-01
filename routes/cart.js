@@ -197,10 +197,25 @@ router.get('/',function(req,res){
     User.findOne({email: req.session.user},function(err,us){
         if(us) req.session.cart= us.cart;
         if (req.session.cart && req.session.cart.length==0) delete req.session.cart;
-        res.render('cart/show',{
-            cart: req.session.cart
-        });
+        
     })
+    var block = [];
+    
+    if (req.session.cart){   
+    for(var i=0;i<req.session.cart.length;i++)
+    {
+       Product.findOne({slug: req.session.cart[i].slug},function(err,pd){
+        block.push(pd.block);
+       })
+    }
+}
+    setTimeout(function(){
+        res.render('cart/show',{
+        cart: req.session.cart,
+        block: block
+    });},100) 
+    
+
 })
 
 module.exports = router;

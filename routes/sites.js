@@ -23,7 +23,7 @@ router.get('/',checkCustomer,checkUser,function(req,res){
 router.get('/search',checkCustomer,checkUser,function(req,res){
     var p= req.query.product;
     Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
-        Product.find({$and:[{block:0},{category: {'$ne': 'topping'}},{category: {'$ne':'size'}}]},function(err,products){
+        Product.find({$and:[{category: {'$ne': 'topping'}},{category: {'$ne':'size'}}]},function(err,products){
             var newProducts = products.filter(function(result){
                 return result.title.toLowerCase().indexOf(p.toLowerCase()) !== -1;
             })

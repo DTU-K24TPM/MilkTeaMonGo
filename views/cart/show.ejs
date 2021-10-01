@@ -15,6 +15,7 @@
             </thead>
             <tbody>
                 <% var total =0 %>
+                <%var j=0, check = false %>
                 <% cart.forEach(function(product){ %>
                     <% var sub1 = 0 %>
                     <tr class="tr-item">
@@ -50,6 +51,8 @@
                                     <% } %>     
                                     <%= product.size.title %>                           
                                 </div>
+                               <%if (block[j]==1)  { check = true; %> <p style="color: red;">Hàng tạm hết</p> <%}%> 
+                               <% j++ %>
                             </div>
                             </td>
                         <td class="row1">
@@ -89,9 +92,16 @@
                 <div class="text-total">TỔNG TIỀN: </div>
                 <div class="text-total total-final "><%=total %> VNĐ</div>
             </div>
-            <a href="/order"> <button type="button" class="btn btn-secondary btn-total">
-               ĐẶT HÀNG
-               </button></a>
+            <% if (check == true) { %> 
+                <button type="button" class="btn btn-secondary btn-total" disabled>
+            <a href="/order"><div style="padding: 10px;"> GIỎ CÓ MÓN ĐÃ HẾT HÀNG</div> </a>
+                </button> 
+                 <%} else { %> 
+                <button type="button" class="btn btn-secondary btn-total">
+            <a href="/order"><div style="padding: 10px;"> ĐẶT HÀNG</div></a>
+                </button> 
+                 <% } %>
+             
         </div>
     </div>
         

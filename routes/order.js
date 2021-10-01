@@ -120,6 +120,7 @@ router.post('/complete',function(req,res){
             if (err) return console.log(err);
         })
         us.cart = [];
+        req.session.cart = [];
         us.save(function(err){
             if (err) return console.log(err);
             res.redirect('/purchase');

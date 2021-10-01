@@ -5,7 +5,7 @@ var Product= require('../models/product');
 var Category= require('../models/category');
 router.get('/',function(req,res){
     Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
-        Product.find({$and:[{block:0},{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
+        Product.find({$and:[{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
             res.render('products/show',{
                 products: products,
                 categories: cats
@@ -17,7 +17,7 @@ router.get('/',function(req,res){
 router.get('/category/:slug',function(req,res){
     var slug= req.params.slug;
     Category.find({$and:[{slug : {'$ne': 'topping'}},{slug: {'$ne':'size'}}]},function(err,cats){
-        Product.find({$and :[{block:0},{category:slug},{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
+        Product.find({$and :[{category:slug},{category: {'$ne':'topping'}},{category: {'$ne':'size'}}]},function(err,products){
             res.render('products/show',{
                 products: products,
                 categories: cats
