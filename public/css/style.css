@@ -1564,3 +1564,37 @@ body {
   opacity: 0.5;
   color: darkgreen;
 }
+.css-hethang{
+  filter: opacity(0.5);
+}
+.out-item{
+  color: indianred;
+  font-style: italic;
+  font-size: 14px;
+}
+.out-item {
+  color: indianred;
+  font-style: italic;
+  font-size: 14px;
+  position: absolute;
+  top: 73%;
+  left: 36%;
+  transform: translateY(-50%);
+  z-index: 1;
+  padding: 3px 10px;
+  text-align: center;
+  opacity: 0;
+  transition: 0.3s;
+  background: cornsilk;
+  max-height: 25px;
+  border-radius: 10px;
+}
+.css-hethang:hover .out-item{
+  opacity: 1;
+}
+.thanhtoan{
+  font-style: italic;
+  font-size: 14px;
+  margin-left: 19px;
+  font-style: italic;
+}

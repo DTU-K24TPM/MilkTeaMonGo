@@ -27,15 +27,23 @@
             <div class="list-item">
                 <% if (products.length != 0){ %>
                 <% products.forEach(function(product){ %>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                        <a href="/product/<%= product.slug %>"><img src="../../img/product_imgs/<%=product._id %>/<%= product.image %>" class="img-item">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 css-hethang">
+                        
+                        <a href="/product/<%= product.slug %>">
+                            
+                                <div class="out-item">Tạm hết hàng</div>
+                            <img src="../../img/product_imgs/<%=product._id %>/<%= product.image %>" class="img-item">
+                    
                             <h5><%= product.title %> </h5>
                             <h6><%= parseFloat(product.price) %>đ</h6>
                         </a>
                     </div>
                 <% }); %>
                 <% } else { %>
-                    <h3 class="text-center not-found">Không tìm thấy sản phẩm</h3>
+                    <div class="nothing" style="margin-top:30px">
+                        <img class="img-empty" src="/img/shop.png" style="width:20%; margin-bottom: 15px;">
+                        <h3 class="text-center">KHÔNG TÌM THẤY SẢN PHẨM NÀO</h3>
+                    </div>
                 <% } %>
             </div>
         </div>
