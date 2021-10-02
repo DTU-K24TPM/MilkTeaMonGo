@@ -1,6 +1,7 @@
 <%- include ('./layouts/header') %>
 <body>
     <div class="wrapper">
+        <div class="slide-div">
         <div class="body-slide">
             <div class="dropdown">
                 <button class="nut_dropdown"><img class="img-drop" src="../img/drop.png" />DANH MỤC SẢN PHẨM</button>
@@ -15,6 +16,64 @@
                <% products.forEach(function(product){ %>
                 <a href="/product/<%= product.slug %>"><img class="mySlides" src="img/product_imgs/<%=product._id%>/<%=product.image%>"></a>
               <% }); %>  
+            </div>
+        </div>
+    </div>
+        <div class="bia-div">
+            <div class="biatrong">
+                <img src="/img/bia1.png" class="img-bia">
+                <a href="/product"><button class="btn-bia">ĐẶT NGAY</button></a>
+            </div>
+        </div>
+        <div class="gioithieu">
+            <div class="gioithieu-div">
+                <div class="gt-1">
+                    <div>
+                        <img class="img-oke" src="/img/oke.png">
+                <span>
+                    Nguồn gốc
+                </span>
+                <div class="line-gt"></div>
+                <p>
+                    Nguồn gốc nguyên liệu xuất xứ rõ ràng, được chính tay chủ thương hiệu lựa chọn
+                </p>
+            </div>
+            <div>
+                <img class="img-oke" src="/img/oke.png">
+                <span>
+                    An toàn
+                </span>
+                <div class="line-gt"></div>
+                <p>
+                    Các nguyên liệu được quán tự làm một cách tỉ mỉ và vệ sinh, đảm bảo chất lượng
+                </p>
+            </div>
+            </div>
+            
+                <img src="/img/tsdb.jpeg" class="img-gioithieu">
+                <div class="gt-2">
+                    <div>
+                        <img class="img-oke" src="/img/oke.png">
+                    <span>
+                        Giá thành
+                    </span>
+                    <div class="line-gt"></div>
+                    <p>
+                        Giá cả phải chăng, phù hợp cho tất cả mọi người, ai cũng có thể sử dụng
+                    </p>
+                </div>
+                <div>
+                    <img class="img-oke" src="/img/oke.png">
+                    <span>
+                        Độ tin cậy
+                    </span>
+                    <div class="line-gt"></div>
+                    <p>
+                        Là một thương hiệu đã có hơn 5 năm kinh nghiệm, đã và đang tiếp tục trụ vững trong lĩnh
+                        vực kinh doanh trà sữa
+                    </p>
+                </div>
+                </div>
             </div>
         </div>
     </div>
