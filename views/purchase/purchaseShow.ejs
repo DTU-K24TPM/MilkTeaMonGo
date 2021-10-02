@@ -113,13 +113,19 @@
                                                                     <div class="time-order">
                                                                         <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
-                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Trạng thái đơn hàng: 
+                                                                            <%if (bill.type=="wait-confirm") {%>Chờ xác nhận <%}%>
+                                                                            <%if (bill.type=="wait-rev") {%>Chờ lấy hàng <%}%>
+                                                                            <%if (bill.type=="delivering") {%>Đang giao <%}%>
+                                                                            <%if (bill.type=="delivered") {%>Đã giao <%}%>
+                                                                            <%if (bill.type=="cancelled") {%>Đã hủy <%}%>
+                                                                        </span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
                                                                             hàng</button>
-                                                                        <button class="cancel-order">Hủy đơn
-                                                                            hàng</button>
+                                                                            <%if (bill.type=="wait-confirm") {%><button class="cancel-order">Hủy đơn
+                                                                                hàng</button> <%}%> 
 
                                                                             <div id="modal-info-order" class="modal">
                                                                                 <div class="modal-content">
@@ -133,7 +139,13 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <span class="type-order">
+                                                                                                    <%if (bill.type=="wait-confirm") {%>Chờ xác nhận <%}%>
+                                                                                                    <%if (bill.type=="wait-rev") {%>Chờ lấy hàng <%}%>
+                                                                                                    <%if (bill.type=="delivering") {%>Đang giao <%}%>
+                                                                                                    <%if (bill.type=="delivered") {%>Đã giao <%}%>
+                                                                                                    <%if (bill.type=="cancelled") {%>Đã hủy <%}%>
+                                                                                                </span>
                                                                                                 <div class="head-address">
                                                                                                     <span > Địa chỉ nhận hàng</span>
                                                                                                     <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
@@ -317,7 +329,7 @@
                                                                     <div class="time-order">
                                                                         <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
-                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i>Chờ xác nhận</span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
@@ -337,7 +349,7 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <span class="type-order">Chờ xác nhận</span>
                                                                                                 <div class="head-address">
                                                                                                     <span > Địa chỉ nhận hàng</span>
                                                                                                     <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
@@ -521,13 +533,12 @@
                                                                     <div class="time-order">
                                                                         <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
-                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Chờ lấy hàng</span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
                                                                             hàng</button>
-                                                                        <button class="cancel-order">Hủy đơn
-                                                                            hàng</button>
+                                                                        
 
                                                                             <div id="modal-info-order" class="modal">
                                                                                 <div class="modal-content">
@@ -541,7 +552,7 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <span class="type-order">Chờ lấy hàng</span>
                                                                                                 <div class="head-address">
                                                                                                     <span > Địa chỉ nhận hàng</span>
                                                                                                     <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
@@ -724,13 +735,12 @@
                                                                     <div class="time-order">
                                                                         <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
-                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đang giao</span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
                                                                             hàng</button>
-                                                                        <button class="cancel-order">Hủy đơn
-                                                                            hàng</button>
+                                                                        
 
                                                                             <div id="modal-info-order" class="modal">
                                                                                 <div class="modal-content">
@@ -744,7 +754,7 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <span class="type-order">Đang giao</span>
                                                                                                 <div class="head-address">
                                                                                                     <span > Địa chỉ nhận hàng</span>
                                                                                                     <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
@@ -928,13 +938,12 @@
                                                                     <div class="time-order">
                                                                         <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
-                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đã giao</span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
                                                                             hàng</button>
-                                                                        <button class="cancel-order">Hủy đơn
-                                                                            hàng</button>
+                                                                       
 
                                                                             <div id="modal-info-order" class="modal">
                                                                                 <div class="modal-content">
@@ -948,7 +957,7 @@
                                                                                     <div class="modal-body">
                                                                                         <div class="admin-each-order">
                                                                                             <div class="time-order">
-                                                                                                <span class="type-order"><%=bill.type%></span>
+                                                                                                <span class="type-order">Đã giao</span>
                                                                                                 <div class="head-address">
                                                                                                     <span > Địa chỉ nhận hàng</span>
                                                                                                     <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
@@ -1132,13 +1141,11 @@
                                                                     <div class="time-order">
                                                                         <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đơn hàng được đặt vào lúc: <%= bill.dateVN
                                                                                 %></span>
-                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%=bill.type%></span>
+                                                                        <span><i class="fa fa-hand-o-right" aria-hidden="true"></i> Đã hủy</span>
                                                                     </div>
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
-                                                                            hàng</button>
-                                                                        <button class="cancel-order">Hủy đơn
-                                                                            hàng</button>
+                                                                            hàng</button>     
 
                                                                             <div id="modal-info-order" class="modal">
                                                                                 <div class="modal-content">
@@ -1152,7 +1159,7 @@
                                                                                             <div class="modal-body">
                                                                                                 <div class="admin-each-order">
                                                                                                     <div class="time-order">
-                                                                                                        <span class="type-order"><%=bill.type%></span>
+                                                                                                        <span class="type-order">Đã hủy</span>
                                                                                                         <div class="head-address">
                                                                                                             <span > Địa chỉ nhận hàng</span>
                                                                                                             <span style="font-size: 14px; font-weight: normal;" >ID đơn hàng: <%=bill.idb%> </span>
