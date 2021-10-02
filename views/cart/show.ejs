@@ -94,7 +94,7 @@
             </div>
             <% if (check == true) { %> 
                 <button type="button" class="btn btn-secondary btn-total" disabled>
-              <a href="/order"><div class="text-total" style="padding: 10px;"> GIỎ CÓ MÓN ĐÃ HẾT HÀNG</div> </a>
+              <a href="/order"><div class="text-total-cart" style="color: #fff;padding: 10px;"> GIỎ CÓ MÓN ĐÃ HẾT HÀNG</div> </a>
                 </button> 
                  <%} else { %> 
                 <button type="button" class="btn btn-secondary btn-total">
@@ -165,7 +165,7 @@
                         eHeader.html("GIỎ HÀNG ("+ result.lengthh + ")");
                         if (result.check == false){
                         $('.btn-total').prop("disabled",false);
-                        $('.text-total').html('ĐẶT HÀNG');
+                        $('.text-total-cart').html('ĐẶT HÀNG');
                         }
                     }
                     $this.val(result.quantity);

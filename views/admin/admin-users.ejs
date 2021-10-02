@@ -10,7 +10,7 @@
                             <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ TẤT CẢ USER
                             </div>
                             <div class="head-search-item">
-                                <form method="GET" action="/admin/purchase/search"
+                                <form method="GET" action="/admin/users/search-user"
                                     class="search-dh search-item-admin">
                                     <input type="text" placeholder="Tìm kiếm theo id user" name="search">
                                     <button type="submit"><i class="fa fa-search" style="color: white"></i></button>
@@ -94,6 +94,9 @@
                 return false;
         })
 
+        $('#btn-print').on('click',function(){
+            window.print();
+        });
     </script>
     
     <%- include('../layouts/footer') %>

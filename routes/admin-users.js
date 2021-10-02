@@ -46,4 +46,17 @@ router.get('/delete-user/:id',function(req,res){
     })
 
 
+router.get('/search-user',function(req,res){
+    var name=req.query.search;
+    User.find({admin : 0},function(err,us){
+        if (err) return console.log(err);
+        var newUs= us.filter(function(result){
+            return result.fullname.toLowerCase().indexOf(name.toLowerCase()) !== -1;
+        })
+        res.render('admin/admin-users',{
+            users : newUs
+    })
+  })
+})
+
 module.exports = router;
