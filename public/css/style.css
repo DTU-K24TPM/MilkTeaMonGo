@@ -309,12 +309,14 @@ body {
   .is-form {
     overflow: hidden;
     position: relative;
-    background-color: #f9f9f9;
+    background: indianred;
+    color: white;
     height: 2.2rem;
     width: 1.9rem;
     padding: 0;
     text-shadow: 1px 1px 1px #fff;
-    border: 1px solid #ddd; }
+    border: 1px solid #ddd; 
+  }
   
   .is-form:focus, .input-text:focus {
     outline: none; }
