@@ -81,6 +81,7 @@ var adminCategories = require('./routes/admin-category')
 var adminProducts = require('./routes/admin-products')
 var adminPurchase = require('./routes/admin-purchase')
 var adminUsers = require('./routes/admin-users');
+var adminStatistics = require('./routes/admin-statistics')
 var product = require('./routes/product')
 var cart = require('./routes/cart')
 var auth = require('./routes/auth')
@@ -97,6 +98,7 @@ app.use('/admin/categories',checkLogin,checkAdmin,checkUser,adminCategories);
 app.use('/admin/products',checkLogin,checkAdmin,checkUser,adminProducts);
 app.use('/admin/purchase',checkLogin,checkAdmin,checkUser,adminPurchase);
 app.use('/admin/users',checkLogin,checkAdmin,checkUser,adminUsers);
+app.use('/admin/statistics',checkLogin,checkAdmin,checkUser,adminStatistics);
 
 
 app.use('/',sites);

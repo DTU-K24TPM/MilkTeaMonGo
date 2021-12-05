@@ -1,0 +1,248 @@
+<%- include('../layouts/adminHeader1') %>
+<section>
+    <script>
+        function daysInMonth(month, year){
+            return new Date(year,month,0).getDate();
+        }
+    </script>
+    <div class="wrapper">
+        <div class="body-slide-profile-body">
+            <div class="main-container">
+                <div class="col-9 wrap-profile user-admin">
+                    <div class="profile-frame-ad">
+                        <br />
+                        <div class="head-profile-frame">
+                            <div class="head-title" style="font-weight: 500; font-size: 24px;">QUẢN LÝ THỐNG KÊ
+                            </div>
+                        </div>
+                        <div class="body-profile-frame-change ad-tk">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs menu-status ">
+                                    <li class="stt-list nav-item">
+                                        <a class="nav-link link1 active" href="#change1" data-bs-toggle="tab"
+                                            data-bs-target="#change1" role="tab" aria-controls="status"
+                                            aria-selected="true">Thống kế theo ngày</a>
+                                    </li>
+                                    <li class="stt-list nav-item">
+                                        <a class="nav-link link1" href="#change2" data-bs-toggle="tab"
+                                            data-bs-target="#change2" role="tab" aria-controls="status"
+                                            aria-selected="true">Thống kế theo tháng</a>
+
+                                    </li>
+                                    <li class="stt-list nav-item">
+                                        <a class="nav-link link1" href="#change3" data-bs-toggle="tab"
+                                            data-bs-target="#change3" role="tab" aria-controls="status"
+                                            aria-selected="true">Thống kế theo user</a>
+
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="change1" role="tabpanel">
+                                        <div class="container">
+                                            <canvas id="myChart"></canvas>
+                                        </div>
+                                        <form action="/admin/statistics" method="POST">
+                                            <input type="month" name="getmonth">
+                                            <button type="submit">Xem</button>
+                                        </form>                                        
+                                        <script>
+                                            let myChart = document.getElementById('myChart').getContext('2d');
+                                            // Global Options
+                                            Chart.defaults.global.defaultFontFamily = 'sans-serif';
+                                            Chart.defaults.global.defaultFontSize = 18;
+                                            Chart.defaults.global.defaultFontColor = '#777';
+                                            var dsngay=[]
+                                            for(let day=1;day<=daysInMonth(2,2020);day++){
+                                                dsngay.push(day+'/2');                                               
+                                            }
+                                            let massPopChart = new Chart(myChart, {
+                                                type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                                data: {
+                                                    labels: dsngay,
+                                                    datasets: [{
+                                                        label: 'Doanh thu',
+                                                        data: [
+                                                            617594,
+                                                            781045,
+                                                            653060,
+                                                            596519,
+                                                            495162,
+                                                            395072,
+                                                            456930,
+                                                            563244,
+                                                            493720
+                                                        ],
+                                                        backgroundColor: [
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                        ],
+                                                    }]
+                                                },
+                                                options: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'DOANH THU THÁNG 9',
+                                                        fontSize: 25
+                                                    },
+                                                    legend: {
+                                                        display: true,
+                                                        position: 'right',
+                                                        labels: {
+                                                            fontColor: '#000'
+                                                        }
+                                                    },
+                                                    layout: {
+                                                        padding: {
+                                                            left: 50,
+                                                            right: 0,
+                                                            bottom: 0,
+                                                            top: 0
+                                                        }
+                                                    },
+                                                    tooltips: {
+                                                        enabled: true
+                                                    }
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="tab-pane" id="change2" role="tabpanel">
+                                        <div class="container">
+                                            <canvas id="myChart1"></canvas>
+                                        </div>
+                                        <script>
+                                            let myChart1 = document.getElementById('myChart1').getContext('2d');
+                                            // Global Options
+                                            Chart.defaults.global.defaultFontFamily = 'sans-serif';
+                                            Chart.defaults.global.defaultFontSize = 18;
+                                            Chart.defaults.global.defaultFontColor = '#777';
+
+                                            let massPopChart1 = new Chart(myChart1, {
+                                                type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                                data: {
+                                                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                                                        'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                                                    datasets: [{
+                                                        label: 'Doanh thu',
+                                                        data: [
+                                                            6617594,
+                                                            8781045,
+                                                            7653060,
+                                                            8596519,
+                                                            9495162,
+                                                            6395072,
+                                                            4456930,
+                                                            4563244,
+                                                            5493720,
+                                                        ],
+                                                        backgroundColor: [
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                        ],
+                                                    }]
+                                                },
+                                                options: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'DOANH THU NĂM 2021',
+                                                        fontSize: 25
+                                                    },
+                                                    legend: {
+                                                        display: true,
+                                                        position: 'right',
+                                                        labels: {
+                                                            fontColor: '#000'
+                                                        }
+                                                    },
+                                                    layout: {
+                                                        padding: {
+                                                            left: 50,
+                                                            right: 0,
+                                                            bottom: 0,
+                                                            top: 0
+                                                        }
+                                                    },
+                                                    tooltips: {
+                                                        enabled: true
+                                                    }
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="tab-pane" id="change3" role="tabpanel">
+                                        <div class="container">
+                                            <canvas id="myChart2"></canvas>
+                                        </div>
+                                        <script>
+                                            let myChart2 = document.getElementById('myChart2').getContext('2d');
+                                            // Global Options
+                                            Chart.defaults.global.defaultFontFamily = 'sans-serif';
+                                            Chart.defaults.global.defaultFontSize = 18;
+                                            Chart.defaults.global.defaultFontColor = '#777';
+
+                                            let massPopChart2 = new Chart(myChart2, {
+                                                type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                                data: {
+                                                    labels: ['Ny Nguyễn', 'Thi Trần', 'Nguyen Ny', 'Vy Le', 'Hai Nguyen', 'Dieu Ny'],
+                                                    datasets: [{
+                                                        label: 'Doanh thu',
+                                                        data: [
+                                                            617594,
+                                                            81045,
+                                                            653060,
+                                                            96519,
+                                                            95162,
+                                                            395072,
+                                                        ],
+                                                        backgroundColor: [
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)'
+                                                        ],
+                                                    }]
+                                                },
+                                                options: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'DOANH THU THEO USER',
+                                                        fontSize: 25
+                                                    },
+                                                    legend: {
+                                                        display: true,
+                                                        position: 'right',
+                                                        labels: {
+                                                            fontColor: '#000'
+                                                        }
+                                                    },
+                                                    layout: {
+                                                        padding: {
+                                                            left: 50,
+                                                            right: 0,
+                                                            bottom: 0,
+                                                            top: 0
+                                                        }
+                                                    },
+                                                    tooltips: {
+                                                        enabled: true
+                                                    }
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+</body>
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<%- include('../layouts/footer') %>
