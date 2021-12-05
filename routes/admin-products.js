@@ -143,7 +143,7 @@ router.post('/editBtn',function(req,res){
         })
     })
 })
-//post edit page
+
 router.post('/edit-product/:id',function(req,res){
     var imageFile =  (req.files != null)? req.files.image.name:""; 
     var title=req.body.title;
