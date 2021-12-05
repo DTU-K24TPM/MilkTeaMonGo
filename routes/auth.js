@@ -13,7 +13,7 @@ var transporter =  nodemailer.createTransport({ // config mail server
     secure: true,
     auth: {
         user: 'testdoan124@gmail.com', //Tài khoản gmail
-        pass: 'anhlavip1' //Mật khẩu tài khoản gmail
+        pass: 'scrucwgckwqloonw' //Mật khẩu tài khoản gmail
     },
     tls: {        
         rejectUnauthorized: false
