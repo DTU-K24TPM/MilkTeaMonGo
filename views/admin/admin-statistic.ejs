@@ -41,7 +41,7 @@
                                         <div class="container">
                                             <canvas id="myChart"></canvas>
                                         </div>
-                                        <input type="hidden" class="datadays" value="<%= data %>">
+                                        <input type="hidden" class="datadays" value="<%= datamonth %>">
                                         <input type="hidden" class="month" value="<%= month %>">
                                         <input type="hidden" class="year" value="<%= year %>">
                                         <form action="" method="">
@@ -105,13 +105,18 @@
                                         <div class="container">
                                             <canvas id="myChart1"></canvas>
                                         </div>
+                                        <form action="" method="">
+                                            <input class="ipgetyear" type="number" min="1900" max="2099" step="1" value="2021" name="getyear"/>                                            
+                                            <button class="xemthang" type="button">Xem</button>
+                                        </form>
+                                        <input type="hidden" class="datayear" value="<%= datayear %>">
                                         <script>
                                             let myChart1 = document.getElementById('myChart1').getContext('2d');
                                             // Global Options
                                             Chart.defaults.global.defaultFontFamily = 'sans-serif';
                                             Chart.defaults.global.defaultFontSize = 18;
                                             Chart.defaults.global.defaultFontColor = '#777';
-
+                                            var datayear = $('.datayear').val()
                                             let massPopChart1 = new Chart(myChart1, {
                                                 type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                                 data: {
@@ -119,17 +124,7 @@
                                                         'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
                                                     datasets: [{
                                                         label: 'Doanh thu',
-                                                        data: [
-                                                            6617594,
-                                                            8781045,
-                                                            7653060,
-                                                            8596519,
-                                                            9495162,
-                                                            6395072,
-                                                            4456930,
-                                                            4563244,
-                                                            5493720,
-                                                        ],
+                                                        data: datayear.split(','),
                                                         backgroundColor: [
                                                             'rgba(255, 99, 132, 0.6)',
                                                         ],
@@ -235,33 +230,17 @@
             </div>
         </div>
     </div>
-    </div>
+    </div>    
     <script>
-        function addData(chart, label, data) {
-            chart.data.labels.push(label);
-            chart.data.datasets.forEach((dataset) => {
-                dataset.data.push(data);
-            });
-            chart.update();
-        }
-        function removeData(chart) {
-            chart.data.labels.pop();
-            chart.data.datasets.forEach((dataset) => {
-                dataset.data.pop();
-            });
-            chart.update();
-        }
+        
         $(".xemngay").on('click', function(){
             var getmonth = $(".ipgetmonth").val()            
             $.ajax({
-                url:"/admin/statistics",
+                url:"/admin/statistics/month",
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({getmonth:getmonth}),
-                success: function(result){
-                    console.log(result)
-                    console.log(result.month)
-                    console.log(result.year)
+                success: function(result){                    
                     let dsngaynew=[]
                     for(let day=1;day<=daysInMonth(result.month,result.year);day++){
                         dsngaynew.push(day+'/'+result.month);                                               
@@ -305,6 +284,58 @@
                                                     }
                                                 }
                                             });    
+                }
+            })
+        })
+
+        $(".xemthang").on('click', function(){
+            var getyear = $(".ipgetyear").val()            
+            $.ajax({
+                url:"/admin/statistics/year",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({getyear:getyear}),
+                success: function(result){                
+                   massPopChart1.destroy()
+                   massPopChart1 = new Chart(myChart1, {
+                        type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                        data: {
+                            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                                'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                            datasets: [{
+                                label: 'Doanh thu',
+                                data: result.data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                ],
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'DOANH THU NĂM '+result.year,
+                                fontSize: 25
+                            },
+                            legend: {
+                                display: true,
+                                position: 'right',
+                                labels: {
+                                    fontColor: '#000'
+                                }
+                            },
+                            layout: {
+                                padding: {
+                                    left: 50,
+                                    right: 0,
+                                    bottom: 0,
+                                    top: 0
+                                }
+                            },
+                            tooltips: {
+                                enabled: true
+                            }
+                        }
+                    });    
                 }
             })
         })
