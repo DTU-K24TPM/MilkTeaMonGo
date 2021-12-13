@@ -25,7 +25,6 @@ var ProductSchema = mongoose.Schema({
     },
     quantity:{
         type:Number,
-        required: true
     },
     deleted:{
         type:Number,
