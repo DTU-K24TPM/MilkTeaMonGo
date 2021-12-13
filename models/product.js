@@ -25,8 +25,12 @@ var ProductSchema = mongoose.Schema({
     },
     quantity:{
         type:Number,
-        require: true
+        required: true
     },
+    deleted:{
+        type:Number,
+        default:0,
+    }
 })
 
 var Product = module.exports = mongoose.model('Product',ProductSchema);

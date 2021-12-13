@@ -8,6 +8,7 @@ var resizeImg = require('resize-img')
 var Product= require('../models/product');
 
 var Category= require('../models/category');
+var Bill=require('../models/bill');
 
 router.get('/',function(req,res){
         Product.find({category:{'$ne':'size'}},function(err,products){
@@ -227,19 +228,31 @@ router.get('/search-product',function(req,res){
   })
 })
 
-router.get('/delete-product/:id',function(req,res){
+router.get('/delete-product/:id/:slug',function(req,res){
     var id =req.params.id;
-    var path = 'public/img/product_imgs/'+ id;
-    fs.remove(path,function(err){
-        if (err) console.log(err);
-        else {
-            Product.findByIdAndRemove(id,function(err){
+    var slug=req.params.slug;
+    Bill.findOne({"cart.slug":slug},function(err,bi){
+        if (err) return console.log(err);
+        if (bi){
+                Product.findByIdAndRemove(id,function(err){
+                    if (err) console.log(err);
+                    res.redirect('/admin/products');
+                });
+                    
+        } else {
+            var path = 'public/img/product_imgs/'+ id;
+            fs.remove(path,function(err){
                 if (err) console.log(err);
-            });
-            req.flash('success','Product deleted ');
-            res.redirect('/admin/products');
+                else {
+                    Product.findByIdAndRemove(id,function(err){
+                        if (err) console.log(err);
+                    });
+                    res.redirect('/admin/products');
+                }
+            })
         }
     })
+    
 })
 
 module.exports = router;
