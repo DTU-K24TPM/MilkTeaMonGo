@@ -1704,3 +1704,37 @@ body {
   width: 15%;
   margin-bottom: 10px;
 }
+.ipgetmonth{
+  padding: 5px;
+    margin: 10px 10px 20px;
+    border: 1px solid #00000057;
+    border-radius: 5px;
+}
+.ipgetyear{
+  padding: 5px;
+    margin: 10px 10px 20px;
+    border: 1px solid #00000057;
+    border-radius: 5px;
+}
+.xemngay{
+  padding: 5px;
+  width: 70px;
+  border: 1px solid indianred;
+  border-radius: 5px;
+  background: indianred;
+  color: #eee;
+}
+.xemthang{
+  padding: 5px;
+  width: 70px;
+  border: 1px solid indianred;
+  border-radius: 5px;
+  background: indianred;
+  color: #eee;
+}
+.xemngay:hover{
+  background: #a13742;
+}
+.xemthang:hover{
+  background: #a13742;
+}
