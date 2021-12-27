@@ -1183,7 +1183,9 @@ body {
     width: 90% !important;
     margin-left: -50px !important;
   }
-  .span-error{
+  .span-error,
+  .span-error-edit,
+  .span-error-add{
     font-style: italic;
     font-size: 14px;
     color: indianred;

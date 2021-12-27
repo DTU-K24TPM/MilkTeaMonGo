@@ -316,7 +316,17 @@
             })
         })
     </script>
-
+    <script>
+        $('.increase').each(function(){
+            var total=$(this).closest('.trClosest').find('.total-price');
+            var price=$(this).closest('.trClosest').find('.each-price');
+            var value=total.val();
+            $(this).click(function(e){
+                value+=price.val();
+                total.html(value);
+            })
+        })
+    </script>
 
     </body>
     <%- include('../layouts/footer') %>
