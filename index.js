@@ -87,10 +87,12 @@ var cart = require('./routes/cart')
 var auth = require('./routes/auth')
 var user = require('./routes/user')
 var order = require('./routes/order')
+
 var checkLogin = require('./middleware/checkLogin.middleware')
 var checkUser = require('./middleware/checkUser.middleware');
 var checkAdmin = require('./middleware/checkAdmin.middleware');
 var checkCustomer = require('./middleware/checkCustomer.middleware')
+var checkBlock=require('./middleware/checkBlock.middleware');
 var purchase = require('./routes/purchase');
 
 app.use('/admin/pages',checkLogin,checkAdmin,checkUser,adminPages);
@@ -106,7 +108,7 @@ app.use('/product',checkCustomer,checkUser,product);
 app.use('/cart',checkCustomer,checkUser,cart);
 app.use('/auth',auth);
 app.use('/user',checkLogin,checkUser,user);
-app.use('/order',checkLogin,checkCustomer,checkUser,order);
+app.use('/order',checkLogin,checkBlock,checkCustomer,checkUser,order);
 app.use('/purchase',checkLogin,checkCustomer,checkUser,purchase);
 
 app.set('socketio',io)
