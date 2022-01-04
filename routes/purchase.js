@@ -80,4 +80,15 @@ router.post('/complete',function(req,res){
 })
 
 
+router.get('/cancel/:id',function(req,res){
+    var id=req.params.id;
+    Bill.findOne({idb:id},function(err,bi){
+        bi.type='cancelled';
+        bi.save(function(err){
+            if (err) return console.log(err);
+            res.redirect('back');
+        });
+    })
+})
+
 module.exports = router;

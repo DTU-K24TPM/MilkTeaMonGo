@@ -124,7 +124,7 @@
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
                                                                             hàng</button>
-                                                                            <%if (bill.type=="wait-confirm") {%><button class="cancel-order">Hủy đơn
+                                                                            <%if (bill.type=="wait-confirm") {%><button id="<%=bill.idb%>" class="cancel-order">Hủy đơn
                                                                                 hàng</button> <%}%> 
 
                                                                             <div id="modal-info-order" class="modal">
@@ -334,7 +334,7 @@
                                                                     <div class="btn-each-order">
                                                                         <button class="detail-order">Chi tiết đơn
                                                                             hàng</button>
-                                                                        <button class="cancel-order">Hủy đơn
+                                                                        <button id="<%=bill.idb%>" class="cancel-order">Hủy đơn
                                                                             hàng</button>
 
                                                                             <div id="modal-info-order" class="modal">
@@ -1299,6 +1299,17 @@
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script> 
 <script src="/js/purchaseShowDetail.js"></script>
+<script>
+    $('.cancel-order').each(function(){
+        $this=$(this);
+        var id=$this.attr('id');
+        $this.click(function(e){
+            if (confirm('Bạn có chắc chắn hủy ?')){
+                $(location).attr('href','/purchase/cancel/'+id);
+            }
+        })
+    })
+</script>
 
     
 
