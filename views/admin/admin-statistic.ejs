@@ -159,67 +159,22 @@
                                         </script>
                                     </div>
                                     <div class="tab-pane" id="change3" role="tabpanel">
-                                        <div class="container">
-                                            <canvas id="myChart2"></canvas>
-                                        </div>
-                                        <script>
-                                            let myChart2 = document.getElementById('myChart2').getContext('2d');
-                                            // Global Options
-                                            Chart.defaults.global.defaultFontFamily = 'sans-serif';
-                                            Chart.defaults.global.defaultFontSize = 18;
-                                            Chart.defaults.global.defaultFontColor = '#777';
-
-                                            let massPopChart2 = new Chart(myChart2, {
-                                                type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-                                                data: {
-                                                    labels: ['Ny Nguyễn', 'Thi Trần', 'Nguyen Ny', 'Vy Le', 'Hai Nguyen', 'Dieu Ny'],
-                                                    datasets: [{
-                                                        label: 'Doanh thu',
-                                                        data: [
-                                                            617594,
-                                                            81045,
-                                                            653060,
-                                                            96519,
-                                                            95162,
-                                                            395072,
-                                                        ],
-                                                        backgroundColor: [
-                                                            'rgba(255, 99, 132, 0.6)',
-                                                            'rgba(255, 99, 132, 0.6)',
-                                                            'rgba(255, 99, 132, 0.6)',
-                                                            'rgba(255, 99, 132, 0.6)',
-                                                            'rgba(255, 99, 132, 0.6)',
-                                                            'rgba(255, 99, 132, 0.6)'
-                                                        ],
-                                                    }]
-                                                },
-                                                options: {
-                                                    title: {
-                                                        display: true,
-                                                        text: 'DOANH THU THEO USER',
-                                                        fontSize: 25
-                                                    },
-                                                    legend: {
-                                                        display: true,
-                                                        position: 'right',
-                                                        labels: {
-                                                            fontColor: '#000'
-                                                        }
-                                                    },
-                                                    layout: {
-                                                        padding: {
-                                                            left: 50,
-                                                            right: 0,
-                                                            bottom: 0,
-                                                            top: 0
-                                                        }
-                                                    },
-                                                    tooltips: {
-                                                        enabled: true
-                                                    }
-                                                }
-                                            });
-                                        </script>
+                                        <table class="tablestatistic">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">User</th>
+                                                    <th scope="col">Tổng cộng</th>                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% billuser.forEach(function(bill){ %>
+                                                    <tr>
+                                                        <td><%=bill._id%></td>                                                    
+                                                        <td><%=bill.total%></td>
+                                                    </tr>
+                                                <%}) %>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

@@ -39,12 +39,18 @@ router.get('/',function(req,res){
                 }
             })
         }
-        res.render('admin/admin-statistic',{
-            datamonth:datamonth,
-            datayear:datayear,
-            month:month,
-            year:year
-        })
+        Bill.aggregate([
+            {$group:{_id:'$email',total:{$sum:'$totalPrice'}}},
+            {$sort:{total:-1}}],function(err,billuser){                
+                res.render('admin/admin-statistic',{
+                    datamonth:datamonth,
+                    datayear:datayear,
+                    month:month,
+                    year:year,
+                    billuser:billuser
+                })
+        })  
+        
     })    
 })
 
