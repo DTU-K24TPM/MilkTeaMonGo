@@ -33,9 +33,11 @@
                                             <div class="profile-left">
                                                 <div class="profile-input">
                                                     <label>Họ và tên</label>
+                                                    <div class="user-span">
                                                     <input class="cls-input" id="name" name="fullname" type="text"
                                                         value="<%=us.fullname%>">
                                                     <span class="span-error" id="name_error"></span>
+                                                </div>
                                                 </div>
                                                 <div class="profile-input">
                                                     <label>Email</label>
@@ -46,9 +48,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="profile-input">
-                                                    <label>Số điện thoại</label>                                                    
+                                                    <label>Số điện thoại</label> 
+                                                    <div class="user-span">                                                   
                                                     <input id="phone" name="phone" class="cls-input phone-input" type="tel" value="<%=us.phone%>">
                                                     <span class="span-error" id="phone_error"></span>
+                                                </div>
                                                 </div>
                                                 <div class="profile-input">
                                                     <label>Giới Tính</label>
@@ -64,9 +68,11 @@
                                                 </div>
                                                 <div class="profile-input">
                                                     <label>Ngày Sinh</label>
+                                                    <div class="user-span">
                                                     <input class="cls-input" name="birthday" type="date"
                                                         id="birthdaytime" name="birthdaytime" value="<%= us.birthday%>">
                                                     <span class="span-error" id="birth_error"></span>
+                                                </div>
                                                 </div>
                                                 <div class="profile-input cls-change-info">
                                                     <label></label>
