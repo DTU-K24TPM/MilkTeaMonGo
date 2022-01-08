@@ -91,25 +91,26 @@ var order = require('./routes/order')
 var checkLogin = require('./middleware/checkLogin.middleware')
 var checkUser = require('./middleware/checkUser.middleware');
 var checkAdmin = require('./middleware/checkAdmin.middleware');
+var checkBlockUser= require('./middleware/checkBlockuser.middleware');
 // var checkCustomer = require('./middleware/checkCustomer.middleware')
 var checkBlock=require('./middleware/checkBlock.middleware');
 var purchase = require('./routes/purchase');
 
-app.use('/admin/pages',checkLogin,checkAdmin,checkUser,adminPages);
-app.use('/admin/categories',checkLogin,checkAdmin,checkUser,adminCategories);
-app.use('/admin/products',checkLogin,checkAdmin,checkUser,adminProducts);
-app.use('/admin/purchase',checkLogin,checkAdmin,checkUser,adminPurchase);
-app.use('/admin/users',checkLogin,checkAdmin,checkUser,adminUsers);
-app.use('/admin/statistics',checkLogin,checkAdmin,checkUser,adminStatistics);
+app.use('/admin/pages',checkLogin,checkBlockUser,checkAdmin,checkUser,adminPages);
+app.use('/admin/categories',checkLogin,checkBlockUser,checkAdmin,checkUser,adminCategories);
+app.use('/admin/products',checkLogin,checkBlockUser,checkAdmin,checkUser,adminProducts);
+app.use('/admin/purchase',checkLogin,checkBlockUser,checkAdmin,checkUser,adminPurchase);
+app.use('/admin/users',checkLogin,checkBlockUser,checkAdmin,checkUser,adminUsers);
+app.use('/admin/statistics',checkLogin,checkBlockUser,checkAdmin,checkUser,adminStatistics);
 
 
 app.use('/',sites);
-app.use('/product',checkUser,product);
-app.use('/cart',checkUser,cart);
+app.use('/product',checkBlockUser,checkUser,product);
+app.use('/cart',checkBlockUser,checkUser,cart);
 app.use('/auth',auth);
-app.use('/user',checkLogin,checkUser,user);
-app.use('/order',checkLogin,checkBlock,checkUser,order);
-app.use('/purchase',checkLogin,checkUser,purchase);
+app.use('/user',checkLogin,checkBlockUser,checkUser,user);
+app.use('/order',checkLogin,checkBlockUser,checkBlock,checkUser,order);
+app.use('/purchase',checkLogin,checkBlockUser,checkUser,purchase);
 
 app.set('socketio',io)
 
