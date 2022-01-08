@@ -1586,7 +1586,7 @@ body {
   font-style: italic;
   font-size: 14px;
   position: absolute;
-  top: 73%;
+  top: 68%;
   left: 36%;
   transform: translateY(-50%);
   z-index: 1;
@@ -1739,4 +1739,8 @@ body {
 }
 .xemthang:hover{
   background: #a13742;
+}
+.user-span{
+  display: flex;
+  flex-direction: column;
 }
