@@ -11,7 +11,7 @@ var User = require('../models/user');
 
 
 
-router.get('/',checkCustomer,function(req,res){
+router.get('/',function(req,res){
     User.findOne({email: req.session.user},function(err,us){
         if (err) return console.log(err);
         res.render('users/userShow',{
@@ -31,7 +31,7 @@ router.get('/admin',checkAdmin,function(req,res){
    
 })
 
-router.get('/change-info',checkCustomer,function(req,res){
+router.get('/change-info',function(req,res){
     var io=req.app.get('socketio')
     io.on('connection', (socket) =>{  
         socket.on('change-pass',data =>{

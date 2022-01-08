@@ -120,8 +120,8 @@ router.post('/login',function(req,res){
                     })
                 }
                 else req.session.cart=user.cart;
-                if(user.admin == 1) res.redirect('/admin/products')
-                else res.redirect('/')
+                // if(user.admin == 1) res.redirect('/admin/products')
+                res.redirect('/')
             }
             else {
                 res.render('auth/login',{
