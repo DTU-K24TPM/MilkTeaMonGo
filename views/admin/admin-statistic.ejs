@@ -159,22 +159,70 @@
                                         </script>
                                     </div>
                                     <div class="tab-pane" id="change3" role="tabpanel">
-                                        <table class="tablestatistic">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">User</th>
-                                                    <th scope="col">Tổng cộng</th>                                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% billuser.forEach(function(bill){ %>
-                                                    <tr>
-                                                        <td><%=bill._id%></td>                                                    
-                                                        <td><%=bill.total%></td>
-                                                    </tr>
-                                                <%}) %>
-                                            </tbody>
-                                        </table>
+                                        <div class="container">
+                                            <canvas id="myChart2"></canvas>
+                                        </div>                                        
+                                        <% var users=[]%>
+                                        <% var values=[]%>
+                                        <% billuser.forEach(function(bill){ %>
+                                            <% users.push(bill._id)%>
+                                            <% values.push(bill.total)%>
+                                        <%}) %>
+                                        <input type="hidden" class="listuser" value="<%=users%>">
+                                        <input type="hidden" class="listvalue" value="<%=values%>">
+                                        <script>
+                                            let myChart2 = document.getElementById('myChart2').getContext('2d');
+                                            // Global Options
+                                            Chart.defaults.global.defaultFontFamily = 'sans-serif';
+                                            Chart.defaults.global.defaultFontSize = 18;
+                                            Chart.defaults.global.defaultFontColor = '#777';
+                                            var arruser = $('.listuser').val()
+                                            var arrvalue = $('.listvalue').val()                                            
+                                            let massPopChart2 = new Chart(myChart2, {
+                                                type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                                data: {
+                                                    labels: arruser.split(','),
+                                                    datasets: [{
+                                                        label: 'Doanh thu',
+                                                        data: arrvalue.split(','),
+                                                        backgroundColor: [
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)',
+                                                            'rgba(255, 99, 132, 0.6)'
+                                                        ],
+                                                    }]
+                                                },
+                                                options: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'DOANH THU THEO USER',
+                                                        fontSize: 25
+                                                    },
+                                                    legend: {
+                                                        display: true,
+                                                        position: 'right',
+                                                        labels: {
+                                                            fontColor: '#000'
+                                                        }
+                                                    },
+                                                    layout: {
+                                                        padding: {
+                                                            left: 50,
+                                                            right: 0,
+                                                            bottom: 0,
+                                                            top: 0
+                                                        }
+                                                    },
+                                                    tooltips: {
+                                                        enabled: true
+                                                    }
+                                                }
+                                            });
+                                        </script>
+                                                                                
                                     </div>
                                 </div>
                             </div>
