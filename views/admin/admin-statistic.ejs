@@ -161,28 +161,30 @@
                                     <div class="tab-pane" id="change3" role="tabpanel">
                                         <div class="container">
                                             <canvas id="myChart2"></canvas>
-                                        </div>
+                                        </div>                                        
+                                        <% var users=[]%>
+                                        <% var values=[]%>
+                                        <% billuser.forEach(function(bill){ %>
+                                            <% users.push(bill._id)%>
+                                            <% values.push(bill.total)%>
+                                        <%}) %>
+                                        <input type="hidden" class="listuser" value="<%=users%>">
+                                        <input type="hidden" class="listvalue" value="<%=values%>">
                                         <script>
                                             let myChart2 = document.getElementById('myChart2').getContext('2d');
                                             // Global Options
                                             Chart.defaults.global.defaultFontFamily = 'sans-serif';
                                             Chart.defaults.global.defaultFontSize = 18;
                                             Chart.defaults.global.defaultFontColor = '#777';
-
+                                            var arruser = $('.listuser').val()
+                                            var arrvalue = $('.listvalue').val()                                            
                                             let massPopChart2 = new Chart(myChart2, {
-                                                type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                                type: 'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                                 data: {
-                                                    labels: ['Ny Nguyễn', 'Thi Trần', 'Nguyen Ny', 'Vy Le', 'Hai Nguyen', 'Dieu Ny'],
+                                                    labels: arruser.split(','),
                                                     datasets: [{
                                                         label: 'Doanh thu',
-                                                        data: [
-                                                            617594,
-                                                            81045,
-                                                            653060,
-                                                            96519,
-                                                            95162,
-                                                            395072,
-                                                        ],
+                                                        data: arrvalue.split(','),
                                                         backgroundColor: [
                                                             'rgba(255, 99, 132, 0.6)',
                                                             'rgba(255, 99, 132, 0.6)',
@@ -220,6 +222,7 @@
                                                 }
                                             });
                                         </script>
+                                                                                
                                     </div>
                                 </div>
                             </div>

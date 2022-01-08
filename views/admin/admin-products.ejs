@@ -43,6 +43,7 @@
                                                         id="img1" accept="image/png, image/jpeg, image/jpg"
                                                         style="display: none;">
                                                     <label id="btn-edit-img-item" for="img1">Chọn ảnh</label>
+                                                    <span class="span-error-add"></span>
                                                 </div>
                                                 <div class="col-7">
                                                     <div class="div-edit-item">
@@ -50,7 +51,7 @@
                                                         <div style="display: flex; flex-direction: column">
                                                             <input name="title" type="text" class="nameAdd"
                                                                 placeholder="Tên sản phẩm" id="name-edit-item">
-                                                            <span class="span-error"></span>
+                                                            <span class="span-error-add"></span>
                                                         </div>
                                                     </div>
                                                     <div class="div-edit-item">
@@ -68,9 +69,9 @@
                                                     <div class="div-edit-item">
                                                         <label>Đơn giá</label>
                                                         <div style="display: flex; flex-direction: column">
-                                                            <input name="price" class="priceAdd" type="text"
+                                                            <input name="price" class="priceAdd" type="number"
                                                                 placeholder="Đơn giá" id="price-edit-item">
-                                                            <span class="span-error"></span>
+                                                            <span class="span-error-add"></span>
                                                         </div>
                                                     </div>
 
@@ -173,6 +174,7 @@
                                                             accept="image/png, image/jpeg, image/jpg"
                                                             style="display: none;">
                                                         <label id="btn-edit-img-item" for="img2">Chọn ảnh</label>
+                                                        <span class="span-error-edit"></span>
                                                     </div>
                                                     <div class="col-7">
                                                         <div class="div-edit-item">
@@ -180,7 +182,7 @@
                                                             <div style="display: flex; flex-direction: column">
                                                             <input type="text" id="name-edit-item" class="nameEdit"
                                                                 name="title">
-                                                                <span class="span-error"></span>
+                                                                <span class="span-error-edit"></span>
                                                                 </div>
                                                         </div>
                                                         <div class="div-edit-item">
@@ -195,9 +197,9 @@
                                                         <div class="div-edit-item">
                                                             <label>Đơn giá</label>
                                                             <div style="display: flex; flex-direction: column">
-                                                            <input type="text" class="priceEdit" id="price-edit-item"
+                                                            <input type="number" class="priceEdit" id="price-edit-item"
                                                                 name="price">
-                                                                <span class="span-error"></span>
+                                                                <span class="span-error-edit"></span>
                                                                 </div>
                                                         </div>
 
@@ -232,9 +234,9 @@
         </div>
     </section>
     </body>
+    <script src="/js/validate-thitran.js"></script>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/admin-quanly.js"></script>
     <script>
         $('a.confirmDeletion').on('click', function () {
             if (!confirm('Confirm Deletion ? '))
@@ -263,31 +265,19 @@
             readURL(this);
         })
 
+        var nameAdd=$('.nameAdd');
+        var priceAdd=$('.priceAdd');
+        var imgAdd=$('.imgChangeAdd');
+        var nameEdit=$('.nameEdit');
+        var priceEdit=$('.priceEdit');
 
+        isRequired(nameAdd,'add');
+        isRequired(priceAdd,'add');
+        isRequired(imgAdd,'add');
+        isRequired(nameEdit,'edit');
+        isRequired(priceEdit,'edit');
 
 
     </script>
-    <script src="../js/validate.js"></script>
-    <script>
-        Validator({
-            form: '#formadd',
-            errorSelect: '.span-error',
-            rules: [
-                Validator.isRequired('#name-edit-item'),
-                Validator.isRequired('#select-item'),
-                Validator.isRequired('#price-edit-item'),
-                Validator.isRequired('#SL-edit-item')
-            ]
-        });
-        Validator({
-            form: '#formedit',
-            errorSelect: '.span-error',
-            rules: [
-                Validator.isRequired('#name-edit-item'),
-                Validator.isRequired('#select-item'),
-                Validator.isRequired('#price-edit-item'),
-                Validator.isRequired('#SL-edit-item')
-            ]
-        });
-    </script>
+    <script src="/js/admin-quanly.js"></script>
     <%- include('../layouts/footer') %>

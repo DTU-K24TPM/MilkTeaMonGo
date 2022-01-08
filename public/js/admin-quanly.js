@@ -19,6 +19,7 @@ $('.closeAdd').on('click',function(){
   nameAdd.val(null);
   priceAdd.val(null);
   quantityAdd.val(null);
+  $('.span-error-add').text("");
   $('.imgAddPreview').attr('src','/img/noimage.jpg');
   $('.validateAdd').html('');
 })
@@ -30,6 +31,7 @@ $('.exitAdd').on('click',function(){
   var priceAdd = $('.priceAdd');
   var quantityAdd = $('.quantityAdd');
   modalAdd.style.display = "none";
+  $('.span-error-add').text("");
   imgAdd.val(null);
   imgEdit.val(null);
   nameAdd.val(null);
@@ -43,6 +45,7 @@ $('.closeEdit').on('click',function(){
   modalEdit.style.display = "none";
   var imgEdit = $('.imgChangeEdit');
   imgEdit.val(null);
+  $('.span-error-edit').text("");
   $('.imgAddPreview').attr('src','/img/noimage.jpg');
   $('.validateEdit').html('');
 })
@@ -51,6 +54,7 @@ $('.exitEdit').on('click',function(){
   modalEdit.style.display = "none";
   var imgEdit = $('.imgChangeEdit');
   imgEdit.val(null);
+  $('.span-error-edit').text("");
   $('.imgAddPreview').attr('src','/img/noimage.jpg');
   $('.validateEdit').html('');
 })
@@ -139,61 +143,80 @@ $('.edit-item').each(function () {
 
 })
 
+        var nameAdd=$('.nameAdd');
+        var priceAdd=$('.priceAdd');
+        var imgAdd=$('.imgChangeAdd');
+        var nameEdit=$('.nameEdit');
+        var priceEdit=$('.priceEdit');
 $('#btn-save-change-item').on('click',function(e){
-  var formm=$('.formEdit')[0];
-  var data = new FormData(formm);
-  var id = form.attr('id')
-  $.ajax({
-    url: "/admin/products/edit-product/"+id,
-    type: "POST",
-    enctype: "multipart/form-data",
-    cache:false,
-    processData: false,
-    contentType: false,
-    data: data,
+  var check = true;
+  checkform([nameEdit,priceEdit],'edit','Vui lòng nhập trường này');
+  $('.span-error-edit').each(function(){
+      if ($(this).text()!="") check=false;
+  })
+  if (check==true){
+    var formm=$('.formEdit')[0];
+    var data = new FormData(formm);
+    var id = form.attr('id')
+    $.ajax({
+      url: "/admin/products/edit-product/"+id,
+      type: "POST",
+      enctype: "multipart/form-data",
+      cache:false,
+      processData: false,
+      contentType: false,
+      data: data,
 
-      success: function (result) {
-         if ( result.noti != "") $('.validateEdit').html(result.noti);
-          else {
-           tdImage.html('<img class="admin-img-item" src="'+ result.imageAjax+'">')
-           modalEdit.style.display = "none";
-           tdTitle.html(namee.val());
-           tdCategory.html(select.val()); 
-           tdPrice.html(price.val());
-           tdQuantity.html(quantity.val()); 
-           modalEdit.style.display = "none";
-           $('.imgAddPreview').attr('src','/img/noimage.jpg');
-          }
-      }
-  });
+        success: function (result) {
+          if ( result.noti != "") $('.validateEdit').html(result.noti);
+            else {
+            tdImage.html('<img class="admin-img-item" src="'+ result.imageAjax+'">')
+            modalEdit.style.display = "none";
+            tdTitle.html(namee.val());
+            tdCategory.html(select.val()); 
+            tdPrice.html(price.val());
+            tdQuantity.html(quantity.val()); 
+            modalEdit.style.display = "none";
+            $('.imgAddPreview').attr('src','/img/noimage.jpg');
+            }
+        }
+    });
+  }
   e.preventDefault();
 })
 
 $('#btn-save-new-item').on('click',function(e){
-  var formm=$('.formAdd')[0];
-  var data = new FormData(formm);
-  $.ajax({
-    url: "/admin/products/add-product/",
-    type: "POST",
-    enctype: "multipart/form-data",
-    cache:false,
-    processData: false,
-    contentType: false,
-    data: data,
-
-      success: function (result) {
-         if ( result.noti != "") $('.validateAdd').html(result.noti);
-          else {
-             // Set the URL to whatever it was plus "#".
-             modalAdd.style.display = "none"
-             url = document.URL+"#";
-             location = "#";
-
-             //Reload the page
-              location.reload(true);
-          }
-      }
-  });
+  var check=true;
+  checkform([nameAdd,priceAdd],'add','Vui lòng nhập trường này');
+  $('.span-error-add').each(function(){
+      if ($(this).text()!="") check=false;
+  })
+  if (check==true){
+    var formm=$('.formAdd')[0];
+    var data = new FormData(formm);
+    $.ajax({
+      url: "/admin/products/add-product/",
+      type: "POST",
+      enctype: "multipart/form-data",
+      cache:false,
+      processData: false,
+      contentType: false,
+      data: data,
+  
+        success: function (result) {
+           if ( result.noti != "") $('.validateAdd').html(result.noti);
+            else {
+               // Set the URL to whatever it was plus "#".
+               modalAdd.style.display = "none"
+               url = document.URL+"#";
+               location = "#";
+  
+               //Reload the page
+                location.reload(true);
+            }
+        }
+    });
+  }
   e.preventDefault();
 })
 
