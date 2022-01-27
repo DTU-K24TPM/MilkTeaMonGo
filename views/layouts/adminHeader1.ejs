@@ -16,9 +16,10 @@
     <div class="wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light nav1">
             <div class="collapse navbar-collapse navnav" id="Mainnav">
-                        <a href="/">Member</a>
+                        <a href="/">MEMBER</a>
+                        <div class="nav-cach" style="  height: 20px;"></div>
                             <ul class="profile-menu-user">
-                                <li class="profile-menu-list" data-trigger="dropdown">
+                                <li class="profile-menu-list" data-trigger="dropdown" style=" margin-right: 70px;">
                                     <% if (typeof user.photo=="undefined" ){ %>
                                         <img class="img-ava" src="/img/avatar.png">
                                     <% }else{ %>
@@ -26,7 +27,7 @@
                                     <% } %>  
                                     <button class="btn-hello">Chào <%= user.fullname %> </button>
                                 </li>
-                                <ul class="profile-submenu submenu" style="margin-left: 40px;">
+                                <ul class="profile-submenu submenu" >
                                     <li><a href="/user" class="#">Hồ sơ của tôi</a></li>
                                     <li><a href="/purchase" class="#">Đơn hàng</a></li>
                                     <li><a href="/auth/logout">Đăng xuất</a></li>

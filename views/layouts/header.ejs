@@ -12,14 +12,15 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <header>
-    <div class="container">
+    <div class="container" style="max-width: 1400px">
               <div class="row">
                   <nav class="navbar navbar-expand-lg navbar-light bg-light nav1">
                       <div class="collapse navbar-collapse navnav" id="Mainnav">
                           <%if (user.admin==1){%>
-                            <a href="/admin/products">ADMIN</a>
+                            <a href="/admin/products" >ADMIN</a>
                           <%}%>                          
                          <% if (user != "") { %>
+                            <div class="nav-cach" style="  height: 20px;"></div>
                             <ul class="profile-menu-user">
                                 <li class="profile-menu-list" data-trigger="dropdown">
                                     <% if (typeof user.photo=="undefined" ){ %>
@@ -50,7 +51,7 @@
                       </div>
                   </nav>
               </div>
-              <div class="row">
+              <div class="row" style="    margin-left: 28px;">
                   <div class="col">
   
                       <div class="menu-div" id="menu">
