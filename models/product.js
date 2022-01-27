@@ -17,7 +17,12 @@ var ProductSchema = mongoose.Schema({
         required : true
     },
     image:{
-        type: String
+        type: String,
+        default:""
+    },
+    imageDrop:{
+        type:String,
+        default:""
     },
     block:{
         type: Number,
@@ -26,10 +31,6 @@ var ProductSchema = mongoose.Schema({
     quantity:{
         type:Number,
     },
-    deleted:{
-        type:Number,
-        default:0,
-    }
 })
 
 var Product = module.exports = mongoose.model('Product',ProductSchema);

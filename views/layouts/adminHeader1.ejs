@@ -23,7 +23,7 @@
                                     <% if (typeof user.photo=="undefined" ){ %>
                                         <img class="img-ava" src="/img/avatar.png">
                                     <% }else{ %>
-                                        <img class="img-ava" src="/img/users/<%=user.email%>/<%=user.photo%>">
+                                        <img class="img-ava" src="<%=user.photo%>">
                                     <% } %>  
                                     <button class="btn-hello">Chào <%= user.fullname %> </button>
                                 </li>

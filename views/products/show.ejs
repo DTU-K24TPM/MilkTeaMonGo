@@ -33,7 +33,7 @@
                             <a href="/product/<%= product.slug %>">
                                 
                                     <div class="out-item">Tạm hết hàng</div>
-                                <img src="../../img/product_imgs/<%=product._id %>/<%= product.image %>" class="img-item">
+                                <img src="<%= product.image %>" class="img-item">
                         
                                 <h5><%= product.title %> </h5>
                                 <% var price= String(product.price).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,') %>
@@ -45,7 +45,7 @@
                         
                             <a href="/product/<%= product.slug %>">
                                 
-                                <img src="../../img/product_imgs/<%=product._id %>/<%= product.image %>" class="img-item">
+                                <img src="<%= product.image %>" class="img-item">
                         
                                 <h5><%= product.title %> </h5>
                                 <% var price= String(product.price).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,') %>

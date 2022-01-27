@@ -4,11 +4,11 @@
         <div class="wrapper wr-item">
             <div class="item">
                 <div class="slide-change">
-                    <img class="img-item1" src="../img/product_imgs/<%= product._id %>/<%= product.image %>">
+                    <img class="img-item1" src="<%= product.image %>">
 
                     <div id="owl-demo" class="owl-carousel owl-theme">
                         <% slides.forEach(function(product){ %>
-                            <a class="item-slide" href="/product/<%= product.slug %>"><img src="../img/product_imgs/<%=product._id%>/<%=product.image%>" alt="Owl Image"></a>                            
+                            <a class="item-slide" href="/product/<%= product.slug %>"><img src="<%=product.image%>" alt="Owl Image"></a>                            
                         <% }); %>                       
                     </div>
 

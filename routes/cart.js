@@ -72,59 +72,61 @@ router.post('/add/:slug',function(req,res){
                 })
             }            
         })
-    Product.findOne({slug: slug},function(err,p){
-        if (err) return console.log(err);
-        title=p.title;
-        if (typeof req.session.cart == "undefined") {
-            req.session.cart=[];
-            req.session.cart.push({
-                title: title,
-                slug:p.slug,
-                topping: newTp,
-                ice: ice,
-                size: newSz,
-                quantity: quantity,
-                price: p.price,
-                image: '/img/product_imgs/'+p._id + '/'+p.image,
-                idCart: idCart
-            });
-        }
-        else {
-            var cart =req.session.cart;
-            var newItem= true;
-            for (var i=0;i<cart.length;i++){
-                if (cart[i].title==title && (equalTopping(cart[i].topping,newTp)==true) && cart[i].size.slug==newSz.slug && cart[i].ice==ice) {
-                    cart[i].quantity-=(-quantity);
-                    newItem=false;
-                    break;
-                }
-            }
-
-            if (newItem) {
-                req.session.cart.push({
-                    title: title,
-                    slug:p.slug,
-                    topping: newTp,
-                    ice: ice,
-                    size: newSz,
-                    quantity: quantity,
-                    price: p.price,
-                    image: '/img/product_imgs/'+p._id + '/'+p.image,
-                    idCart: idCart
-                });
-            }
-        }
-            User.findOne({email: req.session.user},function(err,us){
+        setTimeout(() => {
+            Product.findOne({slug: slug},function(err,p){
                 if (err) return console.log(err);
-                if(us){
-                    us.cart=req.session.cart;
-                    us.save(function(err){
-                        if (err) console.log(err);
+                title=p.title;
+                if (typeof req.session.cart == "undefined") {
+                    req.session.cart=[];
+                    req.session.cart.push({
+                        title: title,
+                        slug:p.slug,
+                        topping: newTp,
+                        ice: ice,
+                        size: newSz,
+                        quantity: quantity,
+                        price: p.price,
+                        image: p.image,
+                        idCart: idCart
+                    });
+                }
+                else {
+                    var cart =req.session.cart;
+                    var newItem= true;
+                    for (var i=0;i<cart.length;i++){
+                        if (cart[i].title==title && (equalTopping(cart[i].topping,newTp)==true) && cart[i].size.slug==newSz.slug && cart[i].ice==ice) {
+                            cart[i].quantity-=(-quantity);
+                            newItem=false;
+                            break;
+                        }
+                    }
+        
+                    if (newItem) {
+                        req.session.cart.push({
+                            title: title,
+                            slug:p.slug,
+                            topping: newTp,
+                            ice: ice,
+                            size: newSz,
+                            quantity: quantity,
+                            price: p.price,
+                            image: p.image,
+                            idCart: idCart
+                        });
+                    }
+                }
+                    User.findOne({email: req.session.user},function(err,us){
+                        if (err) return console.log(err);
+                        if(us){
+                            us.cart=req.session.cart;
+                            us.save(function(err){
+                                if (err) console.log(err);
+                            })
+                        }                
                     })
-                }                
+                res.redirect('back');
             })
-        res.redirect('back');
-    })
+        }, 10);
 })
 
 router.get('/clear/:idcart',function(req,res){

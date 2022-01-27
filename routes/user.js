@@ -2,10 +2,17 @@ var express = require('express')
 var router = express.Router();
 
 var mkdir = require('mkdirp');
-var fs = require('fs-extra');
+var fs = require('fs');
 var resizeImg = require('resize-img');
+var cloudinary = require('cloudinary').v2;
 
-var checkCustomer = require('../middleware/checkCustomer.middleware');
+cloudinary.config({ 
+    cloud_name: 'thi', 
+    api_key: '415314185911635', 
+    api_secret: 'rle4Hc_E1Oe8dGx099O5xb7rASY',
+    secure: true
+  });
+
 var checkAdmin = require('../middleware/checkAdmin.middleware');
 var User = require('../models/user');
 
@@ -98,7 +105,8 @@ router.post('/change-info',function(req,res){
     var gender = req.body.gender;
     var birthday = req.body.birthday;
     var phone = req.body.phone
-    var imageFile =  (req.files != null)? req.files.image.name:""; 
+    if (req.files != null) var imageFile=req.files.image;
+    else imageFile="";
     var pimage = req.body.pimage;
     User.findOne({email: req.session.user},function(err,us){
         if (err) return console.log(err);
@@ -106,28 +114,29 @@ router.post('/change-info',function(req,res){
         us.gender=gender;
         us.birthday=birthday;
         us.phone=phone
+        us.save();
         if (imageFile != ""){
-            us.photo= imageFile;
-        }
-        us.save(function(err){
-            if (err)
-                console.log(err);
-            if (imageFile != ""){
-                if (pimage != "" && pimage != imageFile){
-                    fs.remove('public/img/users/'+us.email +'/'+ pimage,function(err){
-                        if (err) console.log(err);
-                     });
-                }
-
-                var UserImage =req.files.image;
-                var path= 'public/img/users/'+ us.email +'/' + imageFile;
-
-                UserImage.mv(path,function(err){
-                    if (err)return console.log(err)
+            cloudinary.uploader.upload(imageFile.tempFilePath,{folder:"milktea/users/"+us.email},function(err,rs){
+                if (err) throw err;
+                us.photo=rs.url;
+                us.photoDrop=rs.public_id;
+                fs.unlink(imageFile.tempFilePath,function(err){
+                    if (err) throw err;
+                })
+                us.save(function(err){
+                    if (err) throw err;
+                    res.redirect('back');
                 });
-                }
-                res.redirect('back')
-        })
+            })
+        } else {
+            res.redirect('back');
+        }
+        if (pimage!=""){
+            cloudinary.uploader.destroy(pimage,function(err,rs){
+                if (err) throw err;
+            })
+        }
+        
     })
 })
 

@@ -29,7 +29,12 @@ var UserSchema = mongoose.Schema({
         type:String
     },
     photo:{
-        type:String
+        type:String,
+        default:"",
+    },
+    photoDrop:{
+        type:String,
+        default:""
     },
     block:{
         type: Number,

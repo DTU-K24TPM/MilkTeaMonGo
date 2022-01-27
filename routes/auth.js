@@ -53,9 +53,6 @@ router.post('/register',function(req,res){
             });
             user.save(function(err){
                 if (err) return console.log(err);
-                fs.mkdir('public/img/users/'+ user.email, function(err){
-                    if (err) return console.log(err);
-                });
                 res.render('auth/register',{
                     mes:'Đăng ký thành công'
                 })

@@ -126,12 +126,12 @@ $('.edit-item').each(function () {
       data: JSON.stringify({ id: id }),
       success: function (result) {
         if (result.product.image!= "")
-          image.attr('src','/img/product_imgs/'+result.product._id+'/'+result.product.image);
+          image.attr('src',result.product.image);
           else image.attr('src','/img/noimage.jpg');
           namee.val(result.product.title);
           price.val(result.product.price);
           quantity.val(result.product.quantity);
-          pImage.val(result.product.image);
+          pImage.val(result.product.imageDrop);
           select.html(result.htmlSelect);
           form.attr('action','/admin/products/edit-product/'+id);
           form.attr('id',id);

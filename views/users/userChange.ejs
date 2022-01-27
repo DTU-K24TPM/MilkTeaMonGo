@@ -88,7 +88,7 @@
                                                         <img src="/img/avatar.png" id="imgPreview"
                                                             class="profile-avatar">
                                                         <% } else { %>
-                                                            <img src="/img/users/<%=us.email%>/<%=us.photo%>"
+                                                            <img src="<%=us.photo%>"
                                                                 id="imgPreview" class="profile-avatar">
                                                             <%} %>
                                                                 <label  id="btn-change-avt" for="img">Chọn ảnh</label>
@@ -101,7 +101,7 @@
                                                                         bạn</i></label>
                                                 </div>
                                             </div>
-                                            <input type="hidden" name="pimage" value="<%=us.photo%>">
+                                            <input type="hidden" name="pimage" value="<%=us.photoDrop%>">
 
                                         </div>
 

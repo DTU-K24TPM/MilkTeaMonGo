@@ -14,7 +14,7 @@
             </div>
             <div class="w3-content w3-section slide-show">
                <% products.forEach(function(product){ %>
-                <a href="/product/<%= product.slug %>"><img class="mySlides" src="img/product_imgs/<%=product._id%>/<%=product.image%>"></a>
+                <a href="/product/<%= product.slug %>"><img class="mySlides" src="<%=product.image%>"></a>
               <% }); %>  
             </div>
         </div>
@@ -50,7 +50,7 @@
             </div>
             </div>
             
-                <img src="/img/tsdb.jpeg" class="img-gioithieu">
+                <img src="/img/milktea.jpg" class="img-gioithieu">
                 <div class="gt-2">
                     <div>
                         <img class="img-oke" src="/img/oke.png">

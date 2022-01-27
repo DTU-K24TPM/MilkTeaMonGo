@@ -2,7 +2,16 @@ var express = require('express')
 var router = express.Router();
 var mkdir = require('mkdirp');
 var fs = require('fs-extra');
-var resizeImg = require('resize-img')
+var fs2 = require('fs');
+var resizeImg = require('resize-img');
+var cloudinary = require('cloudinary').v2;
+
+cloudinary.config({ 
+    cloud_name: 'thi', 
+    api_key: '415314185911635', 
+    api_secret: 'rle4Hc_E1Oe8dGx099O5xb7rASY',
+    secure: true
+  });
 
 //get product model
 var Product= require('../models/product');
@@ -46,44 +55,52 @@ router.post('/add-product',function(req , res){
     var price=req.body.price;
     var category = req.body.category;
     var quantity = req.body.quantity;
-    
-    Product.findOne({slug: slug},function(err,product){
-        if (product){
-            req.flash('danger','Product title exists, choose another');
-            var noti='Sản phẩm này đã tồn tại' ;
-            res.send({noti: noti});
-        }
-        else {
-            var price2=parseFloat(price).toFixed(2);
-            var product=new Product({
-                title:title,
-                slug:slug,
-                price: price2,
-                category: category,
-                image: imageFile,
-                quantity: quantity,
-            });
-            product.save(function(err){
-                if (err) return console.log(err);
-
-                fs.mkdir('public/img/product_imgs/'+ product._id, function(err){
-                    if (err) return console.log(err);
-                });
-
-                if (imageFile != ""){
-                    var productImage =req.files.image;
-                    var path= 'public/img/product_imgs/'+ product._id +'/' + imageFile;
-
-                    productImage.mv(path,function(err){
-                        if (err)return console.log(err)
-                    });
-                }
-                var noti="";
-                res.send({noti:noti})
-            })
-        }
-    })
-
+    if (req.files == null){
+        res.send({noti:"Bạn chưa thêm hình ảnh"});
+    } else {
+        Product.findOne({slug: slug},function(err,product){
+            if (product){
+                req.flash('danger','Product title exists, choose another');
+                var noti='Sản phẩm này đã tồn tại' ;
+                res.send({noti: noti});
+            }
+            else {
+                var price2=parseFloat(price).toFixed(2);
+                    cloudinary.uploader.upload(req.files.image.tempFilePath,{folder:"milktea/products"},function(err,rs){
+                        if (err) throw err;
+                        var product=new Product({
+                            title:title,
+                            slug:slug,
+                            price: price2,
+                            category: category,
+                            image: rs.url,
+                            imageDrop: rs.public_id,
+                            quantity: quantity,
+                        });
+                        fs2.unlink(req.files.image.tempFilePath,function(err){
+                            if (err) throw err;
+                        })
+                        product.save(function(err){
+                            if (err) throw err;
+                            var noti="";
+                            res.send({noti:noti})
+                        });
+                    })
+                        // fs.mkdir('public/img/product_imgs/'+ product._id, function(err){
+                        //     if (err) return console.log(err);
+                        // });
+        
+                        // if (imageFile != ""){
+                        //     var productImage =req.files.image;
+                        //     var path= 'public/img/product_imgs/'+ product._id +'/' + imageFile;
+        
+                        //     productImage.mv(path,function(err){
+                        //         if (err)return console.log(err)
+                        //     });
+                        // }
+            }
+        })
+    }
 })
 
 //get edit product
@@ -168,43 +185,59 @@ router.post('/edit-product/:id',function(req,res){
                 p.category = category;
                 p.quantity = quantity;
                 if (imageFile != ""){
-                    p.image= imageFile;
-                }
-                p.save(function(err){
-                    if (err)
-                        console.log(err);
-                    if (imageFile != ""){
-                        if (pimage != "" && pimage != imageFile){
-                            fs.remove('public/img/product_imgs/'+id +'/'+ pimage,function(err){
-                                if (err) console.log(err);
-
-                            });
-                        }
-
-                        var productImage =req.files.image;
-                        var path= 'public/img/product_imgs/'+ id +'/' + imageFile;
-
-                        productImage.mv(path,function(err){
-                            if (err)return console.log(err)
-                        });
-                        }
-                        var imageAjax;
-                        if (imageFile==""){
-                            if (pimage != ""){
-                                 imageAjax= "/img/product_imgs/"+id+"/"+pimage;
-                            }
-                            else imageAjax="/img/noimage.jpg"
-                        }
-                        else {
-                            imageAjax= "/img/product_imgs/"+id+"/"+imageFile;
-                        }
-                            
-                        res.send({
-                            noti : "",
-                            imageAjax:imageAjax,
+                    cloudinary.uploader.upload(req.files.image.tempFilePath,{folder:"milktea/products"},function(err,rs){
+                        p.image=rs.url;
+                        p.imageDrop=rs.public_id;
+                        if (err) throw err;
+                        fs2.unlink(req.files.image.tempFilePath,function(err){
+                            if (err) throw err;
+                        })
+                        cloudinary.uploader.destroy(pimage,function(err,rs){
+                            if (err) throw err;
+                        })
+                        p.save(function(err){
+                            if (err) throw err;
+                            var noti="";
+                            res.send({noti:noti, imageAjax:rs.url});
+                        }); 
                     })
-                        req.flash('succsess','Product editted');
-                })
+                }
+                else {
+                    p.save(function(err){
+                        if (err)
+                            console.log(err);
+                        // if (imageFile != ""){
+                        //     if (pimage != "" && pimage != imageFile){
+                        //         fs.remove('public/img/product_imgs/'+id +'/'+ pimage,function(err){
+                        //             if (err) console.log(err);
+    
+                        //         });
+                        //     }
+    
+                        //     var productImage =req.files.image;
+                        //     var path= 'public/img/product_imgs/'+ id +'/' + imageFile;
+    
+                        //     productImage.mv(path,function(err){
+                        //         if (err)return console.log(err)
+                        //     });
+                        //     }
+                            // var imageAjax;
+                            // if (imageFile==""){
+                            //     if (pimage != ""){
+                            //          imageAjax= "/img/product_imgs/"+id+"/"+pimage;
+                            //     }
+                            //     else imageAjax="/img/noimage.jpg"
+                            // }
+                            // else {
+                            //     imageAjax= "/img/product_imgs/"+id+"/"+imageFile;
+                            // }
+                                
+                            res.send({
+                                noti : "",
+                                imageAjax:p.image,
+                        })
+                    })
+                }
             })
         }
     })
@@ -240,16 +273,16 @@ router.get('/delete-product/:id/:slug',function(req,res){
                 });
                     
         } else {
-            var path = 'public/img/product_imgs/'+ id;
-            fs.remove(path,function(err){
-                if (err) console.log(err);
-                else {
                     Product.findByIdAndRemove(id,function(err){
                         if (err) console.log(err);
                     });
+                    Product.findById(id,function(err,p){
+                        cloudinary.uploader.destroy(p.imageDrop,function(err,rs){
+                            if (err) throw err;
+                        })
+                    })
                     res.redirect('/admin/products');
-                }
-            })
+
         }
     })
     

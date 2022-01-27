@@ -26,7 +26,9 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,'public')));
 
 //express fileupload middleware
-app.use(fileUpload());
+app.use(fileUpload({
+  useTempFiles:true
+}));
 
 //parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))

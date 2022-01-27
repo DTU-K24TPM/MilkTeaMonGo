@@ -6,7 +6,7 @@
                             <% if (typeof us.photo=="undefined" ){ %>
                                 <img class="icon_user user-avatar" src="/img/avatar.png"> 
                             <% }else{ %>
-                                <img class="icon_user user-avatar" src="/img/users/<%=us.email%>/<%=us.photo%>">
+                                <img class="icon_user user-avatar" src="<%=us.photo%>">
                             <% } %>  
                             <a class="user-name" href="/user">
                                 <%= us.fullname%>
