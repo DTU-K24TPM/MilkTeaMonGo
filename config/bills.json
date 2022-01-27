@@ -86,7 +86,7 @@
   "note": "",
   "address": "Ở đâu còn lâu mới nói, Hòa Khánh Bắc, Liên Chiểu, thành phố Đà nẵng",
   "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:34:46",
-  "type": "delivered",
+  "type": "wait-confirm",
   "cart": [
     {
       "title": "Trà sữa rainbow",
@@ -258,7 +258,7 @@
   "note": "",
   "address": "Ở đâu còn lâu mới nói, Tam Thuận, Thanh Khê, thành phố Đà nẵng",
   "dateVN": "Thứ 5 ngày 23 tháng 9 năm 2021, 15:36:3",
-  "type": "delivered",
+  "type": "delivering",
   "cart": [
     {
       "title": "Sữa tươi trân châu đường đen brulee",
@@ -375,7 +375,7 @@
   "address": "Ở đâu còn lâu mới nói, Hòa Khánh Bắc, Liên Chiểu, thành phố Đà nẵng",
   "phone": "0854830109",
   "dateVN": "Thứ 7 ngày 25 tháng 9 năm 2021, 13:25:1",
-  "type": "wait-confirm",
+  "type": "cancelled",
   "cart": [
     {
       "title": "Milo cốt dừa trân châu đường đen",
@@ -446,7 +446,7 @@
   "address": "k07/16 lê tấn trung, Thọ Quang, Sơn Trà, thành phố Đà nẵng",
   "phone": "0776738186",
   "dateVN": "Thứ 7 ngày 25 tháng 9 năm 2021, 16:32:31",
-  "type": "delivered",
+  "type": "wait-confirm",
   "cart": [
     {
       "title": "Oreo đá xay",
@@ -532,7 +532,7 @@
   "address": "82 nguyễn xuân ôn, Hòa Cường Bắc, Hải Châu, thành phố Đà nẵng",
   "phone": "0776738186",
   "dateVN": "Thứ 7 ngày 25 tháng 9 năm 2021, 17:5:28",
-  "type": "delivering",
+  "type": "cancelled",
   "cart": [
     {
       "title": "Sữa tươi trân châu đường đen",
@@ -796,7 +796,7 @@
   "address": "Ở đâu còn lâu mới nói, Chính Gián, Thanh Khê, thành phố Đà nẵng",
   "phone": "0854830109",
   "dateVN": "Thứ 1 ngày 26 tháng 9 năm 2021, 18:5:28",
-  "type": "wait-confirm",
+  "type": "delivered",
   "cart": [
     {
       "title": "Thái xanh đặc biệt",
@@ -858,6 +858,45 @@
   "totalPrice": 71000,
   "createAt": {
     "$date": "2021-09-26T11:05:28.665Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61566ffaa8565a9fed9c2514"
+  },
+  "idb": "KDrdhBGDT",
+  "email": "holipenta@gmail.com",
+  "name": "Thi Trần",
+  "note": "",
+  "address": "Ở đâu còn lâu mới nói, Thanh Khê Đông, Thanh Khê, thành phố Đà nẵng",
+  "phone": "0854830109",
+  "dateVN": "Thứ 6 ngày 1 tháng 10 năm 2021, 9:18:34",
+  "type": "cancelled",
+  "cart": [
+    {
+      "title": "Trà sữa rainbow",
+      "slug": "trà-sữa-rainbow",
+      "topping": [],
+      "ice": "0",
+      "size": {
+        "_id": "61402a29e21b596165b5a979",
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0,
+        "block": 0
+      },
+      "quantity": "1",
+      "price": 25000,
+      "image": "/img/product_imgs/613f704dc6760a3cad79edba/MT-10.jpeg",
+      "idCart": "DMF_N_Pqi"
+    }
+  ],
+  "totalPrice": 25000,
+  "createAt": {
+    "$date": "2021-10-01T02:18:34.501Z"
   },
   "__v": 0
 }]

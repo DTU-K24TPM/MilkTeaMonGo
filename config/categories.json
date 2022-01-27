@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "613cadd2e594a4f0a83231cd"
+  },
+  "title": "TRÀ SỮA",
+  "slug": "trà-sữa"
+},{
+  "_id": {
+    "$oid": "613cae26e594a4f0a83231ce"
+  },
+  "title": "ĐÁ XAY",
+  "slug": "đá-xay"
+},{
+  "_id": {
+    "$oid": "613cb529ee939ea17f90ecf8"
+  },
+  "title": "SỮA TƯƠI",
+  "slug": "sữa-tươi",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613cb530ee939ea17f90ecfc"
+  },
+  "title": "ĂN VẶT",
+  "slug": "ăn-vặt",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613cb5fcee939ea17f90ed06"
+  },
+  "title": "TRÀ TRÁI CÂY",
+  "slug": "trà-trái-cây",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613cba86379d17885dfd06a5"
+  },
+  "title": "TOPPING",
+  "slug": "topping",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "613f6fafc6760a3cad79ed88"
+  },
+  "title": "CÀ PHÊ",
+  "slug": "cà-phê",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61402a0fe21b596165b5a96d"
+  },
+  "title": "Size",
+  "slug": "size",
+  "__v": 0
+}]

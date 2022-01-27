@@ -9,13 +9,19 @@
   "admin": 0,
   "gender": 0,
   "phone": "0854830109",
-  "__v": 1706,
+  "__v": 1882,
   "photo": "av.jpg",
+  "block": 1,
   "cart": [
     {
       "title": "Trà sữa rainbow",
       "slug": "trà-sữa-rainbow",
-      "topping": [],
+      "topping": [
+        {
+          "title": "Trân châu đường đen",
+          "price": 10000
+        }
+      ],
       "ice": "0",
       "size": {
         "_id": "61402a29e21b596165b5a979",
@@ -24,12 +30,34 @@
         "category": "size",
         "price": 0,
         "image": "noimage.jpg",
-        "__v": 0
+        "__v": 0,
+        "block": 0
       },
-      "quantity": 3,
-      "price": 29000,
+      "quantity": 1,
+      "price": 25000,
       "image": "/img/product_imgs/613f704dc6760a3cad79edba/MT-10.jpeg",
-      "idCart": "cq4a66C4j"
+      "idCart": "bMg_WdngB"
+    },
+    {
+      "title": "Cà phê sữa sài gòn",
+      "slug": "cà-phê-sữa-sài-gòn",
+      "topping": [],
+      "ice": "0",
+      "size": {
+        "deleted": 0,
+        "_id": "61402a29e21b596165b5a979",
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0,
+        "block": 0
+      },
+      "quantity": 1,
+      "price": 17000,
+      "image": "/img/product_imgs/61456c31261e967f39772c34/cf-2.jpeg",
+      "idCart": "9r3otP_Ma"
     }
   ]
 },{
@@ -42,10 +70,39 @@
   "birthday": "2000-03-26",
   "admin": 0,
   "gender": 1,
-  "__v": 95,
-  "cart": [],
+  "__v": 96,
+  "cart": [
+    {
+      "title": "Thái xanh đặc biệt",
+      "slug": "thái-xanh-đặc-biệt",
+      "topping": [
+        {
+          "title": "Bánh flan",
+          "price": 5000
+        }
+      ],
+      "ice": "0",
+      "size": {
+        "_id": {
+          "$oid": "61402a29e21b596165b5a979"
+        },
+        "title": "Size M",
+        "slug": "size-m",
+        "category": "size",
+        "price": 0,
+        "image": "noimage.jpg",
+        "__v": 0,
+        "block": 0
+      },
+      "quantity": "1",
+      "price": 23000,
+      "image": "/img/product_imgs/613f7033c6760a3cad79edb3/MT-2.jpeg",
+      "idCart": "PEFaDWGCj"
+    }
+  ],
   "photo": "ava.jpg",
-  "phone": "0776738186"
+  "phone": "0776738186",
+  "block": 0
 },{
   "_id": {
     "$oid": "6155b5ad77e9a4d7983e0759"

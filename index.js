@@ -104,7 +104,7 @@ app.use('/admin/users',checkLogin,checkBlockUser,checkAdmin,checkUser,adminUsers
 app.use('/admin/statistics',checkLogin,checkBlockUser,checkAdmin,checkUser,adminStatistics);
 
 
-app.use('/',sites);
+app.use('/',checkUser,sites);
 app.use('/product',checkBlockUser,checkUser,product);
 app.use('/cart',checkBlockUser,checkUser,cart);
 app.use('/auth',auth);
@@ -114,5 +114,5 @@ app.use('/purchase',checkLogin,checkBlockUser,checkUser,purchase);
 
 app.set('socketio',io)
 
-server.listen(3000)
+server.listen(process.env.PORT || 3000)
 
